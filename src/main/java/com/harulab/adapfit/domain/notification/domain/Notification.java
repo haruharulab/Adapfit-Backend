@@ -47,4 +47,8 @@ public class Notification extends BaseTimeEntity {
         this.resumeId = resumeId;
         this.saw = saw;
     }
+
+    public void changeSaw() {
+        this.saw = Saw.READ;
+    }
 }
