@@ -8,6 +8,6 @@ public class AdminNotFoundException extends AdapfitException {
     public final static AdapfitException EXCEPTION = new AdminNotFoundException();
 
     public AdminNotFoundException() {
-        super(ErrorCode.USER_NOT_FOUND);
+        super(ErrorCode.ADMIN_NOT_FOUND);
     }
 }

@@ -48,14 +48,14 @@ public class Admin extends BaseTimeEntity {
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 16)
+    @Column
     private Authority authority;
 
     @Column
     private String center;
 
     @Builder
-    public Admin(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
+    public Admin(String authId, String password, String nickname, String email, String phoneNumber, Authority authority, String role) {
         this.authId = authId;
         this.password = password;
         this.nickname = nickname;

@@ -10,7 +10,6 @@ import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.global.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,6 @@ public class ResumeService {
     private final ResumeFacade resumeFacade;
     private final RecruitmentFacade recruitmentFacade;
     private final NotificationService notificationService;
-    private final JwtUtil jwtUtil;
 
     public List<ResumeResponseDto> getResumes() {
         return resumeFacade.findAllByDateDesc()
@@ -37,7 +35,7 @@ public class ResumeService {
     }
 
     @Transactional
-    public ResumeDetailResponseDto getResume(Long resumeId, String token) {
+    public ResumeDetailResponseDto getResume(Long resumeId) {
         Resume resume = resumeFacade.getDetail(resumeId);
         resume.updateSaw();
         return new ResumeDetailResponseDto(resume);

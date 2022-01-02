@@ -25,7 +25,14 @@ public class JwtProvider {
     private final JwtAuth jwtAuth;
 
     public String generateAccessToken(String authId, String role) {
-        return jwtProperties.getPrefix() + JwtConstants.EMPTY.getMessage() + generateToken(authId, role, JwtConstants.ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
+        return jwtProperties.getPrefix()
+                + JwtConstants.EMPTY.getMessage()
+                + generateToken(
+                authId,
+                role,
+                JwtConstants.ACCESS_KEY.getMessage(),
+                jwtProperties.getAccessExp()
+        );
     }
 
     public String generateRefreshToken(String authId, String role) {

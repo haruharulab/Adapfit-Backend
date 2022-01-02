@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.security.auth.user;
+package com.harulab.adapfit.global.security.auth.admin;
 
 import com.harulab.adapfit.domain.admin.domain.repository.AdminRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;

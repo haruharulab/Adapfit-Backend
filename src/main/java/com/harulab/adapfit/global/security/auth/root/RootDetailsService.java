@@ -3,6 +3,7 @@ package com.harulab.adapfit.global.security.auth.root;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
+import com.harulab.adapfit.global.exception.RootNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,7 @@ public class RootDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
         return rootRepository.findByAuthId(authId)
                 .map(RootDetails::new)
-                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
+                .orElseThrow(() -> RootNotFoundException.EXCEPTION);
     }
 
 }

@@ -23,15 +23,25 @@ public class AdminCreateRequestDto {
     private String password;
     private String validatePassword;
     private String phoneNumber;
+    private String authority;
 
     @Builder
-    public AdminCreateRequestDto(String authId, String email, String nickname, String password, String validatePassword, String phoneNumber) {
+    public AdminCreateRequestDto(
+            String authId,
+            String email,
+            String nickname,
+            String password,
+            String validatePassword,
+            String phoneNumber,
+            String authority
+    ) {
         this.authId = authId;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.validatePassword = validatePassword;
         this.phoneNumber = phoneNumber;
+        this.authority = authority;
         validatePassword();
     }
 
@@ -42,7 +52,7 @@ public class AdminCreateRequestDto {
                 .nickname(nickname)
                 .password(password)
                 .phoneNumber(phoneNumber)
-                .authority(Authority.ADMIN)
+                .authority(Authority.valueOf(authority))
                 .build();
     }
 
