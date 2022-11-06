@@ -51,15 +51,13 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
                 // ADMIN
-                .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADAPFIT_ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/admin").hasRole(ADAPFIT_ADMIN)
                 .antMatchers(HttpMethod.GET, "/plan").permitAll()
                 .antMatchers(HttpMethod.GET, "/plan/{planId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADAPFIT_ADMIN, ROOT)
+                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(CENTER_ADMIN, ADAPFIT_ADMIN, ROOT)
                 .antMatchers(HttpMethod.POST, "/category").hasAnyRole(ADAPFIT_ADMIN, ROOT)
                 .antMatchers(HttpMethod.PUT, "/category/{categoryId}").hasAnyRole(ADAPFIT_ADMIN, ROOT)
                 .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADAPFIT_ADMIN, ROOT)
-                .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADAPFIT_ADMIN, ROOT)
+                .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADAPFIT_ADMIN, HUMAN_RESOURCES_ADMIN, CENTER_ADMIN, ROOT)
 
                 .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(HUMAN_RESOURCES_ADMIN, ADAPFIT_ADMIN, ROOT)
                 .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(HUMAN_RESOURCES_ADMIN, ADAPFIT_ADMIN, ROOT)
