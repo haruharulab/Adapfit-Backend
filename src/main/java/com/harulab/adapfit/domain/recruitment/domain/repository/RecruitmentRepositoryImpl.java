@@ -22,6 +22,7 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
                         careerEq(career),
                         employmentPatternEq(employmentPattern)
                 )
+                .orderBy(recruitment.id.desc())
                 .fetch();
     }
 
