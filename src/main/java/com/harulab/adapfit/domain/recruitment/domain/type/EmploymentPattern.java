@@ -1,5 +1,5 @@
 package com.harulab.adapfit.domain.recruitment.domain.type;
 
 public enum EmploymentPattern {
-    INTERN, PERMANENT_EMPLOYEE
+    NON_REGULAR_WALKER, PERMANENT_EMPLOYEE
 }
