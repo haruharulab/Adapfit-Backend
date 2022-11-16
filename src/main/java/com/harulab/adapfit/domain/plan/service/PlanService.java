@@ -6,6 +6,7 @@ import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
@@ -14,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly
@@ -48,5 +51,16 @@ public class PlanService {
 
         plan.isRightWriter(user);
         planFacade.deletePlan(plan);
+    }
+
+    public PlanResponseDto getPlanDetail(Long planId) {
+        return new PlanResponseDto(planFacade.findByPlanId(planId));
+    }
+
+    public List<PlanResponseDto> getAllPlan() {
+        return planFacade.findAll()
+                .stream()
+                .map(PlanResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

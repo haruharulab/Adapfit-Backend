@@ -3,6 +3,7 @@ package com.harulab.adapfit.domain.plan.presentation;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Validated
@@ -19,6 +21,15 @@ import java.io.IOException;
 public class PlanController {
 
     private final PlanService planService;
+
+    @GetMapping
+    public List<PlanResponseDto> getAll() {
+        return planService.getAllPlan();
+    }
+    @GetMapping("{planId}")
+    public PlanResponseDto getDetail(@PathVariable Long planId) {
+        return planService.getPlanDetail(planId);
+    }
 
     @PostMapping
     public void createPlan(
