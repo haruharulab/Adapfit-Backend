@@ -1,7 +1,6 @@
 package com.harulab.adapfit.domain.plan.service;
 
 import com.harulab.adapfit.domain.category.domain.Category;
-import com.harulab.adapfit.domain.category.presentation.dto.req.CategoryCreateRequestDto;
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
@@ -9,15 +8,12 @@ import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.stream.Collectors;
-
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
-@Service
+@ServiceWithTransactionalReadOnly
 public class PlanService {
 
     private final PlanFacade planFacade;

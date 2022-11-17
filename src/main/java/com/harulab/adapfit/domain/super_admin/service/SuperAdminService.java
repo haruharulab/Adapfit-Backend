@@ -4,17 +4,16 @@ import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminReposi
 import com.harulab.adapfit.domain.super_admin.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
-@Service
+@ServiceWithTransactionalReadOnly
 public class SuperAdminService {
 
     private final SuperAdminRepository superAdminRepository;

@@ -9,11 +9,10 @@ import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
@@ -21,8 +20,7 @@ import java.util.Objects;
 import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
-@Service
+@ServiceWithTransactionalReadOnly
 public class LogoutService {
 
     private final SuperAdminFacade superAdminFacade;

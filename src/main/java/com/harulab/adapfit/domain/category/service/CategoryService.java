@@ -2,13 +2,12 @@ package com.harulab.adapfit.domain.category.service;
 
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.facade.CategoryFacade;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-@Service
-@Transactional(readOnly = true)
+@ServiceWithTransactionalReadOnly
 public class CategoryService {
 
     private final CategoryFacade categoryFacade;
