@@ -32,7 +32,6 @@ public class PlanService {
         plan.confirmCategory(category);
     }
 
-
     @Transactional
     public void updatePlan(Long planId, PlanUpdateRequestDto req) {
         planFacade.findByPlanId(planId).updatePlanInfo(req);

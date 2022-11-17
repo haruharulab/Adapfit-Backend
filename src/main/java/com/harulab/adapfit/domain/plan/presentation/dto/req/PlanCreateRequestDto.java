@@ -6,8 +6,6 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 
-import java.util.List;
-
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @Getter
