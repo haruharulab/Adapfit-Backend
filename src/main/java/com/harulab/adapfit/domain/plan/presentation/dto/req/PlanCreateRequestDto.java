@@ -19,13 +19,11 @@ public class PlanCreateRequestDto {
     @NotBlank(message = CONTENT_NOT_BLANK)
     private final String content;
 
-    private final List<String> categories;
 
     @Builder
-    public PlanCreateRequestDto(String title, String content, List<String> categories) {
+    public PlanCreateRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.categories = categories;
     }
 
     public Plan toEntity() {

@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.plan.service;
 
+import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.presentation.dto.req.CategoryCreateRequestDto;
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
@@ -24,12 +25,11 @@ public class PlanService {
     private final CategoryService categoryService;
 
     @Transactional
-    public void createPlan(PlanCreateRequestDto req) {
+    public void createPlan(Long categoryId, PlanCreateRequestDto req) {
         Plan plan = planFacade.save(req.toEntity());
         plan.confirmWriter(userFacade.getCurrentUser());
-        categoryService.createCategory(
-                plan, new CategoryCreateRequestDto(req.getCategories())
-        );
+        Category category = categoryService.savingInCategory(categoryId);
+        plan.confirmCategory(category);
     }
 
 

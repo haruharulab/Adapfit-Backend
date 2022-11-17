@@ -42,8 +42,9 @@ public class Plan extends BaseTimeEntity {
     @Column(length = 256)
     private String imgPath;
 
-    @OneToMany(mappedBy = "plan", cascade = CascadeType.REMOVE)
-    private final List<Category> categories = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")
@@ -63,8 +64,9 @@ public class Plan extends BaseTimeEntity {
         user.addPlan(this);
     }
 
-    public void addCategory(Category category) {
-        this.categories.add(category);
+    public void confirmCategory(Category category) {
+        this.category = category;
+        category.addPlan(this);
     }
 
     // Plan Info Update
@@ -78,5 +80,4 @@ public class Plan extends BaseTimeEntity {
             throw DontAccessOtherPlanException.EXCEPTION;
         }
     }
-
 }

@@ -18,8 +18,11 @@ public class PlanController {
     private final PlanService planService;
 
     @PostMapping
-    public void createPlan(@RequestBody @Valid PlanCreateRequestDto req) {
-        planService.createPlan(req);
+    public void createPlan(
+            @RequestParam Long categoryId,
+            @RequestBody @Valid PlanCreateRequestDto req
+    ) {
+        planService.createPlan(categoryId, req);
     }
 
     @PutMapping("/{planId}")
