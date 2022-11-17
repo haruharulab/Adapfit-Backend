@@ -31,4 +31,7 @@ public class CategoryFacade {
         }
     }
 
+    public void deleteById(Long categoryId) {
+        categoryRepository.deleteById(categoryId);
+    }
 }

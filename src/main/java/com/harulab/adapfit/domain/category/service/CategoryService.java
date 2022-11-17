@@ -29,4 +29,9 @@ public class CategoryService {
         Category category = categoryFacade.findById(categoryId);
         category.updateName(categoryName);
     }
+
+    @Transactional
+    public void deleteCategory(Long categoryId) {
+        categoryFacade.deleteById(categoryId);
+    }
 }
