@@ -2,7 +2,9 @@ package com.harulab.adapfit.domain.counseling.domain;
 
 import com.harulab.adapfit.domain.counseling.domain.type.MessageType;
 import com.harulab.adapfit.domain.user.domain.User;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -16,7 +18,7 @@ import java.awt.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Message {
+public class Message extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,5 +38,11 @@ public class Message {
     @JoinColumn(name = "message_room")
     private Room room;
 
-
+    @Builder
+    public Message(String message, MessageType messageType, User user, Room room) {
+        this.message = message;
+        this.messageType = messageType;
+        this.user = user;
+        this.room = room;
+    }
 }

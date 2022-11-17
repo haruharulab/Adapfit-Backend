@@ -1,7 +1,7 @@
-package com.harulab.adapfit.domain.super_admin.presentation;
+package com.harulab.adapfit.domain.root.presentation;
 
-import com.harulab.adapfit.domain.super_admin.presentation.dto.req.SuperAdminCreateRequestDto;
-import com.harulab.adapfit.domain.super_admin.service.SuperAdminService;
+import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.service.SuperAdminService;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

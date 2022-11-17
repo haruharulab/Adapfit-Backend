@@ -1,6 +1,6 @@
-package com.harulab.adapfit.domain.super_admin.domain.repository;
+package com.harulab.adapfit.domain.root.domain.repository;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
+import com.harulab.adapfit.domain.root.domain.SuperAdmin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

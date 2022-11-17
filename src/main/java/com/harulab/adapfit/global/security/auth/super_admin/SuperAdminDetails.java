@@ -1,9 +1,8 @@
 package com.harulab.adapfit.global.security.auth.super_admin;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
+import com.harulab.adapfit.domain.root.domain.SuperAdmin;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

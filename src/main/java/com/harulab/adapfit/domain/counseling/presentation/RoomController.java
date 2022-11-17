@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.counseling.presentation;
 
-import com.harulab.adapfit.domain.counseling.sevice.RoomService;
+import com.harulab.adapfit.domain.counseling.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

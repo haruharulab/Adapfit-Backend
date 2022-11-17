@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.user.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.domain.super_admin.presentation.dto.req.UpdateAccountInfoRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.global.error.exception.AdapfitException;

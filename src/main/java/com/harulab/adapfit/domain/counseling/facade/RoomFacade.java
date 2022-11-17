@@ -21,4 +21,5 @@ public class RoomFacade {
     public void create(Room room) {
         roomRepository.save(room);
     }
+
 }

@@ -1,6 +1,5 @@
-package com.harulab.adapfit.domain.super_admin.presentation.dto.req;
+package com.harulab.adapfit.domain.root.presentation.dto.req;
 
-import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,7 +1,7 @@
-package com.harulab.adapfit.domain.super_admin.service;
+package com.harulab.adapfit.domain.root.service;
 
-import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
-import com.harulab.adapfit.domain.super_admin.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
+import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;

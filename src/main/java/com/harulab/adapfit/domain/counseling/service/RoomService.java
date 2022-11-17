@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.counseling.sevice;
+package com.harulab.adapfit.domain.counseling.service;
 
 import com.harulab.adapfit.domain.counseling.domain.Room;
 import com.harulab.adapfit.domain.counseling.facade.RoomFacade;
