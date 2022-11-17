@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.super_admin.service;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
+import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.super_admin.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;

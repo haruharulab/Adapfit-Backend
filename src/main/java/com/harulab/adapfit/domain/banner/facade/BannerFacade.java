@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.banner.facade;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
-import com.harulab.adapfit.domain.banner.domain.BannerRepository;
+import com.harulab.adapfit.domain.banner.domain.repository.BannerRepository;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

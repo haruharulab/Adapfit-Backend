@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
+import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
