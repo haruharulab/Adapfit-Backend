@@ -24,4 +24,9 @@ public class CategoryService {
         return categoryFacade.save(categoryFacade.findById(categoryId));
     }
 
+    @Transactional
+    public void updateCategory(Long categoryId, String categoryName) {
+        Category category = categoryFacade.findById(categoryId);
+        category.updateName(categoryName);
+    }
 }

@@ -19,4 +19,9 @@ public class CategoryController {
     public void create(@RequestParam @Valid String name) {
         categoryService.createCategory(name);
     }
+
+    @PutMapping("/{categoryId}")
+    public void update(@PathVariable Long categoryId, @RequestParam String name) {
+        categoryService.updateCategory(categoryId, name);
+    }
 }
