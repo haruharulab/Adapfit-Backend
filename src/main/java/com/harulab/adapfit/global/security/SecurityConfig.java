@@ -48,15 +48,18 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
+                // all
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/admin").permitAll()
                 .antMatchers(HttpMethod.POST, "/admin/token").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth/refresh").permitAll()
+                .antMatchers(HttpMethod.POST, "/super/auth/token").permitAll()
+                .antMatchers(HttpMethod.POST, "/super").permitAll()
 
                 // user
                 .antMatchers(HttpMethod.PUT, "/user").hasRole(USER)
                 .antMatchers(HttpMethod.DELETE, "/user").hasRole(USER)
-                .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
-                .antMatchers(HttpMethod.PUT, "/auth/refresh").permitAll()
 
                 // admin
                 .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)
@@ -67,7 +70,6 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
-                .antMatchers(HttpMethod.POST, "/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(SUPER)
 
                 .anyRequest().permitAll()
