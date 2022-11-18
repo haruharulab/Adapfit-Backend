@@ -23,4 +23,5 @@ public class AdapfitApplication {
 	public void startedAt(){
 		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
 	}
+
 }

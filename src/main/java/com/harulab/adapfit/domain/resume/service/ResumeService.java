@@ -1,5 +1,7 @@
 package com.harulab.adapfit.domain.resume.service;
 
+import com.harulab.adapfit.domain.notification.presentation.dto.req.NotificationCreateRequest;
+import com.harulab.adapfit.domain.notification.service.NotificationService;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.resume.facade.ResumeFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeRequestDto;
@@ -24,6 +26,7 @@ public class ResumeService {
 
     private final ResumeFacade resumeFacade;
     private final RecruitmentFacade recruitmentFacade;
+    private final NotificationService notificationService;
     private final JwtUtil jwtUtil;
 
     public List<ResumeResponseDto> getResumes() {
@@ -51,6 +54,7 @@ public class ResumeService {
         resume.confirmRecruitment(recruitment);
 
         resumeFacade.submitResume(resume);
+        notificationService.create(new NotificationCreateRequest("[채용 지원 알림]", recruitment.getPosition().getPosition() + " 포지션에 새로운 지원자가 있습니다.", resume.getId()));
     }
 
     public Map<String, String> submitOptionFiles(ResumeRequestDto req) throws IOException {
