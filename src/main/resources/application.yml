@@ -28,8 +28,8 @@ auth:
   jwt:
     header: Authorization
     secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-    accessExp: 30 * 60 * 1000L
-    refreshExp: 30 * 24 * 60 * 60 * 1000L
+    accessExp: 30 * 60
+    refreshExp: 30 * 24 * 60 * 60
     blacklist:
       access-token: BlackList_AccessToken_
 
