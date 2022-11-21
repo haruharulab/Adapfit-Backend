@@ -1,11 +1,16 @@
 package com.harulab.adapfit.global.security.jwt;
 
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -30,6 +35,14 @@ public class JwtProvider {
                 )
                 .setIssuedAt(new Date())
                 .compact();
+    }
+
+    public String resolveToken(HttpServletRequest req) {
+        String bearer = req.getHeader(jwtProperties.getHeader());
+        if (bearer != null && bearer.startsWith(jwtProperties.getPrefix())
+                && bearer.length() > jwtProperties.getPrefix().length() + 1)
+            return bearer.substring(jwtProperties.getPrefix().length() + 1);
+        return null;
     }
 
 
