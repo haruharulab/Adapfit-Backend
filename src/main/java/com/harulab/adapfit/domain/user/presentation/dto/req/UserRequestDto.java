@@ -22,9 +22,9 @@ public class UserRequestDto {
     private final String email;
 
     @NotNull
-    private final Integer phoneNumber;
+    private final String phoneNumber;
 
-    public UserRequestDto(String authId, String password, String validatePassword, String email, Integer phoneNumber) {
+    public UserRequestDto(String authId, String password, String validatePassword, String email, String phoneNumber) {
         this.authId = authId;
         this.password = password;
         this.validatePassword = validatePassword;

@@ -15,7 +15,7 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(length = 12)
+    @Column(length = 32)
     private String authId;
 
     @NotNull
@@ -28,10 +28,10 @@ public class User {
 
     @NotNull
     @Column(length = 12)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Builder
-    public User(Long id, String authId, String password, String email, Integer phoneNumber) {
+    public User(Long id, String authId, String password, String email, String phoneNumber) {
         this.id = id;
         this.authId = authId;
         this.password = password;
