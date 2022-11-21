@@ -2,12 +2,26 @@ package com.harulab.adapfit.domain.user.presentation.dto.req;
 
 import com.harulab.adapfit.domain.user.domain.User;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
 public class UserRequestDto {
 
+    @NotNull
     private final String authId;
+
+    @NotNull
     private final String password;
+
+    @NotNull
     private final String validatePassword;
+
+    @NotNull
+    @Email
     private final String email;
+
+    @NotNull
     private final Integer phoneNumber;
 
     public UserRequestDto(String authId, String password, String validatePassword, String email, Integer phoneNumber) {
@@ -16,6 +30,7 @@ public class UserRequestDto {
         this.validatePassword = validatePassword;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        validateIsMatchedPassword();
     }
 
     public User toEntity() {
@@ -25,5 +40,11 @@ public class UserRequestDto {
                 .password(password)
                 .phoneNumber(phoneNumber)
                 .build();
+    }
+
+    private void validateIsMatchedPassword() {
+        if (!Objects.equals(password, validatePassword)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
     }
 }
