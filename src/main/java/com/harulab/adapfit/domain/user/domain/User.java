@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.user.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -29,4 +30,12 @@ public class User {
     @Column(length = 12)
     private Integer phoneNumber;
 
+    @Builder
+    public User(Long id, String authId, String password, String email, Integer phoneNumber) {
+        this.id = id;
+        this.authId = authId;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 }
