@@ -1,0 +1,66 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://haruharu-lab.cdi37kpogvbp.ap-northeast-2.rds.amazonaws.com:3308/haruharulab?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: haruharulab
+    password: 12345678
+  redis:
+    host: localhost
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  security:
+    jwt:
+      header: Authorization
+      secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+      blacklist:
+        access-token: BlackList_AccessToken_
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+
+#    default_batch_fetch_size: 1000
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+  # parameter Binding
+
+server:
+  port: 8080
+
+module:
+  app-id: 1175516108286534
+  secret-key: BuPwVTKA5MVwOKN8Q7dHzePbujQi90hYfKG9hCt2uxJmx9On95bwessNPpYq43qB9KVokXnKnCsGY9A3
+
+cloud:
+  aws:
+    s3:
+      bucket: bssm-re-code
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: AKIAZ6HMQZ7MKL7HCGTY
+      secretKey: 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
