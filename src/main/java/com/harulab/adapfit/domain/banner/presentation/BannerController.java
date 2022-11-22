@@ -1,12 +1,13 @@
 package com.harulab.adapfit.domain.banner.presentation;
 
+import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
 import com.harulab.adapfit.domain.banner.service.BannerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,6 +20,14 @@ public class BannerController {
     @GetMapping
     public List<BannerResponse> getBannerList() {
         return bannerService.getBannerList();
+    }
+
+    @PostMapping
+    public void upload(
+            @RequestPart(value = "link") String link,
+            @RequestPart(value = "image") MultipartFile image
+    ) throws IOException {
+        bannerService.upload(new UploadBannerRequest(link, image));
     }
 
 }

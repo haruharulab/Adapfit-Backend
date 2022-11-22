@@ -8,7 +8,7 @@ import lombok.Getter;
 public class BannerResponse {
 
     private Long id;
-    private String imgSrc;
+    private String fileExt;
     private String link;
 
 }
