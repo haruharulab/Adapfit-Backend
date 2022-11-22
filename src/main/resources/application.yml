@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://haruharu-lab.cdi37kpogvbp.ap-northeast-2.rds.amazonaws.com:3308/haruharulab?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: haruharulab
-    password: 12345678
+    url: jdbc:mysql://localhost:3306/haruharulab?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
   redis:
     host: localhost
     port: 6379
@@ -28,8 +28,8 @@ auth:
   jwt:
     header: Authorization
     secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-    accessExp: 30 * 60
-    refreshExp: 30 * 24 * 60 * 60
+    accessExp: 1800
+    refreshExp: 5184000
     blacklist:
       access-token: BlackList_AccessToken_
 
