@@ -2,6 +2,7 @@ package com.harulab.adapfit.global.security.jwt;
 
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.RefreshTokenRepository;
+import com.harulab.adapfit.global.exception.InvalidJwtException;
 import com.harulab.adapfit.global.security.auth.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import io.jsonwebtoken.*;
@@ -76,9 +77,9 @@ public class JwtProvider {
             return Jwts.parser().setSigningKey(jwtProperties.getSecret())
                     .parseClaimsJws(token).getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
-            throw new IllegalArgumentException();
+            throw com.harulab.adapfit.global.exception.ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw InvalidJwtException.EXCEPTION;
         }
     }
 
