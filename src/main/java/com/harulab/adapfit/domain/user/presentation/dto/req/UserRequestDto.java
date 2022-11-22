@@ -1,11 +1,14 @@
 package com.harulab.adapfit.domain.user.presentation.dto.req;
 
 import com.harulab.adapfit.domain.user.domain.User;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
+import lombok.Getter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@Getter
 public class UserRequestDto {
 
     @NotNull
@@ -39,6 +42,7 @@ public class UserRequestDto {
                 .email(email)
                 .password(password)
                 .phoneNumber(phoneNumber)
+                .authority(Authority.USER)
                 .build();
     }
 
