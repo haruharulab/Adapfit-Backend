@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.security.auth;
+package com.harulab.adapfit.global.security.auth.user;
 
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.type.Authority;

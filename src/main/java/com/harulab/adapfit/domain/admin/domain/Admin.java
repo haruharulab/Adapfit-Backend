@@ -62,8 +62,8 @@ public class Admin {
         this.password = passwordEncoder.encode(password);
     }
 
-    public void matchedPassword(PasswordEncoder passwordEncoder, User user, String password) {
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+    public void matchedPassword(PasswordEncoder passwordEncoder, Admin admin, String password) {
+        if (!passwordEncoder.matches(password, admin.getPassword())) {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }

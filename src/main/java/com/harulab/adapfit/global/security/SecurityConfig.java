@@ -3,6 +3,7 @@ package com.harulab.adapfit.global.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.harulab.adapfit.global.error.CustomAuthenticationEntryPoint;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
+import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import org.springframework.web.cors.CorsUtils;
 public class SecurityConfig {
 
     private final JwtProvider jwtProvider;
+    private final JwtAuth jwtAuth;
     private final ObjectMapper objectMapper;
     private static final String ADMIN = "ADMIN";
 
@@ -48,6 +50,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
 
                 // admin
+                .antMatchers(HttpMethod.POST, "/admin/token").permitAll()
                 .antMatchers(HttpMethod.PUT, "/admin").permitAll()
 
                 .anyRequest().permitAll()
@@ -55,7 +58,7 @@ public class SecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
 
                 .and()
-                .apply(new FilterConfig(jwtProvider, objectMapper));
+                .apply(new FilterConfig(jwtProvider, jwtAuth, objectMapper));
         return http.build();
     }
 

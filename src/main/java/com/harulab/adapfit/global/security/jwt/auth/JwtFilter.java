@@ -1,5 +1,6 @@
-package com.harulab.adapfit.global.security.jwt;
+package com.harulab.adapfit.global.security.jwt.auth;
 
+import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
+    private final JwtAuth jwtAuth;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -25,7 +27,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private void isBearerNotNullSetContextHolderToAuthentication(String bearer) {
         if (bearer != null) {
-            Authentication authentication = jwtProvider.authentication(bearer);
+            Authentication authentication = jwtAuth.authentication(bearer);
+            System.out.println("authentication : " + authentication.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }

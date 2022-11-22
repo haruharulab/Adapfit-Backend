@@ -2,15 +2,9 @@ package com.harulab.adapfit.global.security.jwt;
 
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.RefreshTokenRepository;
-import com.harulab.adapfit.global.exception.InvalidJwtException;
-import com.harulab.adapfit.global.security.auth.AuthDetailsService;
-import com.harulab.adapfit.global.security.auth.admin.AdminDetailsService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,16 +16,13 @@ import java.util.Date;
 public class JwtProvider {
 
     private final JwtProperties jwtProperties;
-    private final AuthDetailsService authDetailsService;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final AdminDetailsService adminDetailsService;
     private static final String ACCESS_KEY = "access_token";
     private static final String REFRESH_KEY = "refresh_token";
-    private static final String USER_ROLE = "USER";
 
     public TokenResponseDto generateToken(String id, String role) {
-        String accessToken = generateToken(id, role, ACCESS_KEY, jwtProperties.getAccessExp());
-        String refreshToken = generateToken(id, role, REFRESH_KEY, jwtProperties.getRefreshExp());
+        String accessToken = jwtProperties.getPrefix() + " " + generateToken(id, role, ACCESS_KEY, jwtProperties.getAccessExp());
+        String refreshToken = jwtProperties.getPrefix() + " " + generateToken(id, role, REFRESH_KEY, jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
                 .id(id)
@@ -68,40 +59,8 @@ public class JwtProvider {
         return null;
     }
 
-    public Authentication authentication(String token) {
-        UserDetails userDetails = authDetailsService
-                .loadUserByUsername(getTokenSubject(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-    }
-
-    private UserDetails getDetails(Claims body) {
-        if (USER_ROLE.equals(body.get("role").toString())) {
-            return authDetailsService
-                    .loadUserByUsername(body.getSubject());
-        } else {
-            return adminDetailsService
-                    .loadUserByUsername(body.getSubject());
-        }
-    }
-
     public ZonedDateTime getExpiredTime() {
         return ZonedDateTime.now().plusSeconds(jwtProperties.getRefreshExp());
-    }
-
-    private Claims getTokenBody(String token) {
-
-        try {
-            return Jwts.parser().setSigningKey(jwtProperties.getSecret())
-                    .parseClaimsJws(token).getBody();
-        } catch (io.jsonwebtoken.ExpiredJwtException e) {
-            throw com.harulab.adapfit.global.exception.ExpiredJwtException.EXCEPTION;
-        } catch (Exception e) {
-            throw InvalidJwtException.EXCEPTION;
-        }
-    }
-
-    private String getTokenSubject(String token) {
-        return getTokenBody(token).getSubject();
     }
 
 }
