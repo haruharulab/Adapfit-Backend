@@ -13,6 +13,9 @@ public class AdminFacade {
 
     private final AdminRepository adminRepository;
 
+    public Admin save(Admin admin) {
+        return adminRepository.save(admin);
+    }
 
     public Admin getCurrentAdmin() {
         return adminRepository.findByAuthId(AdminUtil.getCurrentUser().getUsername())

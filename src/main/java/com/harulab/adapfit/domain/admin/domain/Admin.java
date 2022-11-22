@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.admin.domain;
 
+import com.harulab.adapfit.domain.admin.domain.type.JoinStatus;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
@@ -47,8 +48,12 @@ public class Admin {
     @Column(length = 16)
     private Authority authority;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 16)
+    private JoinStatus joinStatus;
+
     @Builder
-    public Admin(String authId, String password, String email, String nickname, String centerInfo, String phoneNumber, Authority authority) {
+    public Admin(String authId, String password, String email, String nickname, String centerInfo, String phoneNumber, Authority authority, JoinStatus joinStatus) {
         this.authId = authId;
         this.password = password;
         this.email = email;
@@ -56,6 +61,7 @@ public class Admin {
         this.centerInfo = centerInfo;
         this.phoneNumber = phoneNumber;
         this.authority = authority;
+        this.joinStatus = joinStatus;
     }
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
