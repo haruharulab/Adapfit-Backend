@@ -33,7 +33,7 @@ public class JwtProvider {
                 .ttl(jwtProperties.getRefreshExp())
                 .build());
 
-        return new TokenResponseDto(accessToken, refreshToken);
+        return new TokenResponseDto(accessToken, refreshToken, getExpiredTime());
     }
 
     private String generateToken(String authId, String type, Long exp) {
@@ -53,20 +53,21 @@ public class JwtProvider {
         return parseToken(bearer);
     }
 
+    public String parseToken(String bearerToken) {
+        if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix())){
+            return bearerToken.replace(jwtProperties.getPrefix(), "");
+        }
+        return null;
+    }
+
     public Authentication authentication(String token) {
         UserDetails userDetails = authDetailsService
                 .loadUserByUsername(getTokenSubject(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    public String parseToken(String bearerToken) {
-        if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix()))
-            return bearerToken.replace(jwtProperties.getPrefix(), "");
-        return null;
-    }
-
     public ZonedDateTime getExpiredTime() {
-        return ZonedDateTime.now().plusSeconds(jwtProperties.getAccessExp());
+        return ZonedDateTime.now().plusSeconds(jwtProperties.getRefreshExp());
     }
 
     private Claims getTokenBody(String token) {
@@ -84,4 +85,5 @@ public class JwtProvider {
     private String getTokenSubject(String token) {
         return getTokenBody(token).getSubject();
     }
+
 }

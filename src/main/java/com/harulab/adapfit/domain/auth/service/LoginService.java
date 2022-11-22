@@ -21,7 +21,7 @@ public class LoginService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public TokenResponseDto login(LoginRequestDto req) {
+    public TokenResponseDto execute(LoginRequestDto req) {
         validateLoginInfo(req);
         return jwtProvider.generateToken(req.getAuthId());
     }
