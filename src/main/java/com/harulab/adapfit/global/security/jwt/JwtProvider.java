@@ -1,7 +1,7 @@
 package com.harulab.adapfit.global.security.jwt;
 
-import com.harulab.adapfit.domain.auth.RefreshToken;
-import com.harulab.adapfit.domain.auth.RefreshTokenRepository;
+import com.harulab.adapfit.domain.auth.domain.RefreshToken;
+import com.harulab.adapfit.domain.auth.domain.RefreshTokenRepository;
 import com.harulab.adapfit.global.security.auth.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import io.jsonwebtoken.*;
@@ -23,9 +23,9 @@ public class JwtProvider {
     private final AuthDetailsService authDetailsService;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    public TokenResponseDto generateToken(String authId, String role) {
-        String accessToken = generateToken(authId, role, jwtProperties.getAccessExp());
-        String refreshToken = generateToken(authId, role, jwtProperties.getRefreshExp());
+    public TokenResponseDto generateToken(String authId) {
+        String accessToken = generateToken(authId, "ACCESS", jwtProperties.getAccessExp());
+        String refreshToken = generateToken(authId, "REFRESH", jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
                 .id(authId)
@@ -36,10 +36,10 @@ public class JwtProvider {
         return new TokenResponseDto(accessToken, refreshToken);
     }
 
-    private String generateToken(String authId, String role, Long exp) {
+    private String generateToken(String authId, String type, Long exp) {
         return Jwts.builder()
                 .setSubject(authId)
-                .claim("ROLE", role)
+                .claim("Type", type)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecret())
                 .setExpiration(
                         new Date(System.currentTimeMillis() + exp * 1000)

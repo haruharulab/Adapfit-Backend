@@ -1,10 +1,13 @@
 package com.harulab.adapfit.domain.user.domain;
 
 import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
+import com.harulab.adapfit.global.error.exception.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +21,7 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(length = 32)
+    @Column(length = 32, unique = true)
     private String authId;
 
     @NotNull
@@ -44,5 +47,11 @@ public class User {
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void matchedPassword(PasswordEncoder passwordEncoder, User user, String password) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.auth;
+package com.harulab.adapfit.domain.auth.domain;
 
 import lombok.Builder;
 import lombok.Getter;
