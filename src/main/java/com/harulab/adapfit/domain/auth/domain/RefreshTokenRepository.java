@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.auth;
+package com.harulab.adapfit.domain.auth.domain;
 
 import org.springframework.data.repository.CrudRepository;
 
