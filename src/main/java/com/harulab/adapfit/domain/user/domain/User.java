@@ -37,7 +37,7 @@ public class User {
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 6)
+    @Column(length = 16)
     private Authority authority;
 
     @Builder

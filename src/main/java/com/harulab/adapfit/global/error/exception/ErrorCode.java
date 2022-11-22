@@ -21,6 +21,7 @@ public enum ErrorCode {
     FORBIDDEN(403, "COMMON-403-1", "Forbidden"),
 
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
+    ADMIN_NOT_FOUND(404, "ADMIN-404-1", "Admin Not Found"),
     CREDENTIALS_NOT_FOUND(404, "USER-404-3", "Credentials Not Found"),
     REFRESH_TOKEN_NOT_FOUND(404, "AUTH-404-1", "Refresh Token Not Found"),
     AUTH_ID_NOT_FOUND(404, "AUTH-404-4", "AuthId(Username) Not Found"),

@@ -22,6 +22,7 @@ public class SecurityConfig {
 
     private final JwtProvider jwtProvider;
     private final ObjectMapper objectMapper;
+    private static final String ADMIN = "ADMIN";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -45,6 +46,9 @@ public class SecurityConfig {
 
                 // user
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
+
+                // admin
+                .antMatchers(HttpMethod.PUT, "/admin").permitAll()
 
                 .anyRequest().permitAll()
                 .and()

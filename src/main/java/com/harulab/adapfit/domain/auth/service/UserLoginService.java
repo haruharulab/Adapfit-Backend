@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class LoginService {
+public class UserLoginService {
 
     private final UserRepository userRepository;
     private final JwtProvider jwtProvider;
@@ -23,7 +23,7 @@ public class LoginService {
     @Transactional
     public TokenResponseDto execute(LoginRequestDto req) {
         validateLoginInfo(req);
-        return jwtProvider.generateToken(req.getAuthId());
+        return jwtProvider.generateToken(req.getAuthId(), "USER");
     }
 
     private void validateLoginInfo(LoginRequestDto req) {

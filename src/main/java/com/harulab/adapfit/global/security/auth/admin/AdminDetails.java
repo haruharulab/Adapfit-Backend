@@ -1,8 +1,7 @@
 package com.harulab.adapfit.global.security.auth.admin;
 
-import com.harulab.adapfit.domain.admin.domain.Admin;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,16 +9,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-@Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AdminDetails implements UserDetails {
 
-    private final Admin admin;
+    private final String adminId;
+
+    private final Authority adminRole;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(
-                new SimpleGrantedAuthority(admin.getAuthority().name())
+                new SimpleGrantedAuthority("ROLE_" + adminRole)
         );
     }
 
@@ -30,26 +30,26 @@ public class AdminDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return admin.getAuthId();
+        return adminId;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

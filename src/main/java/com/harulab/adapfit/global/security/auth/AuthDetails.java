@@ -1,6 +1,7 @@
 package com.harulab.adapfit.global.security.auth;
 
 import com.harulab.adapfit.domain.user.domain.User;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +20,7 @@ public class AuthDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(
-                new SimpleGrantedAuthority(user.getAuthority().name())
+                new SimpleGrantedAuthority("ROLE_" + Authority.USER.name())
         );
     }
 

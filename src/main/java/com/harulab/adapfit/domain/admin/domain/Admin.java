@@ -67,4 +67,12 @@ public class Admin {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }
+
+    public void updateInfo() {
+        this.password = password;
+        this.email = email;
+        this.nickname = nickname;
+        this.centerInfo = centerInfo;
+        this.phoneNumber = phoneNumber;
+    }
 }

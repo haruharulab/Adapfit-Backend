@@ -1,6 +1,9 @@
 package com.harulab.adapfit.global.security.auth.admin;
 
+import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.AdminRepository;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.global.exception.AdminNotFoundException;
 import com.harulab.adapfit.global.exception.AuthIdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +21,8 @@ public class AdminDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return adminRepository.findByAuthId(authId)
-                .map(AdminDetails::new)
-                .orElseThrow(() -> AuthIdNotFoundException.EXCEPTION);
+        Admin admin = adminRepository.findByAuthId(authId)
+                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
+        return new AdminDetails(admin.getAuthId(), Authority.ADMIN);
     }
 }

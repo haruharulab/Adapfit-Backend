@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.auth.presentation;
 
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
-import com.harulab.adapfit.domain.auth.service.LoginService;
+import com.harulab.adapfit.domain.auth.service.UserLoginService;
 import com.harulab.adapfit.domain.auth.service.UserTokenRefreshService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final LoginService loginService;
+    private final UserLoginService loginService;
     private final UserTokenRefreshService userTokenRefreshService;
 
     @PostMapping("/token")

@@ -24,10 +24,10 @@ public class UserTokenRefreshService {
     }
 
     private TokenResponseDto getNewTokens(RefreshToken redisRefreshToken) {
-        String newRefreshToken = jwtProvider.generateToken(redisRefreshToken.getId()).getRefreshToken();
+        String newRefreshToken = jwtProvider.generateToken(redisRefreshToken.getId(), "USER").getRefreshToken();
         redisRefreshToken.update(newRefreshToken, jwtProperties.getRefreshExp());
 
-        String newAccessToken = jwtProvider.generateToken(redisRefreshToken.getId()).getAccessToken();
+        String newAccessToken = jwtProvider.generateToken(redisRefreshToken.getId(), "USER").getAccessToken();
         return TokenResponseDto.builder()
                 .accessToken(newAccessToken)
                 .refreshToken(newRefreshToken)
