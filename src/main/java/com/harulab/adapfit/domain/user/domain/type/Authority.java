@@ -1,5 +1,5 @@
 package com.harulab.adapfit.domain.user.domain.type;
 
 public enum Authority {
-    USER, ADMIN;
+    USER, ADMIN, SUPER_ADMIN;
 }
