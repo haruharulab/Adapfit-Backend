@@ -23,9 +23,10 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     CREDENTIALS_NOT_FOUND(404, "USER-404-3", "Credentials Not Found"),
     REFRESH_TOKEN_NOT_FOUND(404, "AUTH-404-1", "Refresh Token Not Found"),
+    AUTH_ID_NOT_FOUND(404, "AUTH-404-4", "AuthId(Username) Not Found"),
     PHONE_NUMBER_NOT_FOUND(404, "USER-404-5", "PhoneNumber Not Found"),
 
-    TOPIC_NOT_FOUND(404, "NOTIFICATION-404-2", "Topic Not Found"),
+
 
     ALREADY_CREATED(409, "SECTION-409-1", "Already Created"),
     USER_EXISTS(409, "USER-409-1", "User Exists"),

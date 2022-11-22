@@ -1,6 +1,6 @@
-package com.harulab.adapfit.global.security.auth;
+package com.harulab.adapfit.global.security.auth.admin;
 
-import com.harulab.adapfit.domain.user.domain.UserRepository;
+import com.harulab.adapfit.domain.admin.domain.AdminRepository;
 import com.harulab.adapfit.global.exception.AuthIdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class AuthDetailsService implements UserDetailsService {
+public class AdminDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final AdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return userRepository.findByAuthId(authId)
-                .map(AuthDetails::new)
+        return adminRepository.findByAuthId(authId)
+                .map(AdminDetails::new)
                 .orElseThrow(() -> AuthIdNotFoundException.EXCEPTION);
     }
 }
