@@ -2,9 +2,12 @@ package com.harulab.adapfit.domain.admin.presentation.dto.req;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.type.JoinStatus;
+import com.harulab.adapfit.domain.admin.exception.PasswordNotMatchException;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.util.Objects;
 
 @Getter
 public class JoinAdminRequestDto {
@@ -26,6 +29,7 @@ public class JoinAdminRequestDto {
         this.nickname = nickname;
         this.centerInfo = centerInfo;
         this.phoneNumber = phoneNumber;
+        validateIsMatchedPassword();
     }
 
     public Admin toEntity() {
@@ -39,5 +43,11 @@ public class JoinAdminRequestDto {
                 .authority(Authority.USER)
                 .joinStatus(JoinStatus.WAITING)
                 .build();
+    }
+
+    private void validateIsMatchedPassword() {
+        if (!Objects.equals(password, validatePassword)) {
+            throw PasswordNotMatchException.EXCEPTION;
+        }
     }
 }

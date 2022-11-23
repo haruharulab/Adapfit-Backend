@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.user.presentation.dto.req;
 
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.user.exception.PasswordNotMatchException;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
@@ -48,7 +49,7 @@ public class UserRequestDto {
 
     private void validateIsMatchedPassword() {
         if (!Objects.equals(password, validatePassword)) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw PasswordNotMatchException.EXCEPTION;
         }
     }
 }
