@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.admin.domain;
 
 import com.harulab.adapfit.domain.admin.domain.type.JoinStatus;
+import com.harulab.adapfit.domain.admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
@@ -74,19 +75,25 @@ public class Admin {
         }
     }
 
-    public void updateInfo() {
-        this.password = password;
-        this.email = email;
-        this.nickname = nickname;
-        this.centerInfo = centerInfo;
-        this.phoneNumber = phoneNumber;
+    public void updateInfo(UpdateAccountInfoRequestDto req) {
+        this.email = req.getEmail();
+        this.nickname = req.getNickname();
+        this.centerInfo = req.getCenterInfo();
+        this.phoneNumber = req.getPhoneNumber();
     }
 
-    public void updateJoinStatus() {
+    public void isJoinAccept(boolean res) {
+        if (res) {
+            updateJoinStatus();
+            updateAuthority();
+        }
+    }
+
+    private void updateJoinStatus() {
         this.joinStatus = JoinStatus.ACCEPTED;
     }
 
-    public void updateAuthority() {
+    private void updateAuthority() {
         this.authority = Authority.ADMIN;
     }
 }

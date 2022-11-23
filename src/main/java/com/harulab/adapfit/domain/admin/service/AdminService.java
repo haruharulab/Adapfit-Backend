@@ -29,7 +29,7 @@ public class AdminService {
     @Transactional
     public void updateAccountInfo(UpdateAccountInfoRequestDto req) {
         Admin admin = adminFacade.getCurrentAdmin();
-        admin.updateInfo();
+        admin.updateInfo(req);
     }
 
     public List<AdminResponseDto> getJoinWaitingList() {
@@ -42,7 +42,6 @@ public class AdminService {
     @Transactional
     public void updateJoinStatus(Long id, boolean res) {
         Admin admin = adminFacade.findById(id);
-        admin.updateJoinStatus();
-        admin.updateAuthority();
+        admin.isJoinAccept(res);
     }
 }

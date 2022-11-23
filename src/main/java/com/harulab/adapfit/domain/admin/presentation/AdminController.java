@@ -17,7 +17,7 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    @PostMapping // 비밀번호 일치 여부 검증해야함
+    @PostMapping
     public void join(@RequestBody @Valid JoinAdminRequestDto req) {
         adminService.join(req);
     }

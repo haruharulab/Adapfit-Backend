@@ -25,4 +25,6 @@ public class SuperAdminController {
     public void acceptJoin(@PathVariable Long id, @PathVariable boolean res) {
         adminService.updateJoinStatus(id, res);
     }
+
+
 }
