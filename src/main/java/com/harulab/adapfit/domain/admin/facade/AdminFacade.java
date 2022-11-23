@@ -27,4 +27,9 @@ public class AdminFacade {
     public List<Admin> findByWaitingList() {
         return adminRepository.findByWaitingList();
     }
+
+    public Admin findById(Long id) {
+        return adminRepository.findById(id)
+                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
+    }
 }

@@ -81,4 +81,12 @@ public class Admin {
         this.centerInfo = centerInfo;
         this.phoneNumber = phoneNumber;
     }
+
+    public void updateJoinStatus() {
+        this.joinStatus = JoinStatus.ACCEPTED;
+    }
+
+    public void updateAuthority() {
+        this.authority = Authority.ADMIN;
+    }
 }

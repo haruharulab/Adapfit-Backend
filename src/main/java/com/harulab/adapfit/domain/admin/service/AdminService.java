@@ -38,4 +38,11 @@ public class AdminService {
                 .map(AdminResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void updateJoinStatus(Long id, boolean res) {
+        Admin admin = adminFacade.findById(id);
+        admin.updateJoinStatus();
+        admin.updateAuthority();
+    }
 }
