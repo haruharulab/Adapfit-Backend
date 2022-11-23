@@ -1,19 +1,20 @@
 package com.harulab.adapfit.domain.auth.domain;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @RedisHash
 public class RefreshToken {
 
     @Id
-    private final String id;
+    private String id;
 
     @Indexed
     private String token;
