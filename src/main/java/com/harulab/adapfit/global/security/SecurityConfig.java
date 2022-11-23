@@ -25,6 +25,7 @@ public class SecurityConfig {
     private final JwtAuth jwtAuth;
     private final ObjectMapper objectMapper;
     private static final String ADMIN = "ADMIN";
+    private static final String SUPER = "SUPER_ADMIN";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -53,6 +54,9 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/admin").permitAll()
                 .antMatchers(HttpMethod.PUT, "/admin").permitAll()
                 .antMatchers(HttpMethod.POST, "/admin/token").permitAll()
+
+                // super admin
+                .antMatchers(HttpMethod.GET, "/super").hasRole(SUPER)
 
                 .anyRequest().permitAll()
                 .and()

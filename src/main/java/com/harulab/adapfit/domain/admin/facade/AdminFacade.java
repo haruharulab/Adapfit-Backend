@@ -7,6 +7,8 @@ import com.harulab.adapfit.global.utils.AdminUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class AdminFacade {
@@ -20,5 +22,9 @@ public class AdminFacade {
     public Admin getCurrentAdmin() {
         return adminRepository.findByAuthId(AdminUtil.getCurrentUser().getUsername())
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
+    }
+
+    public List<Admin> findByWaitingList() {
+        return adminRepository.findByWaitingList();
     }
 }
