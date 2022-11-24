@@ -7,8 +7,8 @@ import org.springframework.data.redis.core.index.Indexed;
 import javax.persistence.Id;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @RedisHash
 public class AuthId {

@@ -34,7 +34,7 @@ public class JwtAuth {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    private Jws<Claims> getJws(String token) {
+    public Jws<Claims> getJws(String token) {
         try {
             return Jwts.parser().setSigningKey(jwtProperties.getSecret())
                     .parseClaimsJws(token);
