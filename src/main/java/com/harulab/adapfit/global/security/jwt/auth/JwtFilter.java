@@ -28,7 +28,6 @@ public class JwtFilter extends OncePerRequestFilter {
     private void isBearerNotNullSetContextHolderToAuthentication(String bearer) {
         if (bearer != null) {
             Authentication authentication = jwtAuth.authentication(bearer);
-            System.out.println("authentication : " + authentication.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }

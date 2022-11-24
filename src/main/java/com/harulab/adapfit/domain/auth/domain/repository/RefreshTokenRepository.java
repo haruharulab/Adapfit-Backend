@@ -1,5 +1,6 @@
-package com.harulab.adapfit.domain.auth.domain;
+package com.harulab.adapfit.domain.auth.domain.repository;
 
+import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

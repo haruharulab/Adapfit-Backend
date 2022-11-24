@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
-import com.harulab.adapfit.domain.auth.domain.RefreshTokenRepository;
+import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
