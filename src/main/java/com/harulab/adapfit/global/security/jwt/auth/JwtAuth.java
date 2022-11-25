@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
+
 @RequiredArgsConstructor
 @Component
 public class JwtAuth {
@@ -18,9 +20,6 @@ public class JwtAuth {
     private final AuthDetailsService authDetailsService;
     private final AdminDetailsService adminDetailsService;
     private final JwtProperties jwtProperties;
-    private static final String USER_ROLE = "USER";
-    private static final String REFRESH_KEY = "refresh_token";
-
 
     public Authentication authentication(String token) {
         Claims body = getJws(token).getBody();
@@ -44,11 +43,11 @@ public class JwtAuth {
     }
 
     public boolean isNotRefreshToken(String token) {
-        return !REFRESH_KEY.equals(getJws(token).getHeader().get("typ").toString());
+        return !REFRESH_KEY.getMessage().equals(getJws(token).getHeader().get(TYPE.getMessage()).toString());
     }
 
     private UserDetails getDetails(Claims body) {
-        if (USER_ROLE.equals(body.get("role").toString())) {
+        if (USER_ROLE.getMessage().equals(body.get(ROLE.getMessage()).toString())) {
             return authDetailsService
                     .loadUserByUsername(body.getSubject());
         }

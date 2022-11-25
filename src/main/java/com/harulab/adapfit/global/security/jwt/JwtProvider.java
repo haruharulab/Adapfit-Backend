@@ -16,6 +16,8 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Optional;
 
+import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
+
 @RequiredArgsConstructor
 @Component
 public class JwtProvider {
@@ -24,12 +26,10 @@ public class JwtProvider {
     private final RefreshTokenRepository refreshTokenRepository;
     private final AuthIdRepository authIdRepository;
     private final JwtAuth jwtAuth;
-    private static final String ACCESS_KEY = "access_token";
-    private static final String REFRESH_KEY = "refresh_token";
 
     public TokenResponseDto generateToken(String id, String role) {
-        String accessToken = jwtProperties.getPrefix() + " " + generateToken(id, role, ACCESS_KEY, jwtProperties.getAccessExp());
-        String refreshToken = jwtProperties.getPrefix() + " " + generateToken(id, role, REFRESH_KEY, jwtProperties.getRefreshExp());
+        String accessToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(id, role, ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
+        String refreshToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(id, role, ACCESS_KEY.getMessage(), jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
                 .id(id)
@@ -43,9 +43,9 @@ public class JwtProvider {
     private String generateToken(String id, String role, String type, Long exp) {
         return Jwts.builder()
                 .setSubject(id)
-                .setHeaderParam("typ", type)
-                .claim("role", role)
-                .claim("authId", id)
+                .setHeaderParam(TYPE.getMessage(), type)
+                .claim(ROLE.getMessage(), role)
+                .claim(AUTH_ID.getMessage(), id)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecret())
                 .setExpiration(
                         new Date(System.currentTimeMillis() + exp * 1000)
@@ -70,7 +70,7 @@ public class JwtProvider {
 
     private void ifAuthIdIsPresentThrowException(String bearerToken) {
         Claims body = jwtAuth.getJws(bearerToken).getBody();
-        String tokenAuthId = body.get("authId").toString();
+        String tokenAuthId = body.get(AUTH_ID.getMessage()).toString();
 
         Optional<AuthId> authId = authIdRepository.findByAuthId(tokenAuthId);
 
