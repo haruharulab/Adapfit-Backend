@@ -22,13 +22,7 @@ public class AdminDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
         Admin admin = adminRepository.findByAuthId(authId)
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
-        return isSuperAdmin(admin);
-    }
-
-    private UserDetails isSuperAdmin(Admin admin) {
-        if (admin.getAuthority() == Authority.ADMIN) {
-            return new AdminDetails(admin.getAuthId(), Authority.ADMIN);
-        }
         return new AdminDetails(admin.getAuthId(), Authority.SUPER_ADMIN);
     }
+
 }

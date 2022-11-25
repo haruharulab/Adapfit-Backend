@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
+@Table(name = "SUPER_ADMIN")
 @Entity
 public class Admin {
 

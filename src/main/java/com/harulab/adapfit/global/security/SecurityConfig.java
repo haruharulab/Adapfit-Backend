@@ -47,13 +47,15 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-                // user
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
-
-                // admin
                 .antMatchers(HttpMethod.POST, "/admin").permitAll()
                 .antMatchers(HttpMethod.POST, "/admin/token").permitAll()
+
+                // user
+
+                // admin
                 .antMatchers(HttpMethod.PUT, "/admin").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
                 .antMatchers(HttpMethod.GET, "/super").hasRole(SUPER)
