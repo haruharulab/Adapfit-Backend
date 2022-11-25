@@ -1,7 +1,6 @@
 package com.harulab.adapfit.domain.banner.service;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
-import com.harulab.adapfit.domain.banner.domain.BannerRepository;
 import com.harulab.adapfit.domain.banner.facade.BannerFacade;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;

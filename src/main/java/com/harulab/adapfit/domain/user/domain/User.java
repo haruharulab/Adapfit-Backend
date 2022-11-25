@@ -58,4 +58,8 @@ public class User {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }
+
+    public void updateAuthority() {
+        this.authority = Authority.ADMIN;
+    }
 }

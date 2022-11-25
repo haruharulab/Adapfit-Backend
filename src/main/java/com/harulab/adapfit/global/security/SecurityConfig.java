@@ -57,6 +57,7 @@ public class SecurityConfig {
 
                 // super admin
                 .antMatchers(HttpMethod.GET, "/super").hasRole(SUPER)
+                .antMatchers("/banner/**").hasRole(SUPER)
 
                 .anyRequest().permitAll()
                 .and()

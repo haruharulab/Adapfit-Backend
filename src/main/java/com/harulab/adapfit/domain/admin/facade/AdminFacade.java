@@ -23,13 +23,4 @@ public class AdminFacade {
         return adminRepository.findByAuthId(AdminUtil.getCurrentUser().getUsername())
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
-
-    public List<Admin> findByWaitingList() {
-        return adminRepository.findByWaitingList();
-    }
-
-    public Admin findById(Long id) {
-        return adminRepository.findById(id)
-                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
-    }
 }

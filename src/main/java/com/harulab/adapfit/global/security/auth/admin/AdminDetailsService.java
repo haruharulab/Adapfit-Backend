@@ -4,7 +4,6 @@ import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.AdminRepository;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.exception.AdminNotFoundException;
-import com.harulab.adapfit.global.exception.AuthIdNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.admin.presentation;
 
-import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
+import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +17,13 @@ public class SuperAdminController {
     private final AdminService adminService;
 
     @GetMapping
-    public List<AdminResponseDto> searchByJoinWaitingList() {
-        return adminService.getJoinWaitingList();
+    public List<UserResponseDto> searchUserList() {
+        return adminService.getUserList();
     }
 
-    @PutMapping("/{id}/{res}")
-    public void acceptJoin(@PathVariable Long id, @PathVariable boolean res) {
-        adminService.updateJoinStatus(id, res);
+    @PutMapping("/{id}")
+    public void changeRole(@PathVariable Long id) {
+        adminService.updateAuthorityAdmin(id);
     }
 
 

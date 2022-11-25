@@ -1,8 +1,6 @@
 package com.harulab.adapfit.domain.admin.domain;
 
-import com.harulab.adapfit.domain.admin.domain.type.JoinStatus;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.UpdateAccountInfoRequestDto;
-import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
@@ -10,6 +8,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@DynamicUpdate
 @Entity
 public class Admin {
 
@@ -49,12 +51,8 @@ public class Admin {
     @Column(length = 16)
     private Authority authority;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 16)
-    private JoinStatus joinStatus;
-
     @Builder
-    public Admin(String authId, String password, String email, String nickname, String centerInfo, String phoneNumber, Authority authority, JoinStatus joinStatus) {
+    public Admin(String authId, String password, String email, String nickname, String centerInfo, String phoneNumber, Authority authority) {
         this.authId = authId;
         this.password = password;
         this.email = email;
@@ -62,7 +60,6 @@ public class Admin {
         this.centerInfo = centerInfo;
         this.phoneNumber = phoneNumber;
         this.authority = authority;
-        this.joinStatus = joinStatus;
     }
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
@@ -80,20 +77,5 @@ public class Admin {
         this.nickname = req.getNickname();
         this.centerInfo = req.getCenterInfo();
         this.phoneNumber = req.getPhoneNumber();
-    }
-
-    public void isJoinAccept(boolean res) {
-        if (res) {
-            updateJoinStatus();
-            updateAuthority();
-        }
-    }
-
-    private void updateJoinStatus() {
-        this.joinStatus = JoinStatus.ACCEPTED;
-    }
-
-    private void updateAuthority() {
-        this.authority = Authority.ADMIN;
     }
 }

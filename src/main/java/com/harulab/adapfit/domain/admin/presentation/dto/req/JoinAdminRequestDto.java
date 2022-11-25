@@ -41,7 +41,6 @@ public class JoinAdminRequestDto {
                 .centerInfo(centerInfo)
                 .phoneNumber(phoneNumber)
                 .authority(Authority.USER)
-                .joinStatus(JoinStatus.WAITING)
                 .build();
     }
 

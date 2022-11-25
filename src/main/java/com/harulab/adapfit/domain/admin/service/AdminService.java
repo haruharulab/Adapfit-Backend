@@ -4,7 +4,8 @@ import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.JoinAdminRequestDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.UpdateAccountInfoRequestDto;
-import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
+import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class AdminService {
 
     private final AdminFacade adminFacade;
     private final PasswordEncoder passwordEncoder;
+    private final UserFacade userFacade;
 
     @Transactional
     public void join(JoinAdminRequestDto req) {
@@ -32,16 +34,15 @@ public class AdminService {
         admin.updateInfo(req);
     }
 
-    public List<AdminResponseDto> getJoinWaitingList() {
-        return adminFacade.findByWaitingList()
+    public List<UserResponseDto> getUserList() {
+        return userFacade.findAll()
                 .stream()
-                .map(AdminResponseDto::new)
+                .map(UserResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void updateJoinStatus(Long id, boolean res) {
-        Admin admin = adminFacade.findById(id);
-        admin.isJoinAccept(res);
+    public void updateAuthorityAdmin(Long id) {
+        userFacade.findById(id).updateAuthority();
     }
 }

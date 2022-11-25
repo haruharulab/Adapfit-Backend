@@ -2,9 +2,12 @@ package com.harulab.adapfit.domain.user.facade;
 
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.UserRepository;
+import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import com.harulab.adapfit.global.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -18,5 +21,14 @@ public class UserFacade {
 
     public User getCurrentUser() {
         return SecurityUtil.getCurrentUser().getUser();
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 }
