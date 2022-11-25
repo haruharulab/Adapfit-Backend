@@ -23,7 +23,6 @@ public class JwtAuth {
 
 
     public Authentication authentication(String token) {
-        System.out.println("실행");
         Claims body = getJws(token).getBody();
         if (!isNotRefreshToken(token)){
             throw InvalidJwtException.EXCEPTION;

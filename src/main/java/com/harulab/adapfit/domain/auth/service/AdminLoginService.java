@@ -2,6 +2,8 @@ package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.AdminRepository;
+import com.harulab.adapfit.domain.auth.domain.AuthId;
+import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.UserRepository;
@@ -21,10 +23,13 @@ public class AdminLoginService {
     private final AdminRepository adminRepository;
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
+    private final AuthIdRepository authIdRepository;
 
     @Transactional
     public TokenResponseDto execute(LoginRequestDto req) {
         validateLoginInfo(req);
+        authIdRepository.findByAuthId(req.getAuthId())
+                        .ifPresent(authIdRepository::delete);
         return jwtProvider.generateToken(req.getAuthId(), "ADMIN");
     }
 

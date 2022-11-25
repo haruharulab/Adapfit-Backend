@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface AuthIdRepository extends CrudRepository<AuthId, Long> {
 
     Optional<AuthId> findByAuthId(String authId);
+
+    void deleteByAuthId(String authId);
 }
