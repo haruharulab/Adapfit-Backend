@@ -9,7 +9,6 @@ import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -4,7 +4,6 @@ import com.harulab.adapfit.domain.admin.presentation.dto.req.JoinAdminRequestDto
 import com.harulab.adapfit.domain.admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
 import com.harulab.adapfit.domain.admin.service.LogoutService;
-import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;

@@ -4,10 +4,7 @@ import com.harulab.adapfit.global.exception.InvalidJwtException;
 import com.harulab.adapfit.global.security.auth.admin.AdminDetailsService;
 import com.harulab.adapfit.global.security.auth.user.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,9 +23,11 @@ public class JwtAuth {
 
 
     public Authentication authentication(String token) {
+        System.out.println("실행");
         Claims body = getJws(token).getBody();
-        if (!isNotRefreshToken(token))
+        if (!isNotRefreshToken(token)){
             throw InvalidJwtException.EXCEPTION;
+        }
 
         UserDetails userDetails = getDetails(body);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
@@ -53,10 +52,9 @@ public class JwtAuth {
         if (USER_ROLE.equals(body.get("role").toString())) {
             return authDetailsService
                     .loadUserByUsername(body.getSubject());
-        } else {
-            return adminDetailsService
-                    .loadUserByUsername(body.getSubject());
         }
+        return adminDetailsService
+                .loadUserByUsername(body.getSubject());
     }
 
 }
