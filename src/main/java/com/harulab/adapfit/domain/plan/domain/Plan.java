@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.plan.domain;
 
+import com.harulab.adapfit.domain.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,12 @@ public class Plan {
 
     @Column(length = 256)
     private String imgPath;
+
+    // 추후 카테고리 추가 (@OneToMany);
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id")
+    private User writer;
 
     @Builder
     public Plan(String title, String content, String imgUrl, String imgPath) {

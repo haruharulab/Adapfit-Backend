@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.user.domain;
 
+import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,6 +41,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(length = 16)
     private Authority authority;
+
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
+    private List<Plan> plans;
 
     @Builder
     public User(String authId, String password, String email, String phoneNumber, Authority authority) {
