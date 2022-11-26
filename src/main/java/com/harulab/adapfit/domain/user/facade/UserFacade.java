@@ -1,8 +1,7 @@
 package com.harulab.adapfit.domain.user.facade;
 
 import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.UserRepository;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import com.harulab.adapfit.global.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;

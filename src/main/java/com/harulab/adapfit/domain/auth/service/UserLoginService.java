@@ -2,7 +2,7 @@ package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.UserRepository;
+import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;

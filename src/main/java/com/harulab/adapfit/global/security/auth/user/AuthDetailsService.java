@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.security.auth.user;
 
-import com.harulab.adapfit.domain.user.domain.UserRepository;
+import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

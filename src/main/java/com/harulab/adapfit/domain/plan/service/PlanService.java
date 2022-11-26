@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.plan.service;
 
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,9 @@ public class PlanService {
         planFacade.save(req.toEntity()).saveWriter(userFacade.getCurrentUser());
     }
 
+
+    @Transactional
+    public void updatePlan(Long planId, PlanUpdateRequestDto req) {
+        planFacade.findByPlanId(planId).updatePlanInfo(req);
+    }
 }

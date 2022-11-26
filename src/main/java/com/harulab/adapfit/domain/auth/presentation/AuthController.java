@@ -13,18 +13,18 @@ import javax.validation.Valid;
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth") // 모든 권한이 사용하는 엔드포인트
 public class AuthController {
 
     private final UserLoginService loginService;
     private final UserTokenRefreshService userTokenRefreshService;
 
-    @PostMapping("/token")
+    @PostMapping("/token") // USER, ADMIN
     public TokenResponseDto login(@RequestBody @Valid LoginRequestDto req) {
         return loginService.execute(req);
     }
 
-    @PutMapping("/refresh")
+    @PutMapping("/refresh") // USER, ADMIN, SUPER_ADMIN
     public TokenResponseDto tokenRefresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
         return userTokenRefreshService.execute(refreshToken);
     }

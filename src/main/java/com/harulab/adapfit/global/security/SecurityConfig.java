@@ -55,6 +55,8 @@ public class SecurityConfig {
                 // user
                 .antMatchers(HttpMethod.PUT, "/user").hasRole(USER)
                 .antMatchers(HttpMethod.DELETE, "/user").hasRole(USER)
+                .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth/refresh").hasAnyRole(USER, ADMIN, SUPER)
 
                 // admin
                 .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)
@@ -63,8 +65,7 @@ public class SecurityConfig {
 
                 // super admin
                 .antMatchers(HttpMethod.POST, "/super/auth/token").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/super/auth/**").hasRole(SUPER)
-                .antMatchers(HttpMethod.GET, "/super/**").hasRole(SUPER)
+                .antMatchers( "/super/**").hasRole(SUPER)
 
                 .anyRequest().permitAll()
                 .and()

@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.plan.domain;
 
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -49,5 +50,10 @@ public class Plan {
 
     public void saveWriter(User user) {
         this.writer = user;
+    }
+
+    public void updatePlanInfo(PlanUpdateRequestDto req) {
+        this.title = req.getTitle();
+        this.content = req.getContent();
     }
 }
