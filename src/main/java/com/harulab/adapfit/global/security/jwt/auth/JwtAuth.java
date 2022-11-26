@@ -23,6 +23,7 @@ public class JwtAuth {
 
     public Authentication authentication(String token) {
         Claims body = getJws(token).getBody();
+
         if (!isNotRefreshToken(token)){
             throw InvalidJwtException.EXCEPTION;
         }
@@ -43,7 +44,8 @@ public class JwtAuth {
     }
 
     public boolean isNotRefreshToken(String token) {
-        return !REFRESH_KEY.getMessage().equals(getJws(token).getHeader().get(TYPE.getMessage()).toString());
+        return !REFRESH_KEY.getMessage()
+                .equals(getJws(token).getHeader().get(TYPE.getMessage()).toString());
     }
 
     private UserDetails getDetails(Claims body) {

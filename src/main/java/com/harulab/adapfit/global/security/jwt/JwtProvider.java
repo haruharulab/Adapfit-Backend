@@ -34,6 +34,7 @@ public class JwtProvider {
         refreshTokenRepository.save(RefreshToken.builder()
                 .id(authId)
                 .token(refreshToken)
+                .role(role)
                 .ttl(jwtProperties.getRefreshExp() * 1000)
                 .build());
 
@@ -61,7 +62,7 @@ public class JwtProvider {
 
     public String parseToken(String bearerToken) {
         if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix())) {
-            String token = bearerToken.replace(jwtProperties.getPrefix(), "");
+            String token = bearerToken.replace(jwtProperties.getPrefix(), "").trim();
             ifAuthIdIsPresentThrowException(token);
             return token;
         }
