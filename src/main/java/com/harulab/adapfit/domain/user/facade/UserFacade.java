@@ -20,7 +20,8 @@ public class UserFacade {
     }
 
     public User getCurrentUser() {
-        return SecurityUtil.getCurrentUser().getUser();
+        return userRepository.findById(SecurityUtil.getCurrentUser().getUser().getId())
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
     public List<User> findAll() {

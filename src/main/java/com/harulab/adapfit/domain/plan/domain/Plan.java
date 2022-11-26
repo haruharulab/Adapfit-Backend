@@ -1,19 +1,23 @@
 package com.harulab.adapfit.domain.plan.domain;
 
+import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @DynamicUpdate
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Entity
 public class Plan {
 
@@ -48,12 +52,19 @@ public class Plan {
         this.imgPath = imgPath;
     }
 
-    public void saveWriter(User user) {
+    public void confirmWriter(User user) {
         this.writer = user;
+        user.addPlans(this);
     }
 
     public void updatePlanInfo(PlanUpdateRequestDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();
+    }
+
+    public void isRightWriter(User writer) {
+        if (!Objects.equals(writer.getId(), writer.getId())) {
+            throw DontAccessOtherPlanException.EXCEPTION;
+        }
     }
 }

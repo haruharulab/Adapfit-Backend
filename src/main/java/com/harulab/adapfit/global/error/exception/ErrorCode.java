@@ -19,6 +19,7 @@ public enum ErrorCode {
     PASSWORD_MISMATCH(401, "AUTH-401-1", "Password Mismatch"),
 
     FORBIDDEN(403, "COMMON-403-1", "Forbidden"),
+    DONT_ACCESS_OTHER_PLAN(403, "PLAN-403-1", "Don't Access Other Plan"),
 
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
     ADMIN_NOT_FOUND(404, "ADMIN-404-1", "Admin Not Found"),

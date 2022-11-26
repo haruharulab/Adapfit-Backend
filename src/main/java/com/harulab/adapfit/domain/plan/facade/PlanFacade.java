@@ -20,4 +20,8 @@ public class PlanFacade {
         return planRepository.findById(planId)
                 .orElseThrow(() -> PlanNotFoundException.EXCEPTION);
     }
+
+    public void deletePlan(Plan plan) {
+        planRepository.delete(plan);
+    }
 }

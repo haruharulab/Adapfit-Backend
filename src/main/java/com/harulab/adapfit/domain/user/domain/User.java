@@ -79,4 +79,8 @@ public class User {
         this.nickname = req.getNickname();
         this.phoneNumber = req.getPhoneNumber();
     }
+
+    public void addPlans(Plan plan) {
+        this.plans.add(plan);
+    }
 }

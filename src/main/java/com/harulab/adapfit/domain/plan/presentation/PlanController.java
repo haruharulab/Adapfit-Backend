@@ -29,4 +29,11 @@ public class PlanController {
     ) {
         planService.updatePlan(planId, req);
     }
+
+    @DeleteMapping("/{planId}")
+    public void deletePlan(
+            @PathVariable Long planId
+    ) {
+        planService.deletePlan(planId);
+    }
 }

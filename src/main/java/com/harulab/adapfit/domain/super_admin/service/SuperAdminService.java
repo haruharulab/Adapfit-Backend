@@ -29,7 +29,7 @@ public class SuperAdminService {
     public List<UserResponseDto> getUserList() {
         return userFacade.findAll()
                 .stream()
-                .map(UserResponseDto::new)
+                .map(user -> new UserResponseDto(user, user.getPlans()))
                 .collect(Collectors.toList());
     }
 
