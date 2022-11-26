@@ -27,12 +27,12 @@ public class JwtProvider {
     private final AuthIdRepository authIdRepository;
     private final JwtAuth jwtAuth;
 
-    public TokenResponseDto generateToken(String id, String role) {
-        String accessToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(id, role, ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
-        String refreshToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(id, role, ACCESS_KEY.getMessage(), jwtProperties.getRefreshExp());
+    public TokenResponseDto generateToken(String authId, String role) {
+        String accessToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(authId, role, ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
+        String refreshToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(authId, role, ACCESS_KEY.getMessage(), jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
-                .id(id)
+                .id(authId)
                 .token(refreshToken)
                 .ttl(jwtProperties.getRefreshExp() * 1000)
                 .build());
@@ -40,12 +40,12 @@ public class JwtProvider {
         return new TokenResponseDto(accessToken, refreshToken, getExpiredTime());
     }
 
-    private String generateToken(String id, String role, String type, Long exp) {
+    private String generateToken(String authId, String role, String type, Long exp) {
         return Jwts.builder()
-                .setSubject(id)
+                .setSubject(authId)
                 .setHeaderParam(TYPE.getMessage(), type)
                 .claim(ROLE.getMessage(), role)
-                .claim(AUTH_ID.getMessage(), id)
+                .claim(AUTH_ID.getMessage(), authId)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecret())
                 .setExpiration(
                         new Date(System.currentTimeMillis() + exp * 1000)

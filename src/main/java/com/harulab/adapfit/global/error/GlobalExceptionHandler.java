@@ -24,9 +24,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleGlobal(AdapfitException e) {
         final ErrorCode errorCode = e.getErrorCode();
         log.error(
-                "{\n" +
-                        "\t\"status\": " + errorCode.getStatus() +
-                        ",\t\"code\": \"" + errorCode.getCode() + '\"' +
+                "\n" + "{\n" +
+                        "\t\"status\": " + errorCode.getStatus() + '\"' +
+                        ",\n\t\"code\": \"" + errorCode.getCode() + '\"' +
                         ",\n\t\"message\": \"" + errorCode.getMessage() + '\"' +
                         "\n}"
         );

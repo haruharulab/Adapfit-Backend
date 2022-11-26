@@ -1,6 +1,5 @@
 package com.harulab.adapfit.global.security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.harulab.adapfit.global.error.ExceptionFilter;
 import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
 import com.harulab.adapfit.global.security.jwt.auth.JwtFilter;
