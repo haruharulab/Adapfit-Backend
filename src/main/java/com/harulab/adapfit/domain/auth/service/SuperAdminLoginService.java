@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
 import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
@@ -27,7 +28,7 @@ public class SuperAdminLoginService {
         validateLoginInfo(req);
         authIdRepository.findByAuthId(req.getAuthId())
                         .ifPresent(authIdRepository::delete);
-        return jwtProvider.generateToken(req.getAuthId(), "SUPER_ADMIN");
+        return jwtProvider.generateToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
     }
 
     private void validateLoginInfo(LoginRequestDto req) {

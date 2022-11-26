@@ -47,7 +47,7 @@ public class Plan {
         this.imgPath = imgPath;
     }
 
-    public void saveUser(User user) {
+    public void saveWriter(User user) {
         this.writer = user;
     }
 }

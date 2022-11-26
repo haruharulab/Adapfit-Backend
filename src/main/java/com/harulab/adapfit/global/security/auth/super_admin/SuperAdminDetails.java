@@ -1,7 +1,9 @@
-package com.harulab.adapfit.global.security.auth.admin;
+package com.harulab.adapfit.global.security.auth.super_admin;
 
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,17 +11,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+@Getter
 @AllArgsConstructor
-public class AdminDetails implements UserDetails {
+public class SuperAdminDetails implements UserDetails {
 
-    private final String adminId;
-
-    private final Authority adminRole;
+    private final SuperAdmin superAdmin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(
-                new SimpleGrantedAuthority("ROLE_" + adminRole)
+                new SimpleGrantedAuthority("ROLE_" + superAdmin.getAuthority().name())
         );
     }
 
@@ -30,7 +31,7 @@ public class AdminDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return adminId;
+        return superAdmin.getAuthId();
     }
 
     @Override

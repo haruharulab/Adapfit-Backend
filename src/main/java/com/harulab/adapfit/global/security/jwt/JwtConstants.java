@@ -13,7 +13,8 @@ public enum JwtConstants {
     TYPE("type"),
     ROLE("role"),
     AUTH_ID("authId"),
-    USER_ROLE("USER");
+    USER_ROLE("USER"),
+    ADMIN_ROLE("ADMIN");
 
     private final String message;
 }

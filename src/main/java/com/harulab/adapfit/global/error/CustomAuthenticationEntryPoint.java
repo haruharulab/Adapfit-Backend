@@ -23,11 +23,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                          AuthenticationException authException) throws IOException {
         ErrorCode errorCode = ErrorCode.FORBIDDEN;
         String errorResponseJson = objectMapper.writeValueAsString(
-                ErrorResponse.builder()
-                        .status(errorCode.getStatus())
-                        .code(errorCode.getCode())
-                        .message(errorCode.getMessage())
-                        .build());
+                new ErrorResponse(errorCode.getStatus(), errorCode.getCode(), errorCode.getMessage()));
 
         response.setStatus(errorCode.getStatus());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

@@ -23,15 +23,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AdapfitException.class)
     public ResponseEntity<ErrorResponse> handleGlobal(AdapfitException e) {
         final ErrorCode errorCode = e.getErrorCode();
-        log.error("code : " + errorCode.getCode());
-        log.error("status : " + errorCode.getStatus());
-        log.error("message : " + errorCode.getMessage());
+        log.error(
+                "{\n" +
+                        "\t\"status\": " + errorCode.getStatus() +
+                        ",\t\"code\": \"" + errorCode.getCode() + '\"' +
+                        ",\n\t\"message\": \"" + errorCode.getMessage() + '\"' +
+                        "\n}"
+        );
         return new ResponseEntity<>(
-                ErrorResponse.builder()
-                        .status(errorCode.getStatus())
-                        .code(errorCode.getCode())
-                        .message(errorCode.getMessage())
-                        .build(),
+                new ErrorResponse(
+                        errorCode.getStatus(),
+                        errorCode.getCode(),
+                        errorCode.getMessage()),
                 HttpStatus.valueOf(errorCode.getStatus())
         );
     }

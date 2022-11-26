@@ -57,9 +57,9 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/user").hasRole(USER)
 
                 // admin
-                .antMatchers(HttpMethod.PUT, "/admin").hasAnyRole(ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/admin").hasAnyRole(ADMIN)
-                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/admin").hasRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN)
 
                 // super admin
                 .antMatchers(HttpMethod.POST, "/super/token").permitAll()
@@ -69,8 +69,7 @@ public class SecurityConfig {
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
 
-                .and()
-                .apply(new FilterConfig(jwtProvider, jwtAuth, objectMapper));
+                .and().apply(new FilterConfig(jwtProvider, jwtAuth));
         return http.build();
     }
 

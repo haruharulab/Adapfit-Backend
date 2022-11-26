@@ -17,7 +17,7 @@ public class PlanService {
 
     @Transactional
     public void createPlan(PlanCreateRequestDto req) {
-        planFacade.save(req.toEntity())
-                .saveUser(userFacade.getCurrentUser());
+        planFacade.save(req.toEntity()).saveWriter(userFacade.getCurrentUser());
     }
+
 }

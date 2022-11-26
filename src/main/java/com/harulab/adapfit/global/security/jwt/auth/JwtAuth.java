@@ -1,7 +1,7 @@
 package com.harulab.adapfit.global.security.jwt.auth;
 
 import com.harulab.adapfit.global.exception.InvalidJwtException;
-import com.harulab.adapfit.global.security.auth.admin.AdminDetailsService;
+import com.harulab.adapfit.global.security.auth.super_admin.SuperAdminDetailsService;
 import com.harulab.adapfit.global.security.auth.user.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import io.jsonwebtoken.*;
@@ -18,7 +18,7 @@ import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
 public class JwtAuth {
 
     private final AuthDetailsService authDetailsService;
-    private final AdminDetailsService adminDetailsService;
+    private final SuperAdminDetailsService superAdminDetailsService;
     private final JwtProperties jwtProperties;
 
     public Authentication authentication(String token) {
@@ -47,11 +47,12 @@ public class JwtAuth {
     }
 
     private UserDetails getDetails(Claims body) {
-        if (USER_ROLE.getMessage().equals(body.get(ROLE.getMessage()).toString())) {
+        if (USER_ROLE.getMessage().equals(body.get(ROLE.getMessage()).toString())
+    || ADMIN_ROLE.getMessage().equals(body.get(ROLE.getMessage()).toString())) {
             return authDetailsService
                     .loadUserByUsername(body.getSubject());
         }
-        return adminDetailsService
+        return superAdminDetailsService
                 .loadUserByUsername(body.getSubject());
     }
 

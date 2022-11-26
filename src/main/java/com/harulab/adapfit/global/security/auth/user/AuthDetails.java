@@ -1,8 +1,6 @@
 package com.harulab.adapfit.global.security.auth.user;
 
 import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthDetails implements UserDetails {
 
     private final User user;
