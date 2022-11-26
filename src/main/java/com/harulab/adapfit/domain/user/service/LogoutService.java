@@ -1,7 +1,7 @@
-package com.harulab.adapfit.domain.admin.service;
+package com.harulab.adapfit.domain.user.service;
 
-import com.harulab.adapfit.domain.admin.domain.Admin;
-import com.harulab.adapfit.domain.admin.facade.AdminFacade;
+import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
+import com.harulab.adapfit.domain.super_admin.facade.SuperAdminFacade;
 import com.harulab.adapfit.domain.auth.domain.AuthId;
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class LogoutService {
 
-    private final AdminFacade adminFacade;
+    private final SuperAdminFacade superAdminFacade;
     private final RefreshTokenRepository refreshTokenRepository;
     private final AuthIdRepository authIdRepository;
     private final JwtProvider jwtProvider;
@@ -26,12 +26,12 @@ public class LogoutService {
 
     @Transactional
     public void execute(String accessToken) {
-        Admin admin = adminFacade.getCurrentAdmin();
+        SuperAdmin superAdmin = superAdminFacade.getCurrentAdmin();
         String token = jwtProvider.parseToken(accessToken);
         String authId = jwtAuth.getJws(token).getBody().get("authId").toString();
 
         authIdRepository.save(new AuthId().update(authId));
-        RefreshToken refreshToken = refreshTokenRepository.findById(admin.getAuthId())
+        RefreshToken refreshToken = refreshTokenRepository.findById(superAdmin.getAuthId())
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
         refreshTokenRepository.delete(refreshToken);

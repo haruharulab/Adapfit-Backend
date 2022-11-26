@@ -1,12 +1,9 @@
 package com.harulab.adapfit.domain.auth.service;
 
-import com.harulab.adapfit.domain.admin.domain.Admin;
-import com.harulab.adapfit.domain.admin.domain.AdminRepository;
-import com.harulab.adapfit.domain.auth.domain.AuthId;
+import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
+import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
-import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.UserRepository;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
@@ -20,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AdminLoginService {
 
-    private final AdminRepository adminRepository;
+    private final SuperAdminRepository superAdminRepository;
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
     private final AuthIdRepository authIdRepository;
@@ -34,9 +31,9 @@ public class AdminLoginService {
     }
 
     private void validateLoginInfo(LoginRequestDto req) {
-        Admin admin = adminRepository.findByAuthId(req.getAuthId())
+        SuperAdmin superAdmin = superAdminRepository.findByAuthId(req.getAuthId())
                 .orElseThrow(() -> new AdapfitException(ErrorCode.ADMIN_NOT_FOUND));
 
-        admin.matchedPassword(passwordEncoder, admin, req.getPassword());
+        superAdmin.matchedPassword(passwordEncoder, superAdmin, req.getPassword());
     }
 }

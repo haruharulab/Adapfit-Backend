@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.user.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
+import com.harulab.adapfit.domain.super_admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
@@ -29,6 +30,10 @@ public class User {
     @NotNull
     @Column(length = 256)
     private String password;
+
+    @NotNull
+    @Column(length = 8)
+    private String nickname;
 
     @NotNull
     @Column(length = 32)
@@ -66,5 +71,11 @@ public class User {
 
     public void updateAuthority() {
         this.authority = Authority.ADMIN;
+    }
+
+    public void updateInfo(UpdateAccountInfoRequestDto req) {
+        this.email = req.getEmail();
+        this.nickname = req.getNickname();
+        this.phoneNumber = req.getPhoneNumber();
     }
 }

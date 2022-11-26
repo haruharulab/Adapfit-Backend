@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.admin.presentation.dto.req;
+package com.harulab.adapfit.domain.super_admin.presentation.dto.req;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -8,14 +8,12 @@ public class UpdateAccountInfoRequestDto {
 
     private final String email;
     private final String nickname;
-    private final String centerInfo;
     private final String phoneNumber;
 
     @Builder
-    public UpdateAccountInfoRequestDto(String email, String nickname, String centerInfo, String phoneNumber) {
+    public UpdateAccountInfoRequestDto(String email, String nickname, String phoneNumber) {
         this.email = email;
         this.nickname = nickname;
-        this.centerInfo = centerInfo;
         this.phoneNumber = phoneNumber;
     }
 
