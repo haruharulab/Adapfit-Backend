@@ -60,4 +60,8 @@ public class SuperAdmin {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }
+
+    public void encodePassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(password);
+    }
 }

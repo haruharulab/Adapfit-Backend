@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class AdminLoginService {
+public class SuperAdminLoginService {
 
     private final SuperAdminRepository superAdminRepository;
     private final JwtProvider jwtProvider;
@@ -27,7 +27,7 @@ public class AdminLoginService {
         validateLoginInfo(req);
         authIdRepository.findByAuthId(req.getAuthId())
                         .ifPresent(authIdRepository::delete);
-        return jwtProvider.generateToken(req.getAuthId(), "ADMIN");
+        return jwtProvider.generateToken(req.getAuthId(), "SUPER_ADMIN");
     }
 
     private void validateLoginInfo(LoginRequestDto req) {

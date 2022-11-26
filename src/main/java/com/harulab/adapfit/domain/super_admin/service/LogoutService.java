@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.user.service;
+package com.harulab.adapfit.domain.super_admin.service;
 
 import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
 import com.harulab.adapfit.domain.super_admin.facade.SuperAdminFacade;
