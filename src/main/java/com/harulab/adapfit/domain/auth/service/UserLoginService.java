@@ -3,6 +3,7 @@ package com.harulab.adapfit.domain.auth.service;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.UserRepository;
+import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
@@ -22,14 +23,15 @@ public class UserLoginService {
 
     @Transactional
     public TokenResponseDto execute(LoginRequestDto req) {
-        validateLoginInfo(req);
-        return jwtProvider.generateToken(req.getAuthId(), "USER");
+        Authority authority = validateLoginInfo(req);
+        return jwtProvider.generateToken(req.getAuthId(), authority.name());
     }
 
-    private void validateLoginInfo(LoginRequestDto req) {
+    private Authority validateLoginInfo(LoginRequestDto req) {
         User user = userRepository.findByAuthId(req.getAuthId())
                 .orElseThrow(() -> new AdapfitException(ErrorCode.USER_NOT_FOUND));
 
         user.matchedPassword(passwordEncoder, user, req.getPassword());
+        return user.getAuthority();
     }
 }
