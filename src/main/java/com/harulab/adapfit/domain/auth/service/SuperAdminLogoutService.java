@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.super_admin.service;
+package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
 import com.harulab.adapfit.domain.super_admin.facade.SuperAdminFacade;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
-public class LogoutService {
+public class SuperAdminLogoutService {
 
     private final SuperAdminFacade superAdminFacade;
     private final RefreshTokenRepository refreshTokenRepository;
