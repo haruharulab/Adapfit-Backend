@@ -1,12 +1,8 @@
 package com.harulab.adapfit.domain.super_admin.service;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
-import com.harulab.adapfit.domain.super_admin.facade.SuperAdminFacade;
-import com.harulab.adapfit.domain.super_admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,15 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class AdminService {
 
-    private final SuperAdminFacade superAdminFacade;
-    private final PasswordEncoder passwordEncoder;
     private final UserFacade userFacade;
-
-    @Transactional
-    public void updateAccountInfo(UpdateAccountInfoRequestDto req) {
-        SuperAdmin superAdmin = superAdminFacade.getCurrentAdmin();
-        superAdmin.updateInfo(req);
-    }
 
     public List<UserResponseDto> getUserList() {
         return userFacade.findAll()

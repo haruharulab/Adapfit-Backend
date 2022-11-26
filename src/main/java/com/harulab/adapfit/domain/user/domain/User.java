@@ -51,9 +51,10 @@ public class User {
     private List<Plan> plans;
 
     @Builder
-    public User(String authId, String password, String email, String phoneNumber, Authority authority) {
+    public User(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
         this.authId = authId;
         this.password = password;
+        this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.authority = authority;
