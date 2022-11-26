@@ -1,5 +1,6 @@
 package com.harulab.adapfit.global.security.jwt.auth;
 
+import com.harulab.adapfit.global.exception.ExpiredJwtException;
 import com.harulab.adapfit.global.exception.InvalidJwtException;
 import com.harulab.adapfit.global.security.auth.super_admin.SuperAdminDetailsService;
 import com.harulab.adapfit.global.security.auth.user.AuthDetailsService;
@@ -37,7 +38,7 @@ public class JwtAuth {
             return Jwts.parser().setSigningKey(jwtProperties.getSecret())
                     .parseClaimsJws(token);
         } catch (ExpiredJwtException e) {
-            throw com.harulab.adapfit.global.exception.ExpiredJwtException.EXCEPTION;
+            throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
             throw InvalidJwtException.EXCEPTION;
         }

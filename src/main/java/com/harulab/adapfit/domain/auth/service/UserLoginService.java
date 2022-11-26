@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.auth.service;
 
+import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
@@ -20,10 +21,13 @@ public class UserLoginService {
     private final UserRepository userRepository;
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
+    private final AuthIdRepository authIdRepository;
 
     @Transactional
     public TokenResponseDto execute(LoginRequestDto req) {
         Authority authority = validateLoginInfo(req);
+        authIdRepository.findByAuthId(req.getAuthId())
+                .ifPresent(authIdRepository::delete);
         return jwtProvider.generateToken(req.getAuthId(), authority.name());
     }
 

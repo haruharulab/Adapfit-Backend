@@ -2,7 +2,7 @@ package com.harulab.adapfit.domain.auth.presentation;
 
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.auth.service.SuperAdminLoginService;
-import com.harulab.adapfit.domain.auth.service.SuperAdminLogoutService;
+import com.harulab.adapfit.domain.auth.service.LogoutService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class SuperAdminAuthController {
 
     private final SuperAdminLoginService superAdminLoginService;
-    private final SuperAdminLogoutService superAdminLogoutService;
+    private final LogoutService logoutService;
 
     @PostMapping("/token")
     public TokenResponseDto login(@RequestBody @Valid LoginRequestDto req) {
@@ -28,6 +28,6 @@ public class SuperAdminAuthController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void logout(@RequestHeader("Authorization") String accessToken) {
-        superAdminLogoutService.execute(accessToken);
+        logoutService.execute(accessToken);
     }
 }

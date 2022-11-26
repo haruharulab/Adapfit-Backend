@@ -1,10 +1,12 @@
 package com.harulab.adapfit.domain.auth.presentation;
 
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
+import com.harulab.adapfit.domain.auth.service.LogoutService;
 import com.harulab.adapfit.domain.auth.service.UserLoginService;
-import com.harulab.adapfit.domain.auth.service.UserTokenRefreshService;
+import com.harulab.adapfit.domain.auth.service.TokenRefreshService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,15 +19,22 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final UserLoginService loginService;
-    private final UserTokenRefreshService userTokenRefreshService;
+    private final TokenRefreshService tokenRefreshService;
+    private final LogoutService logoutService;
 
     @PostMapping("/token") // USER, ADMIN
     public TokenResponseDto login(@RequestBody @Valid LoginRequestDto req) {
         return loginService.execute(req);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping // USER, ADMIN
+    public void logout(@RequestHeader("Authorization") String accessToken) {
+        logoutService.execute(accessToken);
+    }
+
     @PutMapping("/refresh") // USER, ADMIN, SUPER_ADMIN
     public TokenResponseDto tokenRefresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
-        return userTokenRefreshService.execute(refreshToken);
+        return tokenRefreshService.execute(refreshToken);
     }
 }
