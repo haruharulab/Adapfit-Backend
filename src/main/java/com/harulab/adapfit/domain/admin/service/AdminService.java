@@ -6,12 +6,16 @@ import com.harulab.adapfit.domain.admin.presentation.dto.req.JoinAdminRequestDto
 import com.harulab.adapfit.domain.admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
+import com.harulab.adapfit.global.error.exception.ErrorCode;
+import com.harulab.adapfit.global.exception.AdminNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

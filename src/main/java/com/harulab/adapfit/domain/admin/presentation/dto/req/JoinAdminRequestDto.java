@@ -7,6 +7,7 @@ import com.harulab.adapfit.domain.user.domain.type.Authority;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Getter
@@ -16,7 +17,10 @@ public class JoinAdminRequestDto {
     private final String password;
     private final String validatePassword;
     private final String email;
+
+    @Size(min = 2, max = 8)
     private final String nickname;
+
     private final String centerInfo;
     private final String phoneNumber;
 

@@ -25,4 +25,14 @@ public class AdminDetailsService implements UserDetailsService {
         return new AdminDetails(admin.getAuthId(), Authority.SUPER_ADMIN);
     }
 
+//    org.springframework.web.util.NestedServletException:
+//    Request processing failed; nested exception is
+//    java.lang.ClassCastException:
+//    class com.harulab.adapfit.global.security.auth.admin.AdminDetails
+//    cannot be cast to class
+//    com.harulab.adapfit.global.security.auth.user.AuthDetails
+//    (com.harulab.adapfit.global.security.auth.admin.AdminDetails
+//    and com.harulab.adapfit.global.security.auth.user.AuthDetails
+//    are in unnamed module of loader 'app')
+
 }
