@@ -13,6 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,7 +43,7 @@ public class Plan {
 
     // 추후 카테고리 추가 (@OneToMany);
     @OneToMany(mappedBy = "plan", cascade = CascadeType.REMOVE)
-    private List<Category> categories;
+    private final List<Category> categories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")

@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
+@Transactional(readOnly = true)
 public class CategoryService {
 
     private final CategoryFacade categoryFacade;
@@ -22,13 +22,13 @@ public class CategoryService {
     public void createCategory(Plan plan, CategoryCreateRequestDto req) {
         List<Category> categories = new ArrayList<>();
         req.getNames()
-                .forEach(
-                        name -> {
-                            Category category = new Category(name);
-                            category.confirmPlan(plan);
-                            categories.add(new Category(name));
-                        }
-                );
+                .forEach(name -> saveCategoryInfo(categories, plan, name));
         categoryFacade.saveAll(categories);
+    }
+
+    private void saveCategoryInfo(List<Category> categories, Plan plan, String name) {
+        Category category = new Category(name);
+        category.confirmPlan(plan);
+        categories.add(category);
     }
 }
