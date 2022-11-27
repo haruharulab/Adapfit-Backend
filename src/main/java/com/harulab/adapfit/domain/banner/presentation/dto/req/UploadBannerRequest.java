@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.banner.presentation.dto.req;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
@@ -8,14 +9,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
+import java.util.Objects;
+
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+
 @AllArgsConstructor
 public class UploadBannerRequest {
 
-    @Length(max = 255)
+    @Length(max = 255, message = LINK_SIZE)
     private String link;
 
     @Getter
-    @NotNull
+    @NotNull(message = IMAGE_NOT_NULL)
     private MultipartFile image;
 
     public Banner toEntity() {
@@ -26,7 +31,7 @@ public class UploadBannerRequest {
     }
 
     public String getFileExt() {
-        return image.getOriginalFilename().substring(
+        return Objects.requireNonNull(image.getOriginalFilename()).substring(
                 image.getOriginalFilename().lastIndexOf(".") + 1
         );
     }

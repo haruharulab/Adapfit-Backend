@@ -7,31 +7,33 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
+
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @Getter
 public class UserRequestDto {
 
-    @NotNull
+    @NotBlank(message = AUTH_ID_NOT_BLANK)
     private final String authId;
 
-    @NotNull
+    @NotBlank(message = PASSWORD_ID_NOT_BLANK)
     private final String password;
 
-    @NotNull
+    @NotBlank(message = VALIDATE_PASSWORD_ID_NOT_BLANK)
     private final String validatePassword;
 
-    @NotNull
-    @Email
+    @NotBlank(message = EMAIL_NOT_BLANK)
+    @Email(message = INPUT_EMAIL_FORM)
     private final String email;
 
-    @NotNull
-    @Size(min = 2, max = 8)
+    @NotBlank(message = NICKNAME_NOT_BLANK)
+    @Size(min = 3, max = 8, message = NICKNAME_SIZE)
     private final String nickname;
 
-    @NotNull
+    @NotBlank(message = PHONE_NUMBER_NOT_BLANK)
     private final String phoneNumber;
 
     @Builder

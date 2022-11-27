@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.utils.token;
+package com.harulab.adapfit.global.utils;
 
 import com.harulab.adapfit.global.security.jwt.JwtConstants;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;

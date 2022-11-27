@@ -5,14 +5,16 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+
 @Getter
 @NoArgsConstructor
 public class LoginRequestDto {
 
-    @NotBlank(message = "auth_Id Null, 공백, 띄워쓰기를 허용하지 않습니다.")
+    @NotBlank(message = AUTH_ID_NOT_BLANK)
     private String authId;
 
-    @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @NotBlank(message = PASSWORD_ID_NOT_BLANK)
     private String password;
 
 }

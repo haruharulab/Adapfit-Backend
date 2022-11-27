@@ -4,12 +4,14 @@ import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerReques
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
 import com.harulab.adapfit.domain.banner.service.BannerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
 
+@Validated
 @RequiredArgsConstructor
 @RequestMapping("/banner")
 @RestController

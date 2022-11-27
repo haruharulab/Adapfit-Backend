@@ -38,7 +38,8 @@ public class LogoutService {
         if (Objects.equals(tokenRole, USER_ROLE.getMessage()) ||
                 Objects.equals(tokenRole, ADMIN_ROLE.getMessage())) {
             deleteUserRefreshToken(userFacade.getCurrentUser());
-        } if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
+        }
+        if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
             deleteSuperAdminRefreshToken(superAdminFacade.getCurrentAdmin());
         }
 
