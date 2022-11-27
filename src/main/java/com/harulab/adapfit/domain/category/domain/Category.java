@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -23,16 +24,14 @@ public class Category extends BaseTimeEntity {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plan_id")
-    private Plan plan;
+    @OneToMany(mappedBy = "category")
+    private List<Plan> plans;
 
     public Category(String name) {
         this.name = name;
     }
 
-    public void confirmPlan(Plan plan) {
-        this.plan = plan;
-        plan.addCategory(this);
+    public void addPlan(Plan plan) {
+        this.plans.add(plan);
     }
 }

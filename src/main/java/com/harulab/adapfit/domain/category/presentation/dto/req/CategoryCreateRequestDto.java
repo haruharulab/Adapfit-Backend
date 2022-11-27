@@ -5,18 +5,19 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 
-import java.util.List;
-
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.CATEGORY_NAME_NOT_NULL;
 
 @Getter
 public class CategoryCreateRequestDto {
 
     @NotNull(message = CATEGORY_NAME_NOT_NULL)
-    private final List<String> names;
+    private final String name;
 
-    public CategoryCreateRequestDto(List<String> names) {
-        this.names = names;
+    public CategoryCreateRequestDto(String name) {
+        this.name = name;
     }
 
+    public Category toEntity() {
+        return new Category(name);
+    }
 }
