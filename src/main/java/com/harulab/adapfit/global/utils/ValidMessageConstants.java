@@ -21,6 +21,7 @@ public class ValidMessageConstants {
 
     public static final String LINK_SIZE = "링크의 최대 길이는 255입니다.";
 
-    public static final String IMAGE_NOT_NULL = "이미지는 공백을 허용하지 않습니다.";
+    public static final String IMAGE_NOT_NULL = "이미지는 NULL 값을 허용하지 않습니다.";
 
+    public static final String CATEGORY_NAME_NOT_NULL = "카테고리는 NULL 값을 허용하지 않습니다.";
 }

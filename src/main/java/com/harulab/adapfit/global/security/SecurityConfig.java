@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PUT, "/user").hasRole(USER)
                 .antMatchers(HttpMethod.DELETE, "/user").hasRole(USER)
                 .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
-                .antMatchers(HttpMethod.PUT, "/auth/refresh").hasAnyRole(USER, ADMIN, SUPER)
+                .antMatchers(HttpMethod.PUT, "/auth/refresh").permitAll()
 
                 // admin
                 .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)

@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.plan.domain;
 
+import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @DynamicUpdate
@@ -39,6 +41,8 @@ public class Plan {
     private String imgPath;
 
     // 추후 카테고리 추가 (@OneToMany);
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.REMOVE)
+    private List<Category> categories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")
@@ -52,11 +56,17 @@ public class Plan {
         this.imgPath = imgPath;
     }
 
+    // 연관관계 편의 메서드
     public void confirmWriter(User user) {
         this.writer = user;
-        user.addPlans(this);
+        user.addPlan(this);
     }
 
+    public void addCategory(Category category) {
+        this.categories.add(category);
+    }
+
+    // Plan Info Update
     public void updatePlanInfo(PlanUpdateRequestDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();
@@ -67,4 +77,5 @@ public class Plan {
             throw DontAccessOtherPlanException.EXCEPTION;
         }
     }
+
 }

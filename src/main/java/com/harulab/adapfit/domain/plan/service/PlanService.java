@@ -1,5 +1,7 @@
 package com.harulab.adapfit.domain.plan.service;
 
+import com.harulab.adapfit.domain.category.presentation.dto.req.CategoryCreateRequestDto;
+import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
@@ -10,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -17,10 +21,15 @@ public class PlanService {
 
     private final PlanFacade planFacade;
     private final UserFacade userFacade;
+    private final CategoryService categoryService;
 
     @Transactional
     public void createPlan(PlanCreateRequestDto req) {
-        planFacade.save(req.toEntity()).confirmWriter(userFacade.getCurrentUser());
+        Plan plan = planFacade.save(req.toEntity());
+        plan.confirmWriter(userFacade.getCurrentUser());
+        categoryService.createCategory(
+                plan, new CategoryCreateRequestDto(req.getCategories())
+        );
     }
 
 

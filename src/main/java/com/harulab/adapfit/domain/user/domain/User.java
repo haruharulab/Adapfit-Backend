@@ -80,7 +80,7 @@ public class User {
         this.phoneNumber = req.getPhoneNumber();
     }
 
-    public void addPlans(Plan plan) {
+    public void addPlan(Plan plan) {
         this.plans.add(plan);
     }
 }
