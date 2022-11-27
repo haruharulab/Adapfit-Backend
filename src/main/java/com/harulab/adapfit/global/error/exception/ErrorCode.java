@@ -30,11 +30,9 @@ public enum ErrorCode {
     PHONE_NUMBER_NOT_FOUND(404, "USER-404-5", "PhoneNumber Not Found"),
     PLAN_NOT_FOUND(404, "PLAN-404-1", "Plan Not Found"),
 
-
-
-    ALREADY_CREATED(409, "SECTION-409-1", "Already Created"),
-    USER_EXISTS(409, "USER-409-1", "User Exists"),
-    ALREADY_JOINED(409, "USER-409-2", "Already Joined"),
+    ALREADY_EXISTS_USER(409, "USER-409-1", "User Already Exists"),
+    ALREADY_EXISTS_JOINED(409, "USER-409-2", "Already Joined"),
+    ALREADY_EXISTS_CATEGORY(409, "CATEGORY-409-1", "Already Exists Category"),
 
     REDIS_TRANSACTION_EXCEPTION(500, "REDIS-500-1", "Cannot Read Cache From Redis"),
     INTERNAL_SERVER_ERROR(500, "SERVER-500-1", "Internal Server Error");
