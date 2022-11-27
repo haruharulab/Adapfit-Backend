@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.security.auth.super_admin;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
+import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

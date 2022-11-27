@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.super_admin.facade;
 
 import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdminRepository;
+import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.global.exception.AdminNotFoundException;
 import com.harulab.adapfit.global.utils.SuperAdminUtil;
 import lombok.RequiredArgsConstructor;

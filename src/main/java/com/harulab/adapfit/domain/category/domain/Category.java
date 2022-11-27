@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.category.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @DynamicInsert
 @DynamicUpdate
 @Entity
-public class Category {
+public class Category extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

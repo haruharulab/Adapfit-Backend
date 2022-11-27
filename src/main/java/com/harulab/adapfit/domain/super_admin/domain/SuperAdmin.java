@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.super_admin.domain;
 
 import com.harulab.adapfit.domain.super_admin.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import lombok.AccessLevel;
@@ -21,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @DynamicUpdate
 @Table(name = "SUPER_ADMIN")
 @Entity
-public class SuperAdmin {
+public class SuperAdmin extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

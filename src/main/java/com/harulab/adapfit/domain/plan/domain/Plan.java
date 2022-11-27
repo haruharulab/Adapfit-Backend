@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +23,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Plan {
+public class Plan extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,7 +42,6 @@ public class Plan {
     @Column(length = 256)
     private String imgPath;
 
-    // 추후 카테고리 추가 (@OneToMany);
     @OneToMany(mappedBy = "plan", cascade = CascadeType.REMOVE)
     private final List<Category> categories = new ArrayList<>();
 

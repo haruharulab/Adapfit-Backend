@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.banner.domain;
 
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Banner {
+public class Banner extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
