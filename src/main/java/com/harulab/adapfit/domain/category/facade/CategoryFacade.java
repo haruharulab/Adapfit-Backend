@@ -7,6 +7,8 @@ import com.harulab.adapfit.domain.category.exception.CategoryNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class CategoryFacade {
@@ -23,7 +25,10 @@ public class CategoryFacade {
     }
 
     public void isAlreadyExistsCategory(String categoryName) {
-        categoryRepository.findByCategoryName(categoryName)
-                .orElseThrow(() -> AlreadyExistsCategory.EXCEPTION);
+        Optional<Category> categoryOptional = categoryRepository.findByCategoryName(categoryName);
+        if (categoryOptional.isPresent()) {
+            throw AlreadyExistsCategory.EXCEPTION;
+        }
     }
+
 }

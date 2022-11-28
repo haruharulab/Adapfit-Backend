@@ -34,4 +34,8 @@ public class Category extends BaseTimeEntity {
     public void addPlan(Plan plan) {
         this.plans.add(plan);
     }
+
+    public void updateName(String categoryName) {
+        this.name = categoryName;
+    }
 }
