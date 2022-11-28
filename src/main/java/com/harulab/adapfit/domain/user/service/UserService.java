@@ -5,14 +5,13 @@ import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
-@Service
+@ServiceWithTransactionalReadOnly
 public class UserService {
 
     private final UserFacade userFacade;

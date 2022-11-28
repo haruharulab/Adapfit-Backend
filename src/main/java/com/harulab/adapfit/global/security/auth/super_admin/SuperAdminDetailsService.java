@@ -2,15 +2,13 @@ package com.harulab.adapfit.global.security.auth.super_admin;
 
 import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional(readOnly = true)
+@ServiceWithTransactionalReadOnly
 @RequiredArgsConstructor
 public class SuperAdminDetailsService implements UserDetailsService {
 
