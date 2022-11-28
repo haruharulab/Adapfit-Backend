@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.banner.presentation.dto.req;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
+import com.harulab.adapfit.global.s3.S3FileResponseDto;
 import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +24,11 @@ public class UploadBannerRequest {
     @NotNull(message = IMAGE_NOT_NULL)
     private MultipartFile image;
 
-    public Banner toEntity() {
+    public Banner toEntity(S3FileResponseDto fileDto) {
         return Banner.builder()
                 .link(link)
-                .fileExt(getFileExt())
+                .fileName(fileDto.getFileName())
+                .fileUrl(fileDto.getFileUrl())
                 .build();
     }
 
