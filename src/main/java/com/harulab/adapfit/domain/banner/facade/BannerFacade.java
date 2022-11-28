@@ -2,7 +2,9 @@ package com.harulab.adapfit.domain.banner.facade;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
 import com.harulab.adapfit.domain.banner.domain.repository.BannerRepository;
+import com.harulab.adapfit.domain.banner.exception.BannerNotFoundException;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.s3.S3FileResponseDto;
 import com.harulab.adapfit.global.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +24,22 @@ public class BannerFacade {
         return bannerRepository.findAll();
     }
 
+    public Banner findById(Long id) {
+        return bannerRepository.findById(id)
+                .orElseThrow(BannerNotFoundException::new);
+    }
+
     public Banner save(Banner banner) {
         return bannerRepository.save(banner);
     }
 
     public S3FileResponseDto saveBannerFile(UploadBannerRequest dto) throws IOException {
         return s3Uploader.saveFile(dto.getImage());
+    }
+
+    public void delete(Banner banner) {
+        bannerRepository.delete(banner);
+        s3Uploader.deleteFile(banner.getFileName());
     }
 
 }

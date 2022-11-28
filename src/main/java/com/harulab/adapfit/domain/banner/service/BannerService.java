@@ -35,4 +35,10 @@ public class BannerService {
         bannerFacade.save(banner);
     }
 
+    @Transactional
+    public void delete(Long id) {
+        Banner banner = bannerFacade.findById(id);
+        bannerFacade.delete(banner);
+    }
+
 }
