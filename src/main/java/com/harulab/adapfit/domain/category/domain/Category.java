@@ -24,7 +24,7 @@ public class Category extends BaseTimeEntity {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
     private List<Plan> plans;
 
     public Category(String name) {
