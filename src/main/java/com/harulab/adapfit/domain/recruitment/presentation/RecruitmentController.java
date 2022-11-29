@@ -30,4 +30,8 @@ public class RecruitmentController {
         recruitmentService.updateRecruitment(recruitId, req);
     }
 
+    @DeleteMapping("/{recruitId}")
+    public void deleteRecruit(@PathVariable Long recruitId) {
+        recruitmentService.deleteRecruitment(recruitId);
+    }
 }

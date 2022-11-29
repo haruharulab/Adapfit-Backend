@@ -20,4 +20,8 @@ public class RecruitmentFacade {
         return recruitmentRepository.findById(recruitId)
                 .orElseThrow(() -> RecruitmentNotFoundException.EXCEPTION);
     }
+
+    public void deleteByRecruitId(Long recruitId) {
+        recruitmentRepository.deleteById(recruitId);
+    }
 }

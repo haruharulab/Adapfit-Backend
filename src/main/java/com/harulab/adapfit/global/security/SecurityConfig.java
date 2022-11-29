@@ -69,6 +69,7 @@ public class SecurityConfig {
                 .antMatchers( "/super/**").hasRole(SUPER)
                 .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(SUPER)
                 .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(SUPER)
+                .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(SUPER)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()

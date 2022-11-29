@@ -24,4 +24,9 @@ public class RecruitmentService {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(recruitId);
         recruitment.updateInfo(req);
     }
+
+    @Transactional
+    public void deleteRecruitment(Long recruitId) {
+        recruitmentFacade.deleteByRecruitId(recruitId);
+    }
 }
