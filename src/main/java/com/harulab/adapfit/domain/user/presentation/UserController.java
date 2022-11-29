@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.user.presentation;
 
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import com.harulab.adapfit.domain.user.service.UserService;
@@ -25,6 +26,11 @@ public class UserController {
     @PostMapping
     public void join(@RequestBody @Valid UserRequestDto req) {
         userService.join(req);
+    }
+
+    @PutMapping
+    public void update(@RequestBody @Valid UpdateAccountInfoRequestDto req) {
+        userService.updateAccountInfo(req);
     }
 
 }

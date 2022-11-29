@@ -80,6 +80,7 @@ public class User extends BaseTimeEntity {
     }
 
     public void updateInfo(UpdateAccountInfoRequestDto req) {
+        this.authId = req.getAuthId();
         this.email = req.getEmail();
         this.nickname = req.getNickname();
         this.phoneNumber = req.getPhoneNumber();

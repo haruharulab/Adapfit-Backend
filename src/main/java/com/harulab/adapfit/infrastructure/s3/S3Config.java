@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.infrastructure.s3;
+package com.harulab.adapfit.infrastructure.s3;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

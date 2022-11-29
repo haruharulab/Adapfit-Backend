@@ -10,6 +10,7 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @Getter
 public class UpdateAccountInfoRequestDto {
 
+    private final String authId;
     private final String email;
 
     @Size(message = NICKNAME_SIZE)
@@ -17,7 +18,8 @@ public class UpdateAccountInfoRequestDto {
     private final String phoneNumber;
 
     @Builder
-    public UpdateAccountInfoRequestDto(String email, String nickname, String phoneNumber) {
+    public UpdateAccountInfoRequestDto(String authId, String email, String nickname, String phoneNumber) {
+        this.authId = authId;
         this.email = email;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;

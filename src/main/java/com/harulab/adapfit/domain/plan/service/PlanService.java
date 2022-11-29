@@ -9,7 +9,7 @@ import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.global.infrastructure.s3.S3FileResponseDto;
+import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

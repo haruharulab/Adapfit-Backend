@@ -4,8 +4,8 @@ import com.harulab.adapfit.domain.banner.domain.Banner;
 import com.harulab.adapfit.domain.banner.domain.repository.BannerRepository;
 import com.harulab.adapfit.domain.banner.exception.BannerNotFoundException;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
-import com.harulab.adapfit.global.infrastructure.s3.S3FileResponseDto;
-import com.harulab.adapfit.global.infrastructure.s3.S3Uploader;
+import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
+import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

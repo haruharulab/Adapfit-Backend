@@ -4,13 +4,11 @@ import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.domain.repository.PlanRepository;
 import com.harulab.adapfit.domain.plan.exception.PlanNotFoundException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
-import com.harulab.adapfit.global.infrastructure.s3.S3FileResponseDto;
-import com.harulab.adapfit.global.infrastructure.s3.S3Uploader;
+import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
+import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 
 @RequiredArgsConstructor
