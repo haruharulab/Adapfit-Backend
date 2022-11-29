@@ -48,8 +48,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
                 // all
-                .antMatchers(HttpMethod.POST, "/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/admin").permitAll()
+                .antMatchers(HttpMethod.POST, "/apply/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/admin/token").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/token").permitAll()
                 .antMatchers(HttpMethod.PUT, "/auth/refresh").permitAll()
