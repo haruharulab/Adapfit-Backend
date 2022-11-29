@@ -5,6 +5,7 @@ import com.harulab.adapfit.domain.user.domain.type.Authority;
 import com.harulab.adapfit.domain.user.exception.PasswordNotMatchException;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,24 +15,25 @@ import java.util.Objects;
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @Getter
+@NoArgsConstructor
 public class SuperAdminCreateRequestDto {
 
     @NotBlank(message = AUTH_ID_NOT_BLANK)
-    private final String authId;
+    private String authId;
 
     @NotBlank(message = PASSWORD_ID_NOT_BLANK)
-    private final String password;
+    private String password;
 
     @NotBlank(message = VALIDATE_PASSWORD_ID_NOT_BLANK)
-    private final String validatePassword;
+    private String validatePassword;
 
     @NotBlank(message = EMAIL_NOT_BLANK)
     @Email(message = INPUT_EMAIL_FORM)
-    private final String email;
+    private String email;
 
     @NotBlank(message = NICKNAME_NOT_BLANK)
     @Size(min = 3, max = 8, message = NICKNAME_SIZE)
-    private final String nickname;
+    private String nickname;
 
     @Builder
     public SuperAdminCreateRequestDto(String authId, String password, String validatePassword, String email, String nickname) {

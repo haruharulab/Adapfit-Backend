@@ -2,7 +2,6 @@ package com.harulab.adapfit.domain.root.presentation;
 
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
-import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import lombok.RequiredArgsConstructor;
