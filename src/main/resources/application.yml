@@ -18,7 +18,7 @@ spring:
 
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
@@ -55,12 +55,6 @@ cloud:
     credentials:
       accessKey: ${S3-ACCESS-KEY}
       secretKey: ${S3-SECRET-KEY}
-
-file:
-  path:
-    base: /
-    upload:
-      banner: banner/
 
 socket:
   port: 9090

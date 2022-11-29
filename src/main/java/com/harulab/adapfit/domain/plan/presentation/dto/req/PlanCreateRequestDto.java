@@ -11,6 +11,8 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @Getter
 public class PlanCreateRequestDto {
 
+    private final Long categoryId;
+
     @NotBlank(message = TITLE_NOT_BLANK)
     private final String title;
 
@@ -19,7 +21,8 @@ public class PlanCreateRequestDto {
 
 
     @Builder
-    public PlanCreateRequestDto(String title, String content) {
+    public PlanCreateRequestDto(Long categoryId, String title, String content) {
+        this.categoryId = categoryId;
         this.title = title;
         this.content = content;
     }

@@ -1,8 +1,7 @@
 package com.harulab.adapfit.domain.banner.presentation.dto.req;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
-import com.harulab.adapfit.global.s3.S3FileResponseDto;
-import com.harulab.adapfit.global.utils.ValidMessageConstants;
+import com.harulab.adapfit.global.infrastructure.s3.S3FileResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;

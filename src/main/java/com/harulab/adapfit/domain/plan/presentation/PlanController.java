@@ -1,13 +1,16 @@
 package com.harulab.adapfit.domain.plan.presentation;
 
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @Validated
@@ -17,12 +20,12 @@ public class PlanController {
 
     private final PlanService planService;
 
-    @PostMapping
+    @PostMapping()
     public void createPlan(
-            @RequestParam Long categoryId,
-            @RequestBody @Valid PlanCreateRequestDto req
-    ) {
-        planService.createPlan(categoryId, req);
+            @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
+            @RequestPart(value = "image") MultipartFile image
+            ) throws IOException {
+        planService.createPlan(new PlanRequestDto(req, image));
     }
 
     @PutMapping("/{planId}")

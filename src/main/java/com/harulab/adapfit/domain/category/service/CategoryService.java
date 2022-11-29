@@ -12,7 +12,7 @@ public class CategoryService {
 
     private final CategoryFacade categoryFacade;
 
-    @Transactional // 검증하기
+    @Transactional
     public void createCategory(String categoryName) {
         categoryFacade.isAlreadyExistsCategory(categoryName);
         categoryFacade.save(new Category(categoryName));

@@ -34,11 +34,11 @@ public class Plan extends BaseTimeEntity {
     @NotNull
     private String content;
 
-    @Column(length = 256)
-    private String imgUrl;
+    @Column(nullable = false)
+    private String fileName;
 
-    @Column(length = 256)
-    private String imgPath;
+    @Column(nullable = false)
+    private String fileUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -49,11 +49,13 @@ public class Plan extends BaseTimeEntity {
     private User writer;
 
     @Builder
-    public Plan(String title, String content, String imgUrl, String imgPath) {
+    public Plan(String title, String content, String fileName, String fileUrl, Category category, User writer) {
         this.title = title;
         this.content = content;
-        this.imgUrl = imgUrl;
-        this.imgPath = imgPath;
+        this.fileName = fileName;
+        this.fileUrl = fileUrl;
+        this.category = category;
+        this.writer = writer;
     }
 
     // 연관관계 편의 메서드

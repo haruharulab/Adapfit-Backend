@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.s3;
+package com.harulab.adapfit.global.infrastructure.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;

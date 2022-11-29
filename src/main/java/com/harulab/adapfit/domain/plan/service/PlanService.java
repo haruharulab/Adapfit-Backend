@@ -4,13 +4,16 @@ import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
-import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly
@@ -21,11 +24,16 @@ public class PlanService {
     private final CategoryService categoryService;
 
     @Transactional
-    public void createPlan(Long categoryId, PlanCreateRequestDto req) {
-        Plan plan = planFacade.save(req.toEntity());
+    public void createPlan(PlanRequestDto req) throws IOException {
+        S3FileResponseDto fileDto = planFacade.savePlanFile(req);
+
+        Plan plan = req.toEntity(fileDto);
         plan.confirmWriter(userFacade.getCurrentUser());
-        Category category = categoryService.savingInCategory(categoryId);
+
+        Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
+
+        planFacade.save(plan);
     }
 
     @Transactional

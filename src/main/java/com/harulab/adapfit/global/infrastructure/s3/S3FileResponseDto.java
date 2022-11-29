@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.s3;
+package com.harulab.adapfit.global.infrastructure.s3;
 
 import lombok.Builder;
 import lombok.Getter;
