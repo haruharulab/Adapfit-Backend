@@ -72,6 +72,9 @@ public class SecurityConfig {
                 // super admin
                 .antMatchers( "/super/**").hasRole(SUPER)
 
+                // socket.io
+                .antMatchers(HttpMethod.GET, "/socket.io").authenticated()
+
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))

@@ -7,9 +7,13 @@ import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import com.harulab.adapfit.global.socket.property.SocketProperty;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
+@Component
 public class SocketExceptionListener implements ExceptionListener {
     @Override
     public void onEventException(Exception e, List<Object> args, SocketIOClient client) {

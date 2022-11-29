@@ -22,6 +22,7 @@ public class RoomMemberController {
             SocketIOClient client,
             @RequestBody @Valid RoomRequestDto request
     ) {
+        System.out.println("execute");
         roomMemberService.joinRoom(client, request);
     }
 }
