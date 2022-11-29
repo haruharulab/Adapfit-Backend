@@ -68,4 +68,8 @@ public class Recruitment extends BaseTimeEntity {
         this.employmentPattern = EmploymentPattern.valueOf(req.getEmploymentPattern());
         this.workingArea = req.getWorkingArea();
     }
+
+    public void addApply(Apply apply) {
+        this.applies.add(apply);
+    }
 }

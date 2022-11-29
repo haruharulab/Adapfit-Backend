@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter
 public class ApplySubmitRequestDto {
 
+    private Long recruitmentId;
     private String name;
 
     private String email;
@@ -19,6 +20,7 @@ public class ApplySubmitRequestDto {
     private MultipartFile file;
 
     public ApplySubmitRequestDto(ProxyApplyRequestDto req, MultipartFile file) {
+        this.recruitmentId = req.getRecruitmentId();
         this.name = req.getName();
         this.email = req.getEmail();
         this.phoneNumber = req.getPhoneNumber();

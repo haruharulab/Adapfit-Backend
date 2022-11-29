@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ProxyApplyRequestDto {
 
+    private Long recruitmentId;
     private String name;
 
     private String email;
@@ -15,7 +16,8 @@ public class ProxyApplyRequestDto {
     private String phoneNumber;
 
     @Builder
-    public ProxyApplyRequestDto(String name, String email, String phoneNumber) {
+    public ProxyApplyRequestDto(Long recruitmentId, String name, String email, String phoneNumber) {
+        this.recruitmentId = recruitmentId;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;

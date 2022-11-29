@@ -48,4 +48,9 @@ public class Apply {
         this.fileName = fileName;
         this.fileUrl = fileUrl;
     }
+
+    public void confirmRecruitment(Recruitment recruitment) {
+        this.recruitment = recruitment;
+        recruitment.addApply(this);
+    }
 }
