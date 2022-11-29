@@ -20,7 +20,7 @@ public class PlanController {
 
     private final PlanService planService;
 
-    @PostMapping()
+    @PostMapping
     public void createPlan(
             @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
             @RequestPart(value = "image") MultipartFile image

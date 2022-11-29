@@ -22,18 +22,18 @@ public class AuthController {
     private final TokenRefreshService tokenRefreshService;
     private final LogoutService logoutService;
 
-    @PostMapping("/token") // USER, ADMIN
+    @PostMapping("/token") // ADMIN
     public TokenResponseDto login(@RequestBody @Valid LoginRequestDto req) {
         return loginService.execute(req);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping // USER, ADMIN
+    @DeleteMapping // ADMIN
     public void logout(@RequestHeader("Authorization") String accessToken) {
         logoutService.execute(accessToken);
     }
 
-    @PutMapping("/refresh") // USER, ADMIN, SUPER_ADMIN
+    @PutMapping("/refresh") // ADMIN, SUPER_ADMIN
     public TokenResponseDto tokenRefresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
         return tokenRefreshService.execute(refreshToken);
     }

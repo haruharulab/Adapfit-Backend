@@ -54,7 +54,7 @@ public class UserRequestDto {
                 .nickname(nickname)
                 .password(password)
                 .phoneNumber(phoneNumber)
-                .authority(Authority.USER)
+                .authority(Authority.ADMIN)
                 .build();
     }
 

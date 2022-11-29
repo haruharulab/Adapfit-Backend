@@ -24,7 +24,6 @@ public class SecurityConfig {
     private final JwtProvider jwtProvider;
     private final JwtAuth jwtAuth;
     private final ObjectMapper objectMapper;
-    private static final String USER = "USER";
     private static final String ADMIN = "ADMIN";
     private static final String SUPER = "SUPER_ADMIN";
 
@@ -56,10 +55,6 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PUT, "/auth/refresh").permitAll()
                 .antMatchers(HttpMethod.POST, "/super/auth/token").permitAll()
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
-
-                // user
-                .antMatchers(HttpMethod.PUT, "/user").hasRole(USER)
-                .antMatchers(HttpMethod.DELETE, "/user").hasRole(USER)
 
                 // admin
                 .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)

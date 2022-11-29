@@ -2,7 +2,7 @@ package com.harulab.adapfit.global.security.jwt.auth;
 
 import com.harulab.adapfit.global.exception.ExpiredJwtException;
 import com.harulab.adapfit.global.exception.InvalidJwtException;
-import com.harulab.adapfit.global.security.auth.super_admin.SuperAdminDetailsService;
+import com.harulab.adapfit.global.security.auth.root.SuperAdminDetailsService;
 import com.harulab.adapfit.global.security.auth.user.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import io.jsonwebtoken.*;

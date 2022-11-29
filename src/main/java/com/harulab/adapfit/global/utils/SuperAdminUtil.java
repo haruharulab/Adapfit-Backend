@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.utils;
 
-import com.harulab.adapfit.global.security.auth.super_admin.SuperAdminDetails;
+import com.harulab.adapfit.global.security.auth.root.SuperAdminDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SuperAdminUtil {

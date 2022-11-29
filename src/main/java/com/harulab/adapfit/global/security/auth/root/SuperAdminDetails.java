@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.security.auth.super_admin;
+package com.harulab.adapfit.global.security.auth.root;
 
 import com.harulab.adapfit.domain.root.domain.SuperAdmin;
 import lombok.AllArgsConstructor;
