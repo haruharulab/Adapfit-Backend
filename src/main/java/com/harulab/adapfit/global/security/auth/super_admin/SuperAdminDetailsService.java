@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.security.auth.super_admin;
 
-import com.harulab.adapfit.domain.super_admin.domain.repository.SuperAdminRepository;
+import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,10 @@
 package com.harulab.adapfit.domain.user.facade;
 
+import com.corundumstudio.socketio.SocketIOClient;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
 import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
+import com.harulab.adapfit.global.socket.property.SocketProperty;
 import com.harulab.adapfit.global.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -35,6 +37,11 @@ public class UserFacade {
 
     public User findByAuthId(String authId) {
         return userRepository.findByAuthId(authId)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
+    public User findUserByClient(SocketIOClient client) {
+        return userRepository.findByAuthId(client.get(SocketProperty.USER_KEY))
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 }

@@ -28,6 +28,8 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_FOUND(404, "AUTH-404-1", "Refresh Token Not Found"),
     AUTH_ID_NOT_FOUND(404, "AUTH-404-4", "AuthId(Username) Not Found"),
     PHONE_NUMBER_NOT_FOUND(404, "USER-404-5", "PhoneNumber Not Found"),
+    NOT_FOUND_ROOM_EXCEPTION(404, "ROOM-404-1", "Room Not Found"),
+
     PLAN_NOT_FOUND(404, "PLAN-404-1", "Plan Not Found"),
     BANNER_NOT_FOUND(404, "BANNER-404-1", "Banner Not Found"),
 

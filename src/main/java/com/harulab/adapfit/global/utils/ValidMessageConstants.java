@@ -24,4 +24,5 @@ public class ValidMessageConstants {
     public static final String IMAGE_NOT_NULL = "이미지는 NULL 값을 허용하지 않습니다.";
 
     public static final String CATEGORY_NAME_NOT_NULL = "카테고리는 NULL 값을 허용하지 않습니다.";
+    public static final String ROOM_ID_NOT_NULL = "채팅방 아이디는 NULL 값을 허용하지 않습니다.";
 }

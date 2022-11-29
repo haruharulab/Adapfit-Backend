@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.auth.service;
 
-import com.harulab.adapfit.domain.super_admin.domain.SuperAdmin;
-import com.harulab.adapfit.domain.super_admin.facade.SuperAdminFacade;
+import com.harulab.adapfit.domain.root.domain.SuperAdmin;
+import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
 import com.harulab.adapfit.domain.auth.domain.AuthId;
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
