@@ -8,6 +8,6 @@ public class RoomNotFoundException extends AdapfitException {
     public static final AdapfitException EXCEPTION = new RoomNotFoundException();
 
     public RoomNotFoundException() {
-        super(ErrorCode.NOT_FOUND_ROOM_EXCEPTION);
+        super(ErrorCode.ROOM_NOT_FOUND);
     }
 }

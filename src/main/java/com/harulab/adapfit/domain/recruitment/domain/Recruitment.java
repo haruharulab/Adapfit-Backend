@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.recruitment.domain;
 
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.domain.type.Group;
+import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,30 +24,24 @@ public class Recruitment extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 제목
     @NotNull
     @Column(length = 36)
     private String title;
 
-    // 내용
     @NotNull
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    // 직군
     @NotNull
     @Enumerated(EnumType.STRING)
     private Group jobGroup;
 
-    // 경력
     private Integer career;
 
-    // 고용형태(정규직, 인턴)
     @NotNull
     @Enumerated(EnumType.STRING)
     private EmploymentPattern employmentPattern;
 
-    // 근무지역
     @NotNull
     private String workingArea;
 
@@ -58,5 +53,14 @@ public class Recruitment extends BaseTimeEntity {
         this.career = career;
         this.employmentPattern = employmentPattern;
         this.workingArea = workingArea;
+    }
+
+    public void updateInfo(RecruitmentUpdateRequestDto req) {
+        this.title = req.getTitle();
+        this.content = req.getContent();
+        this.jobGroup = Group.valueOf(req.getGroup());
+        this.career = req.getCareer();
+        this.employmentPattern = EmploymentPattern.valueOf(req.getEmploymentPattern());
+        this.workingArea = req.getWorkingArea();
     }
 }
