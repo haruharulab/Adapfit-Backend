@@ -1,0 +1,66 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${RDS-URL}
+    username: ${RDS-USERNAME}
+    password: ${RDS-PASSWORD}
+  redis:
+    host: localhost
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+auth:
+  jwt:
+    header: ${HEADER}
+    secret: ${SECRET-KEY}
+    accessExp: ${ACCESS-EXP}
+    refreshExp: ${REFRESH-EXP}
+    prefix: ${PREFIX}
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+server:
+  port: 8080
+
+cloud:
+  aws:
+    s3:
+      bucket: ${BUCKET-NAME}
+    region:
+      static: ${REGION}
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${S3-ACCESS-KEY}
+      secretKey: ${S3-SECRET-KEY}
+
+file:
+  path:
+    base: /
+    upload:
+      banner: banner/
+
+socket:
+  port: 9090
