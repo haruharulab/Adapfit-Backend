@@ -2,7 +2,10 @@ package com.harulab.adapfit.domain.root.service;
 
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
+import com.harulab.adapfit.domain.user.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,14 @@ public class SuperAdminService {
         superAdminRepository.save(req.toEntity()).encodePassword(passwordEncoder);
     }
 
+    @Transactional
+    public AdminCreateResponseDto createAdmin() {
+        UserRequestDto userRequestDto = new UserRequestDto();
+        User user = userFacade.save(userRequestDto.toEntity());
+        user.encodePassword(passwordEncoder);
+        return new AdminCreateResponseDto(userRequestDto.getAuthId());
+    }
+
     public List<UserResponseDto> getUserList() {
         return userFacade.findAll()
                 .stream()
@@ -36,4 +47,5 @@ public class SuperAdminService {
     public void updateAuthorityAdmin(Long id) {
         userFacade.findById(id).updateAuthority();
     }
+
 }
