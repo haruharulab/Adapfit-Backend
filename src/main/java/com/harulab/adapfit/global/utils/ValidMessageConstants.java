@@ -17,7 +17,7 @@ public class ValidMessageConstants {
 
     public static final String TITLE_NOT_BLANK = "제목은 Null, 공백, 띄워쓰기를 허용하지 않습니다.";
 
-    public static final String CONTENT_NOT_BLANK = "Null, 공백, 띄워쓰기를 허용하지 않습니다.";
+    public static final String CONTENT_NOT_BLANK = "내용은 Null, 공백, 띄워쓰기를 허용하지 않습니다.";
 
     public static final String LINK_SIZE = "링크의 최대 길이는 255입니다.";
 
@@ -25,4 +25,7 @@ public class ValidMessageConstants {
 
     public static final String CATEGORY_NAME_NOT_NULL = "카테고리는 NULL 값을 허용하지 않습니다.";
     public static final String ROOM_ID_NOT_NULL = "채팅방 아이디는 NULL 값을 허용하지 않습니다.";
+    public static final String RECRUITMENT_ID_NOT_BLANK = "채용 섹션 아이디는 Null, 공백, 띄워쓰기를 허용하지 않습니다.";
+    public static final String NAME_NOT_BLANK = "이름은 Null, 공백, 띄워쓰기를 허용하지 않습니다.";
+    public static final String APPLY_ID_NOT_BLANK = "이력서";
 }

@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.apply.presentation.dto.req;
+package com.harulab.adapfit.domain.resume.presentation.dto.req;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @NoArgsConstructor
-public class ApplyUpdateRequestDto {
+public class ResumeUpdateRequestDto {
 
     private Long applyId;
     private String name;
@@ -17,8 +17,8 @@ public class ApplyUpdateRequestDto {
 
     private MultipartFile file;
 
-    public ApplyUpdateRequestDto(ProxyApplyUpdateRequestDto req, MultipartFile file) {
-        this.applyId = req.getApplyId();
+    public ResumeUpdateRequestDto(ProxyResumeUpdateRequestDto req, MultipartFile file) {
+        this.applyId = Long.valueOf(req.getResumeId());
         this.name = req.getName();
         this.email = req.getEmail();
         this.phoneNumber = req.getPhoneNumber();

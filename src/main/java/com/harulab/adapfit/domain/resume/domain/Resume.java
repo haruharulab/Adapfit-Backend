@@ -1,6 +1,6 @@
-package com.harulab.adapfit.domain.apply.domain;
+package com.harulab.adapfit.domain.resume.domain;
 
-import com.harulab.adapfit.domain.apply.presentation.dto.req.ApplyUpdateRequestDto;
+import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AccessLevel;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Apply {
+public class Resume {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,7 +43,7 @@ public class Apply {
     private Recruitment recruitment;
 
     @Builder
-    public Apply(String name, String email, String phoneNumber, String fileName, String fileUrl) {
+    public Resume(String name, String email, String phoneNumber, String fileName, String fileUrl) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -56,7 +56,7 @@ public class Apply {
         recruitment.addApply(this);
     }
 
-    public void updateInfo(ApplyUpdateRequestDto req, S3FileResponseDto res) {
+    public void updateInfo(ResumeUpdateRequestDto req, S3FileResponseDto res) {
         this.name = req.getName();
         this.email = req.getEmail();
         this.phoneNumber = req.getPhoneNumber();

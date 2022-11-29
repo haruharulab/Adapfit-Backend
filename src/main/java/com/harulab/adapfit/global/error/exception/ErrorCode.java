@@ -33,7 +33,7 @@ public enum ErrorCode {
 
     PLAN_NOT_FOUND(404, "PLAN-404-1", "Plan Not Found"),
     BANNER_NOT_FOUND(404, "BANNER-404-1", "Banner Not Found"),
-    APPLY_NOT_FOUND(404, "APPLY-404-1", "Apply Not Found"),
+    RESUME_NOT_FOUND(404, "RESUME-404-1", "Resume Not Found"),
 
 
     ALREADY_EXISTS_USER(409, "USER-409-1", "User Already Exists"),

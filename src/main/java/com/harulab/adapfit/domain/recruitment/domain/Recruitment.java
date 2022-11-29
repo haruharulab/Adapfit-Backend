@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.recruitment.domain;
 
-import com.harulab.adapfit.domain.apply.domain.Apply;
+import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.domain.type.Group;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
@@ -48,7 +48,7 @@ public class Recruitment extends BaseTimeEntity {
     private String workingArea;
 
     @OneToMany(mappedBy = "recruitment")
-    private List<Apply> applies;
+    private List<Resume> applies;
 
     @Builder
     public Recruitment(String title, String content, Group group, Integer career, EmploymentPattern employmentPattern, String workingArea) {
@@ -69,7 +69,7 @@ public class Recruitment extends BaseTimeEntity {
         this.workingArea = req.getWorkingArea();
     }
 
-    public void addApply(Apply apply) {
-        this.applies.add(apply);
+    public void addApply(Resume resume) {
+        this.applies.add(resume);
     }
 }
