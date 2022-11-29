@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.apply.facade;
 
 import com.harulab.adapfit.domain.apply.domain.Apply;
 import com.harulab.adapfit.domain.apply.domain.repository.ApplyRepository;
+import com.harulab.adapfit.domain.apply.exception.ApplyNotFoundException;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,10 @@ public class ApplyFacade {
 
     public S3FileResponseDto uploadFile(MultipartFile file) throws IOException {
         return s3Uploader.saveFile(file);
+    }
+
+    public Apply findByApplyId(Long applyId) {
+        return applyRepository.findById(applyId)
+                .orElseThrow(() -> ApplyNotFoundException.EXCEPTION);
     }
 }

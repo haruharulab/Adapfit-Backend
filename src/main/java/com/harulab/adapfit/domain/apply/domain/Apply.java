@@ -1,6 +1,8 @@
 package com.harulab.adapfit.domain.apply.domain;
 
+import com.harulab.adapfit.domain.apply.presentation.dto.req.ApplyUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
+import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,5 +54,13 @@ public class Apply {
     public void confirmRecruitment(Recruitment recruitment) {
         this.recruitment = recruitment;
         recruitment.addApply(this);
+    }
+
+    public void updateInfo(ApplyUpdateRequestDto req, S3FileResponseDto res) {
+        this.name = req.getName();
+        this.email = req.getEmail();
+        this.phoneNumber = req.getPhoneNumber();
+        this.fileName = res.getFileName();
+        this.fileUrl = res.getFileUrl();
     }
 }
