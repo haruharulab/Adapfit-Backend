@@ -19,22 +19,26 @@ public class Banner extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String fileExt;
+    private String fileName;
+
+    @Column(nullable = false)
+    private String fileUrl;
 
     @Column
     private String link;
 
     @Builder
-    public Banner(Long id, String fileExt, String link) {
+    public Banner(Long id, String fileName, String fileUrl, String link) {
         this.id = id;
-        this.fileExt = fileExt;
+        this.fileName = fileName;
+        this.fileUrl = fileUrl;
         this.link = link;
     }
 
     public BannerResponse toResponse() {
         return BannerResponse.builder()
                 .id(id)
-                .fileExt(fileExt)
+                .fileUrl(fileUrl)
                 .link(link)
                 .build();
     }

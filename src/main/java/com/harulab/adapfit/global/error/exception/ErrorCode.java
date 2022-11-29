@@ -31,6 +31,7 @@ public enum ErrorCode {
     NOT_FOUND_ROOM_EXCEPTION(404, "ROOM-404-1", "Room Not Found"),
 
     PLAN_NOT_FOUND(404, "PLAN-404-1", "Plan Not Found"),
+    BANNER_NOT_FOUND(404, "BANNER-404-1", "Banner Not Found"),
 
     ALREADY_EXISTS_USER(409, "USER-409-1", "User Already Exists"),
     ALREADY_EXISTS_JOINED(409, "USER-409-2", "Already Joined"),

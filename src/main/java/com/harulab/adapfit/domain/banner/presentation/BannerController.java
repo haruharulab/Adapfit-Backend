@@ -32,4 +32,9 @@ public class BannerController {
         bannerService.upload(new UploadBannerRequest(link, image));
     }
 
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        bannerService.delete(id);
+    }
+
 }

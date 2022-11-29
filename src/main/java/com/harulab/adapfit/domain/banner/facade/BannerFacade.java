@@ -2,12 +2,14 @@ package com.harulab.adapfit.domain.banner.facade;
 
 import com.harulab.adapfit.domain.banner.domain.Banner;
 import com.harulab.adapfit.domain.banner.domain.repository.BannerRepository;
+import com.harulab.adapfit.domain.banner.exception.BannerNotFoundException;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
+import com.harulab.adapfit.global.s3.S3FileResponseDto;
+import com.harulab.adapfit.global.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -16,28 +18,28 @@ import java.util.List;
 public class BannerFacade {
 
     private final BannerRepository bannerRepository;
-
-    @Value("${file.path.base}")
-    private String PUBLIC_RESOURCE_PATH;
-    @Value("${file.path.upload.banner}")
-    private String BANNER_UPLOAD_PATH;
+    private final S3Uploader s3Uploader;
 
     public List<Banner> findAll() {
         return bannerRepository.findAll();
     }
 
-    public void saveBannerFile(UploadBannerRequest dto, Banner banner) throws IOException {
-        File dir = new File(PUBLIC_RESOURCE_PATH + BANNER_UPLOAD_PATH);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
-        File file = new File(dir.getPath() + "/" + banner.getId() + "." + banner.getFileExt());
-        dto.getImage().transferTo(file);
+    public Banner findById(Long id) {
+        return bannerRepository.findById(id)
+                .orElseThrow(BannerNotFoundException::new);
     }
 
     public Banner save(Banner banner) {
         return bannerRepository.save(banner);
+    }
+
+    public S3FileResponseDto saveBannerFile(UploadBannerRequest dto) throws IOException {
+        return s3Uploader.saveFile(dto.getImage());
+    }
+
+    public void delete(Banner banner) {
+        bannerRepository.delete(banner);
+        s3Uploader.deleteFile(banner.getFileName());
     }
 
 }
