@@ -57,6 +57,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
+                .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(SUPER)
                 .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(SUPER)
                 .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(SUPER)

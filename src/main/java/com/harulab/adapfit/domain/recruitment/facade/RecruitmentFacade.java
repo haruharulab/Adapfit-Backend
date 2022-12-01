@@ -6,6 +6,8 @@ import com.harulab.adapfit.domain.recruitment.exception.RecruitmentNotFoundExcep
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class RecruitmentFacade {
@@ -23,5 +25,9 @@ public class RecruitmentFacade {
 
     public void deleteByRecruitId(Long recruitId) {
         recruitmentRepository.deleteById(recruitId);
+    }
+
+    public List<Recruitment> findRecruitByDynamicQuery(String jobGroup, Integer career, String employmentPattern) {
+        return recruitmentRepository.searchRecruitment(jobGroup, career, employmentPattern);
     }
 }

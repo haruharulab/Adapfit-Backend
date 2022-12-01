@@ -48,7 +48,7 @@ public class Recruitment extends BaseTimeEntity {
     private String workingArea;
 
     @OneToMany(mappedBy = "recruitment")
-    private List<Resume> applies;
+    private List<Resume> resumes;
 
     @Builder
     public Recruitment(String title, String content, Group group, Integer career, EmploymentPattern employmentPattern, String workingArea) {
@@ -70,6 +70,6 @@ public class Recruitment extends BaseTimeEntity {
     }
 
     public void addApply(Resume resume) {
-        this.applies.add(resume);
+        this.resumes.add(resume);
     }
 }

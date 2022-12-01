@@ -1,4 +1,4 @@
-package com.harulab.adapfit.global.redis;
+package com.harulab.adapfit.global.web.redis;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

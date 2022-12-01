@@ -8,7 +8,6 @@ import com.harulab.adapfit.domain.user.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.global.error.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
