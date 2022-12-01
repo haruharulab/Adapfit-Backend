@@ -25,7 +25,8 @@ import java.util.List;
 @Entity
 public class User extends BaseTimeEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -89,4 +90,9 @@ public class User extends BaseTimeEntity {
     public void addPlan(Plan plan) {
         this.plans.add(plan);
     }
+
+    public void updatePassword(PasswordEncoder passwordEncoder, String password) {
+        this.password = passwordEncoder.encode(password);
+    }
+
 }

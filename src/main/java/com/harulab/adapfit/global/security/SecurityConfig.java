@@ -54,7 +54,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/category").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.PUT, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
-
+                .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
                 .antMatchers( "/super/**").hasRole(SUPER)

@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.user.presentation;
 
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
+import com.harulab.adapfit.domain.user.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
 import com.harulab.adapfit.domain.user.service.UserService;
@@ -32,5 +33,11 @@ public class UserController {
     public void update(@RequestBody @Valid UpdateAccountInfoRequestDto req) {
         userService.updateAccountInfo(req);
     }
+
+    @PutMapping("/pw")
+    public void updatePw(@RequestBody @Valid PasswordRequestDto req) {
+        userService.updatePassword(req);
+    }
+
 
 }
