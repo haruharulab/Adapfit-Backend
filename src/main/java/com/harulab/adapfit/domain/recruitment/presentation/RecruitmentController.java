@@ -22,12 +22,12 @@ public class RecruitmentController {
     @GetMapping
     public List<RecruitmentResponseDto> searchRecruit(
             @RequestParam("jobGroup") String jobGroup,
-            @RequestParam("career") Integer career,
+            @RequestParam("career") String career,
             @RequestParam("employmentPattern") String employmentPattern
     ) {
         return recruitmentService.getRecruit(jobGroup, career, employmentPattern);
     }
-    
+
     @PostMapping
     public void createRecruit(@RequestBody @Valid RecruitmentCreateRequestDto req) {
         recruitmentService.createRecruitment(req);

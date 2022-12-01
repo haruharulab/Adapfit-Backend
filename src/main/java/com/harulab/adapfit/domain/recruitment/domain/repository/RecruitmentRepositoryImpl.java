@@ -15,21 +15,23 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
     private final JPAQueryFactory query;
 
     @Override
-    public List<Recruitment> searchRecruitment(String jobGroup, Integer career, String employmentPattern) {
+    public List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern) {
+        System.out.println(employmentPattern.length());
+
         BooleanBuilder builder = new BooleanBuilder();
-        if (jobGroup != null) {
+        if (jobGroup.length() != 0) {
             builder.and(recruitment.jobGroup.stringValue().eq(jobGroup));
         }
 
-        if (career != null) {
-            if (career == 0) {
+        if (career.length() != 0) {
+            if (Integer.parseInt(career) == 0) {
                 builder.and(recruitment.career.eq(0));
             } else {
                 builder.and(recruitment.career.gt(0));
             }
         }
 
-        if (employmentPattern != null) {
+        if (employmentPattern.length() != 0) {
             builder.and(recruitment.employmentPattern.stringValue().eq(employmentPattern));
         }
 

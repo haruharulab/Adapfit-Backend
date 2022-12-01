@@ -23,6 +23,13 @@ public class RecruitmentService {
         recruitmentFacade.create(req.toEntity());
     }
 
+    public List<RecruitmentResponseDto> getRecruit(String jobGroup, String career, String employmentPattern) {
+        return recruitmentFacade.findRecruitByDynamicQuery(jobGroup, career, employmentPattern)
+                .stream()
+                .map(RecruitmentResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void updateRecruitment(Long recruitId, RecruitmentUpdateRequestDto req) {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(recruitId);
@@ -32,14 +39,6 @@ public class RecruitmentService {
     @Transactional
     public void deleteRecruitment(Long recruitId) {
         recruitmentFacade.deleteByRecruitId(recruitId);
-    }
-
-
-    public List<RecruitmentResponseDto> getRecruit(String jobGroup, Integer career, String employmentPattern) {
-        return recruitmentFacade.findRecruitByDynamicQuery(jobGroup, career, employmentPattern)
-                .stream()
-                .map(RecruitmentResponseDto::new)
-                .collect(Collectors.toList());
     }
 
 }

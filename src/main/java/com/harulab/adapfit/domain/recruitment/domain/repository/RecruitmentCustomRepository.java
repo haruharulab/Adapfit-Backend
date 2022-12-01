@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface RecruitmentCustomRepository {
 
-    List<Recruitment> searchRecruitment(String jobGroup, Integer career, String employmentPattern);
+    List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern);
 
 }
