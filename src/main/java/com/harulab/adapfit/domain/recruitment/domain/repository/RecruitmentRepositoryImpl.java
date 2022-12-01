@@ -16,13 +16,23 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
 
     @Override
     public List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern) {
-        System.out.println(employmentPattern.length());
-
         BooleanBuilder builder = new BooleanBuilder();
+        getQueryByJobGroup(builder, jobGroup);
+        getQueryByCareer(builder, career);
+        getQueryByEmploymentPattern(builder, employmentPattern);
+
+        return query.selectFrom(recruitment)
+                .where(builder)
+                .fetch();
+    }
+
+    private void getQueryByJobGroup(BooleanBuilder builder, String jobGroup) {
         if (jobGroup.length() != 0) {
             builder.and(recruitment.jobGroup.stringValue().eq(jobGroup));
         }
+    }
 
+    private void getQueryByCareer(BooleanBuilder builder, String career) {
         if (career.length() != 0) {
             if (Integer.parseInt(career) == 0) {
                 builder.and(recruitment.career.eq(0));
@@ -30,13 +40,11 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
                 builder.and(recruitment.career.gt(0));
             }
         }
+    }
 
+    private void getQueryByEmploymentPattern(BooleanBuilder builder, String employmentPattern) {
         if (employmentPattern.length() != 0) {
             builder.and(recruitment.employmentPattern.stringValue().eq(employmentPattern));
         }
-
-        return query.selectFrom(recruitment)
-                .where(builder)
-                .fetch();
     }
 }
