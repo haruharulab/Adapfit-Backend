@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.recruitment.domain.repository;
 
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
-import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -16,35 +16,37 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
 
     @Override
     public List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern) {
-        BooleanBuilder builder = new BooleanBuilder();
-        getQueryByJobGroup(builder, jobGroup);
-        getQueryByCareer(builder, career);
-        getQueryByEmploymentPattern(builder, employmentPattern);
-
         return query.selectFrom(recruitment)
-                .where(builder)
+                .where(
+                        jogGroupEq(jobGroup),
+                        careerEq(career),
+                        employmentPatternEq(employmentPattern)
+                )
                 .fetch();
     }
 
-    private void getQueryByJobGroup(BooleanBuilder builder, String jobGroup) {
+    private BooleanExpression jogGroupEq(String jobGroup) {
         if (jobGroup.length() != 0) {
-            builder.and(recruitment.jobGroup.stringValue().eq(jobGroup));
+            return recruitment.jobGroup.stringValue().eq(jobGroup);
         }
+        return null;
     }
 
-    private void getQueryByCareer(BooleanBuilder builder, String career) {
+    private BooleanExpression careerEq(String career) {
         if (career.length() != 0) {
             if (Integer.parseInt(career) == 0) {
-                builder.and(recruitment.career.eq(0));
+                return recruitment.career.eq(0);
             } else {
-                builder.and(recruitment.career.gt(0));
+                return recruitment.career.gt(0);
             }
         }
+        return null;
     }
 
-    private void getQueryByEmploymentPattern(BooleanBuilder builder, String employmentPattern) {
+    private BooleanExpression employmentPatternEq(String employmentPattern) {
         if (employmentPattern.length() != 0) {
-            builder.and(recruitment.employmentPattern.stringValue().eq(employmentPattern));
+            return recruitment.employmentPattern.stringValue().eq(employmentPattern);
         }
+        return null;
     }
 }
