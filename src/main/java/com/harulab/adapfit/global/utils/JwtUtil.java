@@ -22,9 +22,4 @@ public class JwtUtil {
         return jwtAuth.getJws(token).getBody().get(JwtConstants.AUTH_ID.getMessage()).toString();
     }
 
-    public String ExtractRoleFromToken(String bearer) {
-        String token = jwtProvider.parseToken(bearer);
-        return jwtAuth.getJws(token).getBody().get(JwtConstants.ROLE.getMessage()).toString();
-    }
-
 }
