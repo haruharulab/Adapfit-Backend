@@ -96,4 +96,7 @@ public class Admin extends BaseTimeEntity {
         this.password = passwordEncoder.encode(password);
     }
 
+    public void updateAuthority(String authority) {
+        this.authority = Authority.valueOf(authority);
+    }
 }

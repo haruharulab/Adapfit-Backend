@@ -78,6 +78,14 @@ public class RootController {
         adminService.updatePassword(adminId, req);
     }
 
+    @PutMapping("/{adminId}")
+    public void updateAdminRole(
+            @PathVariable Long adminId,
+            @RequestParam String authority
+    ) {
+        adminService.updateAdminRole(adminId, authority);
+    }
+
     @DeleteMapping("/{adminId}")
     public void deleteAdmin(@PathVariable Long adminId) {
         adminService.remove(adminId);

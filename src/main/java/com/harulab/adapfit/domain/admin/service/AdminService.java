@@ -65,4 +65,9 @@ public class AdminService {
         adminFacade.delete(adminId);
     }
 
+    @Transactional
+    public void updateAdminRole(Long adminId, String authority) {
+        Admin admin = adminFacade.findById(adminId);
+        admin.updateAuthority(authority);
+    }
 }
