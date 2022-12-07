@@ -39,12 +39,10 @@ public class UserService {
 
     @Transactional
     public void updatePassword(PasswordRequestDto req) {
-        User user = userFacade.getCurrentUser();
-
         if (!Objects.equals(req.getNewPassword(), req.getValidatePassword())) {
             throw new PasswordNotMatchException();
         }
-
+        User user = userFacade.getCurrentUser();
         user.updatePassword(passwordEncoder, req.getNewPassword());
     }
 }

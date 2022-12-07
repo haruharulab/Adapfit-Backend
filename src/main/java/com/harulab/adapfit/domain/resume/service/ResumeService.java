@@ -28,7 +28,7 @@ public class ResumeService {
         Resume resumeReq = req.toEntity(fileDto);
         resumeReq.confirmRecruitment(recruitment);
 
-        resumeFacade.submitApply(resumeReq);
+        resumeFacade.submitResume(resumeReq);
     }
 
     @Transactional

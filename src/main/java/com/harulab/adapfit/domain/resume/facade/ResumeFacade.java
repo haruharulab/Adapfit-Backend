@@ -18,7 +18,7 @@ public class ResumeFacade {
     private final ResumeRepository resumeRepository;
     private final S3Uploader s3Uploader;
 
-    public void submitApply(Resume resume) {
+    public void submitResume(Resume resume) {
         resumeRepository.save(resume);
     }
 
