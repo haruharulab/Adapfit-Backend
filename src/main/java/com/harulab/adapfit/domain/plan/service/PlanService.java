@@ -54,13 +54,14 @@ public class PlanService {
     }
 
     public PlanResponseDto getPlanDetail(Long planId) {
-        return new PlanResponseDto(planFacade.findByPlanId(planId));
+        Plan plan = planFacade.findByPlanId(planId);
+        return new PlanResponseDto(plan, plan.getCategory());
     }
 
     public List<PlanResponseDto> getAllPlan() {
         return planFacade.findAll()
                 .stream()
-                .map(PlanResponseDto::new)
+                .map(plan -> new PlanResponseDto(plan, plan.getCategory()))
                 .collect(Collectors.toList());
     }
 }

@@ -24,7 +24,7 @@ public class UserResponseDto {
         this.phoneNumber = user.getPhoneNumber();
         this.authority = user.getAuthority().name();
         this.plans = plans.stream()
-                .map(PlanResponseDto::new)
+                .map(plan -> new PlanResponseDto(plan, plan.getCategory()))
                 .collect(Collectors.toList());
     }
 }

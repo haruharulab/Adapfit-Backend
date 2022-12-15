@@ -26,6 +26,7 @@ public class PlanController {
     public List<PlanResponseDto> getAll() {
         return planService.getAllPlan();
     }
+
     @GetMapping("{planId}")
     public PlanResponseDto getDetail(@PathVariable Long planId) {
         return planService.getPlanDetail(planId);
