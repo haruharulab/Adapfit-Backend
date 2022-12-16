@@ -86,7 +86,4 @@ public class Plan extends BaseTimeEntity {
         }
     }
 
-    public void addImage(Image image) {
-        images.add(image);
-    }
 }

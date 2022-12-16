@@ -41,6 +41,5 @@ public class Image extends BaseTimeEntity {
 
     public void confirmPlan(Plan plan) {
         this.plan = plan;
-//        plan.addImage(this);
     }
 }
