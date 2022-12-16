@@ -35,9 +35,11 @@ public class PlanController {
     @PostMapping
     public void createPlan(
             @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
-            @RequestPart(value = "image") MultipartFile image
+            @RequestPart(value = "thumbnail") MultipartFile thumbnail,
+            @RequestPart(value = "images") List<MultipartFile> images
             ) throws IOException {
-        planService.createPlan(new PlanRequestDto(req, image));
+        System.out.println("images = " + images);
+        planService.createPlan(new PlanRequestDto(req, thumbnail, images));
     }
 
     @PutMapping("/{planId}")

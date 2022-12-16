@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.plan.domain;
 
 import com.harulab.adapfit.domain.category.domain.Category;
+import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
@@ -14,6 +15,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @DynamicUpdate
@@ -48,6 +50,9 @@ public class Plan extends BaseTimeEntity {
     @JoinColumn(name = "writer_id")
     private User writer;
 
+    @OneToMany(mappedBy = "plan")
+    private List<Image> images;
+
     @Builder
     public Plan(String title, String content, String fileName, String fileUrl, Category category, User writer) {
         this.title = title;
@@ -79,5 +84,9 @@ public class Plan extends BaseTimeEntity {
         if (!Objects.equals(writer.getId(), writer.getId())) {
             throw DontAccessOtherPlanException.EXCEPTION;
         }
+    }
+
+    public void addImage(Image image) {
+        images.add(image);
     }
 }

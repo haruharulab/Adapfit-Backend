@@ -9,8 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
-import java.util.Objects;
-
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @AllArgsConstructor
@@ -29,12 +27,6 @@ public class UploadBannerRequest {
                 .fileName(fileDto.getFileName())
                 .fileUrl(fileDto.getFileUrl())
                 .build();
-    }
-
-    public String getFileExt() {
-        return Objects.requireNonNull(image.getOriginalFilename()).substring(
-                image.getOriginalFilename().lastIndexOf(".") + 1
-        );
     }
 
 }

@@ -2,6 +2,8 @@ package com.harulab.adapfit.domain.plan.service;
 
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.service.CategoryService;
+import com.harulab.adapfit.domain.image.domain.Image;
+import com.harulab.adapfit.domain.image.service.ImageService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
@@ -11,6 +13,7 @@ import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
+import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,7 @@ public class PlanService {
 
     private final PlanFacade planFacade;
     private final UserFacade userFacade;
+    private final ImageService imageService;
     private final CategoryService categoryService;
 
     @Transactional
@@ -35,6 +39,15 @@ public class PlanService {
 
         Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
+
+        req.getImages()
+                .forEach(image -> {
+                    try {
+                        imageService.saveImage(plan, image);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
         planFacade.save(plan);
     }

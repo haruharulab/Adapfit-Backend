@@ -24,7 +24,7 @@ public class PlanFacade {
     }
 
     public S3FileResponseDto savePlanFile(PlanRequestDto dto) throws IOException {
-        return s3Uploader.saveFile(dto.getImage());
+        return s3Uploader.saveFile(dto.getThumbnail());
     }
 
     public Plan findByPlanId(Long planId) {

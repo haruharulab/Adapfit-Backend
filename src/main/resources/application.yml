@@ -18,7 +18,7 @@ spring:
 
     generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true

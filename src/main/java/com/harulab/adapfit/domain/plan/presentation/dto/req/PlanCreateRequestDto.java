@@ -4,13 +4,15 @@ import com.harulab.adapfit.domain.plan.domain.Plan;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
+
+import java.util.List;
 
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @Getter
-
 @NoArgsConstructor
 public class PlanCreateRequestDto {
 

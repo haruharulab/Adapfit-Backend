@@ -3,20 +3,18 @@ package com.harulab.adapfit.domain.plan.presentation.dto.req;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import java.util.Objects;
+import java.util.List;
 
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.CONTENT_NOT_BLANK;
 
 @Getter
-@AllArgsConstructor
 public class PlanRequestDto {
 
     private final Long categoryId;
@@ -29,14 +27,18 @@ public class PlanRequestDto {
 
     @Getter
     @NotNull(message = IMAGE_NOT_NULL)
-    private MultipartFile image;
+    private final List<MultipartFile> images;
 
-    @Builder
-    public PlanRequestDto(PlanCreateRequestDto req, MultipartFile image) {
+    @Getter
+    @NotNull(message = IMAGE_NOT_NULL)
+    private final MultipartFile thumbnail;
+
+    public PlanRequestDto(PlanCreateRequestDto req, MultipartFile thumbnail, List<MultipartFile> images) {
         this.categoryId = req.getCategoryId();
         this.title = req.getTitle();
         this.content = req.getContent();
-        this.image = image;
+        this.images = images;
+        this.thumbnail = thumbnail;
     }
 
     public Plan toEntity(S3FileResponseDto fileDto) {
@@ -46,12 +48,6 @@ public class PlanRequestDto {
                 .fileName(fileDto.getFileName())
                 .fileUrl(fileDto.getFileUrl())
                 .build();
-    }
-
-    public String getFileExt() {
-        return Objects.requireNonNull(image.getOriginalFilename()).substring(
-                image.getOriginalFilename().lastIndexOf(".") + 1
-        );
     }
 
 }
