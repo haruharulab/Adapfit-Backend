@@ -1,8 +1,8 @@
 package com.harulab.adapfit.domain.recruitment.domain;
 
+import com.harulab.adapfit.domain.recruitment.domain.type.Position;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
-import com.harulab.adapfit.domain.recruitment.domain.type.Group;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -36,7 +36,7 @@ public class Recruitment extends BaseTimeEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Group jobGroup;
+    private Position position;
 
     private Integer career;
 
@@ -51,10 +51,10 @@ public class Recruitment extends BaseTimeEntity {
     private List<Resume> resumes;
 
     @Builder
-    public Recruitment(String title, String content, Group group, Integer career, EmploymentPattern employmentPattern, String workingArea) {
+    public Recruitment(String title, String content, Position position, Integer career, EmploymentPattern employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
-        this.jobGroup = group;
+        this.position = position;
         this.career = career;
         this.employmentPattern = employmentPattern;
         this.workingArea = workingArea;
@@ -63,7 +63,7 @@ public class Recruitment extends BaseTimeEntity {
     public void updateInfo(RecruitmentUpdateRequestDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();
-        this.jobGroup = Group.valueOf(req.getGroup());
+        this.position = Position.valueOf(req.getGroup());
         this.career = req.getCareer();
         this.employmentPattern = EmploymentPattern.valueOf(req.getEmploymentPattern());
         this.workingArea = req.getWorkingArea();

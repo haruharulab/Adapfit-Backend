@@ -5,6 +5,7 @@ import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateReques
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeRequestDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
+import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.domain.resume.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Validated
 @RequiredArgsConstructor
@@ -21,6 +23,11 @@ import java.io.IOException;
 public class ResumeController {
 
     private final ResumeService resumeService;
+
+    @GetMapping
+    public List<ResumeResponseDto> getAll() {
+        return resumeService.getResumes();
+    }
 
     @GetMapping("/{resumeId}")
     public ResumeDetailResponseDto getDetail(@PathVariable Long resumeId) {

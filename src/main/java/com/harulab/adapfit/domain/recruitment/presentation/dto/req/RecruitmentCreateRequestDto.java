@@ -2,7 +2,7 @@ package com.harulab.adapfit.domain.recruitment.presentation.dto.req;
 
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
-import com.harulab.adapfit.domain.recruitment.domain.type.Group;
+import com.harulab.adapfit.domain.recruitment.domain.type.Position;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +13,16 @@ public class RecruitmentCreateRequestDto {
 
     private String title;
     private String content;
-    private String group;
+    private String position;
     private Integer career;
     private String employmentPattern;
     private String workingArea;
 
     @Builder
-    public RecruitmentCreateRequestDto(String title, String content, String group, Integer career, String employmentPattern, String workingArea) {
+    public RecruitmentCreateRequestDto(String title, String content, String position, Integer career, String employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
-        this.group = group;
+        this.position = position;
         this.career = career;
         this.employmentPattern = employmentPattern;
         this.workingArea = workingArea;
@@ -32,7 +32,7 @@ public class RecruitmentCreateRequestDto {
         return Recruitment.builder()
                 .title(title)
                 .content(content)
-                .group(Group.valueOf(group))
+                .position(Position.valueOf(position))
                 .career(career)
                 .employmentPattern(EmploymentPattern.valueOf(employmentPattern))
                 .workingArea(workingArea)

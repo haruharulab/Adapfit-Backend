@@ -18,7 +18,7 @@ public class RecruitmentResponseDto {
         this.id = recruitment.getId();
         this.title = recruitment.getTitle();
         this.content = recruitment.getContent();
-        this.jobGroup = recruitment.getJobGroup().name();
+        this.jobGroup = recruitment.getPosition().name();
         this.career = recruitment.getCareer();
         this.employmentPattern = recruitment.getEmploymentPattern().name();
         this.workingArea = recruitment.getWorkingArea();

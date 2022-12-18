@@ -7,12 +7,15 @@ import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateReques
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
+import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly
@@ -20,6 +23,13 @@ public class ResumeService {
 
     private final ResumeFacade resumeFacade;
     private final RecruitmentFacade recruitmentFacade;
+
+    public List<ResumeResponseDto> getResumes() {
+        return resumeFacade.findAll()
+                .stream()
+                .map(ResumeResponseDto::new)
+                .collect(Collectors.toList());
+    }
 
     public ResumeDetailResponseDto getResume(Long resumeId) {
         return new ResumeDetailResponseDto(resumeFacade.getDetail(resumeId));
@@ -42,5 +52,4 @@ public class ResumeService {
         S3FileResponseDto fileDto = resumeFacade.uploadFile(req.getFile());
         resume.updateInfo(req, fileDto);
     }
-
 }
