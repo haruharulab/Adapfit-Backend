@@ -21,11 +21,11 @@ public class RecruitmentController {
 
     @GetMapping
     public List<RecruitmentResponseDto> searchRecruit(
-            @RequestParam("jobGroup") String jobGroup,
+            @RequestParam("position") String position,
             @RequestParam("career") String career,
             @RequestParam("employmentPattern") String employmentPattern
     ) {
-        return recruitmentService.getRecruit(jobGroup, career, employmentPattern);
+        return recruitmentService.getRecruit(position, career, employmentPattern);
     }
 
     @PostMapping

@@ -18,7 +18,7 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
     public List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern) {
         return query.selectFrom(recruitment)
                 .where(
-                        jogGroupEq(jobGroup),
+                        positionEq(jobGroup),
                         careerEq(career),
                         employmentPatternEq(employmentPattern)
                 )
@@ -26,9 +26,9 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
                 .fetch();
     }
 
-    private BooleanExpression jogGroupEq(String jobGroup) {
-        if (jobGroup.length() != 0) {
-            return recruitment.jobGroup.stringValue().eq(jobGroup);
+    private BooleanExpression positionEq(String position) {
+        if (position.length() != 0) {
+            return recruitment.position.stringValue().eq(position);
         }
         return null;
     }

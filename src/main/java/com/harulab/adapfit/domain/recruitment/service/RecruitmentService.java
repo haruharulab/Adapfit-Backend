@@ -23,8 +23,8 @@ public class RecruitmentService {
         recruitmentFacade.create(req.toEntity());
     }
 
-    public List<RecruitmentResponseDto> getRecruit(String jobGroup, String career, String employmentPattern) {
-        return recruitmentFacade.findRecruitByDynamicQuery(jobGroup, career, employmentPattern)
+    public List<RecruitmentResponseDto> getRecruit(String position, String career, String employmentPattern) {
+        return recruitmentFacade.findRecruitByDynamicQuery(position, career, employmentPattern)
                 .stream()
                 .map(RecruitmentResponseDto::new)
                 .collect(Collectors.toList());
