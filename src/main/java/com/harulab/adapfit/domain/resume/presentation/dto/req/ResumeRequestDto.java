@@ -2,9 +2,13 @@ package com.harulab.adapfit.domain.resume.presentation.dto.req;
 
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
+import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
@@ -17,23 +21,29 @@ public class ResumeRequestDto {
 
     private String phoneNumber;
 
-    private MultipartFile file;
+    private MultipartFile resume;
+    private MultipartFile portfolio;
+    private MultipartFile etcFile;
 
-    public ResumeRequestDto(ProxyResumeRequestDto req, MultipartFile file) {
+    @Builder
+    public ResumeRequestDto(ProxyResumeRequestDto req, MultipartFile resume, MultipartFile portfolio, MultipartFile etcFile) {
         this.recruitmentId = Long.valueOf(req.getRecruitmentId());
         this.name = req.getName();
         this.email = req.getEmail();
         this.phoneNumber = req.getPhoneNumber();
-        this.file = file;
+        this.resume = resume;
+        this.portfolio = portfolio;
+        this.etcFile = etcFile;
     }
 
-    public Resume toEntity(S3FileResponseDto res) {
+    public Resume toEntity(Map<String, String> files) {
         return Resume.builder()
                 .name(name)
                 .email(email)
                 .phoneNumber(phoneNumber)
-                .fileName(res.getFileName())
-                .fileUrl(res.getFileUrl())
+                .resume(files.get("resume"))
+                .portfolio(files.get("portfolio"))
+                .etcFile(files.get("etcFile"))
                 .build();
     }
 }

@@ -3,7 +3,6 @@ package com.harulab.adapfit.domain.resume.service;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.resume.facade.ResumeFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeRequestDto;
-import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
@@ -14,7 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -37,19 +38,29 @@ public class ResumeService {
 
     @Transactional
     public void submit(ResumeRequestDto req) throws IOException {
-        S3FileResponseDto fileDto = resumeFacade.uploadFile(req.getFile());
         Recruitment recruitment = recruitmentFacade.findByRecruitId(req.getRecruitmentId());
 
-        Resume resumeReq = req.toEntity(fileDto);
+        Resume resumeReq = req.toEntity(submitOptionFiles(req));
         resumeReq.confirmRecruitment(recruitment);
 
         resumeFacade.submitResume(resumeReq);
     }
 
-    @Transactional
-    public void update(ResumeUpdateRequestDto req) throws IOException {
-        Resume resume = resumeFacade.findByApplyId(req.getApplyId());
-        S3FileResponseDto fileDto = resumeFacade.uploadFile(req.getFile());
-        resume.updateInfo(req, fileDto);
+    public Map<String, String> submitOptionFiles(ResumeRequestDto req) throws IOException {
+        Map<String, String> files = new HashMap<>();
+        files.put("resume", resumeFacade.uploadFile(req.getResume()).getFileUrl());
+        if (!req.getPortfolio().isEmpty()) {
+            files.put("portfolio", resumeFacade.uploadFile(req.getPortfolio()).getFileUrl());
+        } else {
+            files.put("portfolio", "none");
+        }
+
+        if (!req.getEtcFile().isEmpty()) {
+            files.put("etcFile", resumeFacade.uploadFile(req.getEtcFile()).getFileUrl());
+        } else {
+            files.put("portfolio", "none");
+        }
+        return files;
     }
+
 }

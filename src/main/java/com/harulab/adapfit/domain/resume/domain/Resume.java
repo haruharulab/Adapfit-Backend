@@ -33,22 +33,25 @@ public class Resume {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private String fileName;
+    private String resume;
 
-    @Column(nullable = false)
-    private String fileUrl;
+    private String portfolio;
+
+    private String etcFile;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recruitment_id")
     private Recruitment recruitment;
 
     @Builder
-    public Resume(String name, String email, String phoneNumber, String fileName, String fileUrl) {
+    public Resume(String name, String email, String phoneNumber, String resume, String portfolio, String etcFile, Recruitment recruitment) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.fileName = fileName;
-        this.fileUrl = fileUrl;
+        this.resume = resume;
+        this.portfolio = portfolio;
+        this.etcFile = etcFile;
+        this.recruitment = recruitment;
     }
 
     public void confirmRecruitment(Recruitment recruitment) {
@@ -56,11 +59,4 @@ public class Resume {
         recruitment.addApply(this);
     }
 
-    public void updateInfo(ResumeUpdateRequestDto req, S3FileResponseDto res) {
-        this.name = req.getName();
-        this.email = req.getEmail();
-        this.phoneNumber = req.getPhoneNumber();
-        this.fileName = res.getFileName();
-        this.fileUrl = res.getFileUrl();
-    }
 }

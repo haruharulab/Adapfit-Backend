@@ -37,17 +37,11 @@ public class ResumeController {
     @PostMapping
     public void submit(
             @RequestPart(value = "req") @Valid ProxyResumeRequestDto req,
-            @RequestPart (value = "file") MultipartFile file
+            @RequestPart(value = "resume") MultipartFile resume,
+            @RequestPart(value = "portfolio") MultipartFile portfolio,
+            @RequestPart(value = "etcFile") MultipartFile etcFile
             ) throws IOException {
-        resumeService.submit(new ResumeRequestDto(req, file));
-    }
-
-    @PutMapping
-    public void update(
-            @RequestPart(value = "req") @Valid ProxyResumeUpdateRequestDto req,
-            @RequestPart (value = "file") MultipartFile file
-    ) throws IOException {
-        resumeService.update(new ResumeUpdateRequestDto(req, file));
+        resumeService.submit(new ResumeRequestDto(req, resume, portfolio, etcFile));
     }
 
 }
