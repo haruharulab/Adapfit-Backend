@@ -3,6 +3,7 @@ package com.harulab.adapfit.domain.resume.facade;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.resume.domain.repository.ResumeRepository;
 import com.harulab.adapfit.domain.resume.exception.ResumeNotFoundException;
+import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,11 @@ public class ResumeFacade {
     private final ResumeRepository resumeRepository;
     private final S3Uploader s3Uploader;
 
+    public Resume getDetail(Long resumeId) {
+        return resumeRepository.findById(resumeId)
+                .orElseThrow(() -> ResumeNotFoundException.EXCEPTION);
+    }
+
     public void submitResume(Resume resume) {
         resumeRepository.save(resume);
     }
@@ -30,4 +36,5 @@ public class ResumeFacade {
         return resumeRepository.findById(applyId)
                 .orElseThrow(() -> ResumeNotFoundException.EXCEPTION);
     }
+
 }

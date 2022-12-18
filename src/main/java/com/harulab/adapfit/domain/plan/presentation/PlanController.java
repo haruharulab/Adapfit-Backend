@@ -38,7 +38,6 @@ public class PlanController {
             @RequestPart(value = "thumbnail") MultipartFile thumbnail,
             @RequestPart(value = "images") List<MultipartFile> images
             ) throws IOException {
-        System.out.println("images = " + images);
         planService.createPlan(new PlanRequestDto(req, thumbnail, images));
     }
 
