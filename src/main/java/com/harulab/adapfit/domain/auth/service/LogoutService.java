@@ -10,6 +10,7 @@ import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,13 @@ public class LogoutService {
     private final AuthIdRepository authIdRepository;
     private final JwtAuth jwtAuth;
     private final JwtProvider jwtProvider;
+    private final JwtProperties jwtProperties;
 
     @Transactional
     public void execute(String accessToken) {
-        String tokenRole = jwtAuth.getJws(jwtProvider.parseToken(accessToken)).getBody().get(ROLE.getMessage()).toString();
-        if (Objects.equals(tokenRole, USER_ROLE.getMessage()) ||
-                Objects.equals(tokenRole, ADMIN_ROLE.getMessage())) {
+        String tokenRole = jwtAuth.getJws(jwtProvider.parseToken(accessToken))
+                .getBody().get(ROLE.getMessage()).toString();
+        if (Objects.equals(tokenRole, ADMIN_ROLE.getMessage())) {
             deleteUserRefreshToken(userFacade.getCurrentUser());
         }
         if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
@@ -45,8 +47,9 @@ public class LogoutService {
     }
 
     private void saveAuthId(String accessToken) {
-        String authId = jwtAuth.getJws(jwtProvider.parseToken(accessToken)).getBody().get(AUTH_ID.getMessage()).toString();
-        authIdRepository.save(new AuthId().update(authId));
+        String authId = jwtAuth.getJws(jwtProvider.parseToken(accessToken))
+                .getBody().get(AUTH_ID.getMessage()).toString();
+        authIdRepository.save(new AuthId().update(authId, jwtProperties.getRefreshExp() * 1000));
     }
 
     private void deleteUserRefreshToken(User user) {
