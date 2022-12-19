@@ -61,11 +61,12 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.POST, "/banner").hasRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, SUPER)
+
                 // super admin
                 .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(SUPER)
-                .antMatchers(HttpMethod.GET, "/resume/**").hasRole(SUPER)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()
