@@ -24,10 +24,10 @@ public class Image extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String fileName;
+    private String imageName;
 
     @Column(nullable = false)
-    private String fileUrl;
+    private String imageUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id")
@@ -35,8 +35,8 @@ public class Image extends BaseTimeEntity {
 
     @Builder
     public Image(String fileName, String fileUrl) {
-        this.fileName = fileName;
-        this.fileUrl = fileUrl;
+        this.imageName = fileName;
+        this.imageUrl = fileUrl;
     }
 
     public void confirmPlan(Plan plan) {

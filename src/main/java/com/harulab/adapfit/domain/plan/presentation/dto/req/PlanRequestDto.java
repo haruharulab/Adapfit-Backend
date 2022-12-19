@@ -2,7 +2,6 @@ package com.harulab.adapfit.domain.plan.presentation.dto.req;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,8 +44,8 @@ public class PlanRequestDto {
         return Plan.builder()
                 .title(title)
                 .content(content)
-                .fileName(fileDto.getFileName())
-                .fileUrl(fileDto.getFileUrl())
+                .thumbnailName(fileDto.getFileName())
+                .thumbnailUrl(fileDto.getFileUrl())
                 .build();
     }
 

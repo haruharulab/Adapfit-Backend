@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.image.facade;
 
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.image.domain.repository.ImageRepository;
+import com.harulab.adapfit.domain.image.exception.ImageNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,5 +20,10 @@ public class ImageFacade {
 
     public Image create(Image image) {
         return imageRepository.save(image);
+    }
+
+    public Image detail(Long imageId) {
+        return imageRepository.findById(imageId)
+                .orElseThrow(() -> ImageNotFoundException.EXCEPTION);
     }
 }

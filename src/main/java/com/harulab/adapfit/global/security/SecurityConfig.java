@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/admin").hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/plan").permitAll()
                 .antMatchers(HttpMethod.GET, "/plan/{planId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.POST, "/category").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.PUT, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
@@ -65,6 +65,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
+                .antMatchers(HttpMethod.POST, "/super").permitAll()
                 .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(SUPER)
 

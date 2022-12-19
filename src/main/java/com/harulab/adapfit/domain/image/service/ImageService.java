@@ -30,4 +30,8 @@ public class ImageService {
         S3FileResponseDto res = s3Uploader.saveFile(multipartFile);
         imageFacade.create(new Image(res.getFileName(), res.getFileUrl())).confirmPlan(plan);
     }
+
+    public Image getDetail(Long imageId) {
+        return imageFacade.detail(imageId);
+    }
 }

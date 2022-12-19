@@ -3,15 +3,17 @@ package com.harulab.adapfit.domain.plan.domain;
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
-import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -37,10 +39,10 @@ public class Plan extends BaseTimeEntity {
     private String content;
 
     @Column(nullable = false)
-    private String fileName;
+    private String thumbnailName;
 
     @Column(nullable = false)
-    private String fileUrl;
+    private String thumbnailUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -54,11 +56,11 @@ public class Plan extends BaseTimeEntity {
     private List<Image> images;
 
     @Builder
-    public Plan(String title, String content, String fileName, String fileUrl, Category category, User writer) {
+    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category, User writer) {
         this.title = title;
         this.content = content;
-        this.fileName = fileName;
-        this.fileUrl = fileUrl;
+        this.thumbnailName = thumbnailName;
+        this.thumbnailUrl = thumbnailUrl;
         this.category = category;
         this.writer = writer;
     }
@@ -75,9 +77,10 @@ public class Plan extends BaseTimeEntity {
     }
 
     // Plan Info Update
-    public void updatePlanInfo(PlanUpdateRequestDto req) {
-        this.title = req.getTitle();
-        this.content = req.getContent();
+    public void updatePlanInfo(Category category, String title, String content) {
+        this.category = category;
+        this.title = title;
+        this.content = content;
     }
 
     public void isRightWriter(User writer) {
@@ -86,4 +89,8 @@ public class Plan extends BaseTimeEntity {
         }
     }
 
+    public void updateThumbnail(S3FileResponseDto res) {
+        this.thumbnailName = res.getFileUrl();
+        this.thumbnailUrl = res.getFileUrl();
+    }
 }

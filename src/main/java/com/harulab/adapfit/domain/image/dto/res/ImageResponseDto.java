@@ -12,8 +12,11 @@ import lombok.Getter;
 @Getter
 public class ImageResponseDto {
 
-    private final String image;
+    private final String imageName;
+    private final String imageUrl;
+
     public ImageResponseDto(Image image) {
-        this.image = image.getFileUrl();
+        this.imageName = image.getImageName();
+        this.imageUrl = image.getImageUrl();
     }
 }

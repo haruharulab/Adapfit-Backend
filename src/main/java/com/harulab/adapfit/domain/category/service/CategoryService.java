@@ -16,6 +16,10 @@ public class CategoryService {
 
     private final CategoryFacade categoryFacade;
 
+    public Category detail(Long categoryId) {
+        return categoryFacade.findById(categoryId);
+    }
+
     @Transactional
     public void createCategory(String categoryName) {
         categoryFacade.isAlreadyExistsCategory(categoryName);
@@ -44,4 +48,5 @@ public class CategoryService {
                 .map(CategoryResponseDto::new)
                 .collect(Collectors.toList());
     }
+
 }

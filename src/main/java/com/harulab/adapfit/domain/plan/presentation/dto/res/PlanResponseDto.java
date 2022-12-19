@@ -23,7 +23,7 @@ public class PlanResponseDto {
         this.planId = plan.getId();
         this.title = plan.getTitle();
         this.content = plan.getContent();
-        this.thumbnail = plan.getFileUrl();
+        this.thumbnail = plan.getThumbnailUrl();
         this.writerId = plan.getWriter().getId();
         this.category = new CategoryResponseDto(category);
         this.images = plan.getImages().stream()

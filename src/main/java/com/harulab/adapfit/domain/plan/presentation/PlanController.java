@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.plan.presentation;
 
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanCreateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
@@ -44,9 +45,11 @@ public class PlanController {
     @PutMapping("/{planId}")
     public void updatePlan(
             @PathVariable Long planId,
-            @RequestBody @Valid PlanUpdateRequestDto req
-    ) {
-        planService.updatePlan(planId, req);
+            @RequestPart PlanUpdateInfoRequestDto req,
+            @RequestPart(value = "thumbnail") MultipartFile thumbnail,
+            @RequestPart(value = "images") List<MultipartFile> images
+    ) throws IOException {
+        planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail, images));
     }
 
     @DeleteMapping("/{planId}")
