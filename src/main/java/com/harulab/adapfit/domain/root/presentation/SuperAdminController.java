@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.root.presentation;
 
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
 import com.harulab.adapfit.domain.user.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
@@ -19,6 +20,11 @@ public class SuperAdminController {
 
     private final SuperAdminService superAdminService;
 
+    @GetMapping
+    public SuperAdminResponseDto getDetail() {
+        return superAdminService.getInfo();
+    }
+
     @PostMapping
     public void createRoot(@RequestBody @Valid SuperAdminCreateRequestDto req) {
         superAdminService.createRoot(req);
@@ -29,7 +35,7 @@ public class SuperAdminController {
         return superAdminService.createAdmin();
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<UserResponseDto> searchUserList() {
         return superAdminService.getUserList();
     }

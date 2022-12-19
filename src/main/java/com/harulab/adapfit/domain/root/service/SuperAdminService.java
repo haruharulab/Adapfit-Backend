@@ -1,7 +1,9 @@
 package com.harulab.adapfit.domain.root.service;
 
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
+import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
 import com.harulab.adapfit.domain.user.presentation.dto.req.UserRequestDto;
@@ -22,6 +24,11 @@ public class SuperAdminService {
     private final SuperAdminRepository superAdminRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserFacade userFacade;
+    private final SuperAdminFacade superAdminFacade;
+
+    public SuperAdminResponseDto getInfo() {
+        return new SuperAdminResponseDto(superAdminFacade.getCurrentAdmin());
+    }
 
     @Transactional
     public void createRoot(SuperAdminCreateRequestDto req) {
