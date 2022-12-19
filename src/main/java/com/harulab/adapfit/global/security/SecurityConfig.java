@@ -58,12 +58,13 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADMIN, SUPER)
 
+                .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.POST, "/banner").hasRole(ADMIN)
                 // super admin
                 .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(SUPER)
-                .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(SUPER)
-                .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(SUPER)
-                .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(SUPER)
                 .antMatchers(HttpMethod.GET, "/resume/**").hasRole(SUPER)
 
                 // socket.io
