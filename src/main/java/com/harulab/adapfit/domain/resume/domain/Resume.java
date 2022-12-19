@@ -1,8 +1,7 @@
 package com.harulab.adapfit.domain.resume.domain;
 
-import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
-import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Resume {
+public class Resume extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

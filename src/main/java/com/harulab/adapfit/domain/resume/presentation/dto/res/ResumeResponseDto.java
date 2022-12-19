@@ -3,6 +3,8 @@ package com.harulab.adapfit.domain.resume.presentation.dto.res;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 /**
  * @author 최원용
  * @version 2.0.0
@@ -14,10 +16,14 @@ public class ResumeResponseDto {
     private final Long resumeId;
     private final Long recruitmentId;
     private final String position;
+    private final String name;
+    private final LocalDateTime createdAt;
 
     public ResumeResponseDto(Resume resume) {
         this.resumeId = resume.getId();
         this.recruitmentId = resume.getRecruitment().getId();
         this.position = resume.getRecruitment().getPosition().name();
+        this.name = resume.getName();
+        this.createdAt = resume.getCreatedAt();
     }
 }

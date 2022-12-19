@@ -15,6 +15,7 @@ public class UserResponseDto {
     private final Long userId;
     private final String email;
     private final String phoneNumber;
+    private final String nickname;
     private final String authority;
     private final List<PlanResponseDto> plans;
 
@@ -22,6 +23,7 @@ public class UserResponseDto {
         this.userId = user.getId();
         this.email = user.getEmail();
         this.phoneNumber = user.getPhoneNumber();
+        this.nickname = user.getNickname();
         this.authority = user.getAuthority().name();
         this.plans = plans.stream()
                 .map(plan -> new PlanResponseDto(plan, plan.getCategory()))
