@@ -4,9 +4,11 @@ import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.domain.repository.CategoryRepository;
 import com.harulab.adapfit.domain.category.exception.AlreadyExistsCategory;
 import com.harulab.adapfit.domain.category.exception.CategoryNotFoundException;
+import com.harulab.adapfit.domain.plan.presentation.dto.res.CategoryResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -33,5 +35,9 @@ public class CategoryFacade {
 
     public void deleteById(Long categoryId) {
         categoryRepository.deleteById(categoryId);
+    }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }

@@ -2,9 +2,13 @@ package com.harulab.adapfit.domain.category.service;
 
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.facade.CategoryFacade;
+import com.harulab.adapfit.domain.plan.presentation.dto.res.CategoryResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly
@@ -32,5 +36,12 @@ public class CategoryService {
     @Transactional
     public void deleteCategory(Long categoryId) {
         categoryFacade.deleteById(categoryId);
+    }
+
+    public List<CategoryResponseDto> getAll() {
+        return categoryFacade.findAll()
+                .stream()
+                .map(CategoryResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

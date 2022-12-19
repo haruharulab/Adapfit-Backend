@@ -1,11 +1,13 @@
 package com.harulab.adapfit.domain.category.presentation;
 
 import com.harulab.adapfit.domain.category.service.CategoryService;
+import com.harulab.adapfit.domain.plan.presentation.dto.res.CategoryResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Validated
 @RequiredArgsConstructor
@@ -14,6 +16,11 @@ import javax.validation.Valid;
 public class CategoryController {
 
     private final CategoryService categoryService;
+
+    @GetMapping
+    public List<CategoryResponseDto> getAll() {
+        return categoryService.getAll();
+    }
 
     @PostMapping
     public void create(@RequestParam @Valid String name) {
