@@ -52,7 +52,7 @@ public class Plan extends BaseTimeEntity {
     @JoinColumn(name = "writer_id")
     private User writer;
 
-    @OneToMany(mappedBy = "plan")
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private List<Image> images;
 
     @Builder
