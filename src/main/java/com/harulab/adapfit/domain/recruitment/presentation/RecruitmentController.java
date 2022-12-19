@@ -28,6 +28,11 @@ public class RecruitmentController {
         return recruitmentService.getRecruit(position, career, employmentPattern);
     }
 
+    @GetMapping("/{recruitmentId}")
+    public RecruitmentResponseDto getDetail(@PathVariable Long recruitmentId) {
+        return recruitmentService.detail(recruitmentId);
+    }
+
     @PostMapping
     public void createRecruit(@RequestBody @Valid RecruitmentCreateRequestDto req) {
         recruitmentService.createRecruitment(req);

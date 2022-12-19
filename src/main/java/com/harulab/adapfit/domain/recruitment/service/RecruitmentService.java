@@ -30,6 +30,10 @@ public class RecruitmentService {
                 .collect(Collectors.toList());
     }
 
+    public RecruitmentResponseDto detail(Long recruitmentId) {
+        return new RecruitmentResponseDto(recruitmentFacade.findByRecruitId(recruitmentId));
+    }
+
     @Transactional
     public void updateRecruitment(Long recruitId, RecruitmentUpdateRequestDto req) {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(recruitId);
