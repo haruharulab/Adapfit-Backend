@@ -12,10 +12,12 @@ import lombok.Getter;
 @Getter
 public class ImageResponseDto {
 
+    private final Long imageId;
     private final String imageName;
     private final String imageUrl;
 
     public ImageResponseDto(Image image) {
+        this.imageId = image.getId();
         this.imageName = image.getImageName();
         this.imageUrl = image.getImageUrl();
     }
