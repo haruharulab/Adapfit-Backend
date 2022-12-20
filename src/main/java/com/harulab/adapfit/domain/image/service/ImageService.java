@@ -31,7 +31,7 @@ public class ImageService {
         imageFacade.create(new Image(res.getFileName(), res.getFileUrl())).confirmPlan(plan);
     }
 
-    public Image getDetail(Long imageId) {
-        return imageFacade.detail(imageId);
+    public S3FileResponseDto getImageRes(MultipartFile multipartFile) throws IOException {
+        return s3Uploader.saveFile(multipartFile);
     }
 }

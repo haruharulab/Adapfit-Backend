@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.root.presentation;
 
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
 import com.harulab.adapfit.domain.user.presentation.dto.res.AdminCreateResponseDto;
@@ -40,9 +41,12 @@ public class SuperAdminController {
         return superAdminService.getUserList();
     }
 
-    @PutMapping("/{id}")
-    public void changeRole(@PathVariable Long id) {
-        superAdminService.updateAuthorityAdmin(id);
+    @PutMapping("/{adminId}")
+    public void changeRole(
+            @PathVariable Long adminId,
+            @RequestBody @Valid UpdateAccountInfoRequestDto req
+    ) {
+        superAdminService.updateAdminInfo(adminId, req);
     }
 
 }

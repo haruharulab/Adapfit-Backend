@@ -86,16 +86,20 @@ public class PlanService {
                 }
             }
             if (imageInfo.size() == 3) {
-                updateImage(imageInfo.get(0));
+                try {
+                    updateImage(imageInfo.get(0), image);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         createImages(plan, images);
     }
 
-    private void updateImage(String imagePk) {
+    private void updateImage(String imagePk, MultipartFile image) throws IOException {
         Long imageId = Long.valueOf(imagePk);
-        String imageFileName = imageService.getDetail(imageId).getImageName();
-        planFacade.deleteOriginImage(imageFileName);
+        S3FileResponseDto imageRes = imageService.getImageRes(image);
+        planFacade.updateOriginImage(imageId, imageRes);
     }
 
     private void addImage(Plan plan, MultipartFile image) throws IOException {

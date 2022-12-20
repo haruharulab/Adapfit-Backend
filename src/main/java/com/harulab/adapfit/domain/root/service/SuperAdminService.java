@@ -3,6 +3,7 @@ package com.harulab.adapfit.domain.root.service;
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.facade.UserFacade;
@@ -51,8 +52,8 @@ public class SuperAdminService {
     }
 
     @Transactional
-    public void updateAuthorityAdmin(Long id) {
-        userFacade.findById(id).updateAuthority();
+    public void updateAdminInfo(Long adminId, UpdateAccountInfoRequestDto req) {
+        userFacade.findById(adminId).updateInfo(req);
     }
 
 }

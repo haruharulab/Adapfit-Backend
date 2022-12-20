@@ -1,6 +1,8 @@
 package com.harulab.adapfit.domain.plan.facade;
 
+import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.image.domain.repository.ImageRepository;
+import com.harulab.adapfit.domain.image.exception.ImageNotFoundException;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.domain.repository.PlanRepository;
 import com.harulab.adapfit.domain.plan.exception.PlanNotFoundException;
@@ -47,8 +49,11 @@ public class PlanFacade {
         s3Uploader.deleteFile(thumbnail.getOriginalFilename());
     }
 
-    public void deleteOriginImage(String thumbnailName) {
-        s3Uploader.deleteFile(thumbnailName);
+    public void updateOriginImage(Long imagePk, S3FileResponseDto fileRes) {
+        Image image = imageRepository.findById(imagePk)
+                .orElseThrow(() -> ImageNotFoundException.EXCEPTION);
+
+        image.updateImageInfo(fileRes.getFileName(), fileRes.getFileUrl());
     }
 
 }
