@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class AdminResponseDto {
 
     private final Long userId;
+    private final String authId;
     private final String email;
     private final String phoneNumber;
     private final String nickname;
@@ -20,6 +21,7 @@ public class AdminResponseDto {
 
     public AdminResponseDto(Admin admin, List<Plan> plans) {
         this.userId = admin.getId();
+        this.authId = admin.getAuthId();
         this.email = admin.getEmail();
         this.phoneNumber = admin.getPhoneNumber();
         this.nickname = admin.getNickname();
