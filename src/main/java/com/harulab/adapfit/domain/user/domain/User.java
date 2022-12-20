@@ -81,10 +81,18 @@ public class User extends BaseTimeEntity {
     }
 
     public void updateInfo(UpdateAccountInfoRequestDto req) {
-        this.authId = req.getAuthId();
-        this.email = req.getEmail();
-        this.nickname = req.getNickname();
-        this.phoneNumber = req.getPhoneNumber();
+        if (!req.authIdIsNull()) {
+            this.authId = req.getAuthId();
+        }
+        if (!req.emailIsNull()) {
+            this.email = req.getEmail();
+        }
+        if (!req.nicknameIsNull()) {
+            this.nickname = req.getNickname();
+        }
+        if (!req.phoneNumberIsNull()) {
+            this.phoneNumber = req.getPhoneNumber();
+        }
     }
 
     public void addPlan(Plan plan) {

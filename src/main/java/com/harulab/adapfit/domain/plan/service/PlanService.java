@@ -34,7 +34,7 @@ public class PlanService {
 
     @Transactional
     public void createPlan(PlanRequestDto req) throws IOException {
-        S3FileResponseDto thumbnailRes = planFacade.saveImage(req.getThumbnail());
+        S3FileResponseDto thumbnailRes = imageService.getImageRes(req.getThumbnail());
 
         Plan plan = req.toEntity(thumbnailRes);
         plan.confirmWriter(userFacade.getCurrentUser());
@@ -60,50 +60,40 @@ public class PlanService {
     @Transactional
     public void updatePlan(PlanUpdateRequestDto req) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
-        // 만약 썸네일이 Null 이 아니라면 원래 있던 썸네일 삭제하고 새로운 썸네일으로 변경하기
-        if (!req.isThumbnailNull()) {
-            planFacade.deleteOriginThumbnail(req.getThumbnail());
-            plan.updateThumbnail(planFacade.saveImage(req.getThumbnail()));
-        }
-        plan.updatePlanInfo(categoryService.detail(req.getCategoryId()), req.getTitle(), req.getContent());
-        // 플랜 내용에 있는 이미지가 Null 이 아니라면 원래 있던 이미지 삭제하고 새로운 이미지들로 변경하기
-        if (!req.isImagesNull()) {
-            updateImages(plan, req.getImages());
-        }
+        plan.updateInfo(req, categoryService.detail(req.getCategoryId()));
+        updateThumbnail(plan, req);
+        isImagesNotNull(plan, req);
     }
 
-    private void updateImages(Plan plan, List<MultipartFile> images) {
-        images.forEach(image -> {
-            // 클라이언트에서 요청받은 파일 명은 [pk.파일이름.확장자]이다.
-            // 요청받은 pk를 가진 이미지를 삭제하고 새로운 이미지를 생성한다.
-            // 만약 단순하게 이미지를 추가하는 것이라면 파일 구조는 [파일이름.확장자]로만 받는다.
-            List<String> imageInfo = Arrays.asList(Objects.requireNonNull(image.getOriginalFilename()).split("\\."));
-            if (imageInfo.size() == 2) {
-                try {
-                    addImage(plan, image);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (imageInfo.size() == 3) {
-                try {
-                    updateImage(imageInfo.get(0), image);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        createImages(plan, images);
+    private void updateThumbnail(Plan plan, PlanUpdateRequestDto req) throws IOException {
+        if (!req.isThumbnailNull()) 
+            plan.updateThumbnail
+                    (imageService.getImageRes(req.getThumbnail()));
     }
 
-    private void updateImage(String imagePk, MultipartFile image) throws IOException {
-        Long imageId = Long.valueOf(imagePk);
-        S3FileResponseDto imageRes = imageService.getImageRes(image);
-        planFacade.updateOriginImage(imageId, imageRes);
+    private void isImagesNotNull(Plan plan, PlanUpdateRequestDto req) throws IOException {
+        if (!req.isImagesNull()) updateImages(plan, req.getImages());
+    }
+
+    private void updateImages(Plan plan, List<MultipartFile> images) throws IOException {
+        for (MultipartFile image : images) {
+            List<String> imageSculpture = Arrays.asList(Objects.requireNonNull(image.getOriginalFilename()).split("\\."));
+            if (imageSculpture.size() == 2) {
+                addImage(plan, image);
+            }
+            if (imageSculpture.size() == 3) {
+                updateImage(Long.valueOf(imageSculpture.get(0)), image);
+            }
+        }
     }
 
     private void addImage(Plan plan, MultipartFile image) throws IOException {
-        imageService.saveImage(plan, image);
+        S3FileResponseDto imageRes = imageService.getImageRes(image);
+        imageService.createImage(plan, imageRes);
+    }
+
+    private void updateImage(Long imageId, MultipartFile image) throws IOException {
+        imageService.updateImage(imageId, image);
     }
 
     @Transactional

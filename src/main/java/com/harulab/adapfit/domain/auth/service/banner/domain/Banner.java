@@ -1,6 +1,6 @@
-package com.harulab.adapfit.domain.banner.domain;
+package com.harulab.adapfit.domain.auth.service.banner.domain;
 
-import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
+import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.res.BannerResponse;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;

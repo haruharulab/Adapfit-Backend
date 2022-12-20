@@ -27,4 +27,19 @@ public class UpdateAccountInfoRequestDto {
         this.phoneNumber = phoneNumber;
     }
 
+    public boolean authIdIsNull() {
+        return authId == null;
+    }
+
+    public boolean emailIsNull() {
+        return email == null;
+    }
+
+    public boolean nicknameIsNull() {
+        return nickname == null;
+    }
+
+    public boolean phoneNumberIsNull() {
+        return phoneNumber == null;
+    }
 }

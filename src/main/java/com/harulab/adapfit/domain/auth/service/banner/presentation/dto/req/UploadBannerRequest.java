@@ -1,6 +1,6 @@
-package com.harulab.adapfit.domain.banner.presentation.dto.req;
+package com.harulab.adapfit.domain.auth.service.banner.presentation.dto.req;
 
-import com.harulab.adapfit.domain.banner.domain.Banner;
+import com.harulab.adapfit.domain.auth.service.banner.domain.Banner;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

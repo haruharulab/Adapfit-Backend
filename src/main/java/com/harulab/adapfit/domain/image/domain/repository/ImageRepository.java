@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.image.domain.repository;
 
 import com.harulab.adapfit.domain.image.domain.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * @author 최원용

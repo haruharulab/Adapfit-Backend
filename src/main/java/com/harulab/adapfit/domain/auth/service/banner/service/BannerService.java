@@ -1,9 +1,9 @@
-package com.harulab.adapfit.domain.banner.service;
+package com.harulab.adapfit.domain.auth.service.banner.service;
 
-import com.harulab.adapfit.domain.banner.domain.Banner;
-import com.harulab.adapfit.domain.banner.facade.BannerFacade;
-import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
-import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
+import com.harulab.adapfit.domain.auth.service.banner.domain.Banner;
+import com.harulab.adapfit.domain.auth.service.banner.facade.BannerFacade;
+import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.req.UploadBannerRequest;
+import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.res.BannerResponse;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -49,4 +49,12 @@ public class SuperAdminController {
         superAdminService.updateAdminInfo(adminId, req);
     }
 
+//    @PutMapping("/{adminId}/pw")
+//    public void changePw(
+//            @PathVariable Long adminId,
+//
+//    ) {
+//
+//    }
+
 }

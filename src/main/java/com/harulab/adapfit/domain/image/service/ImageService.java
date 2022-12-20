@@ -34,4 +34,16 @@ public class ImageService {
     public S3FileResponseDto getImageRes(MultipartFile multipartFile) throws IOException {
         return s3Uploader.saveFile(multipartFile);
     }
+
+    public Image getDetail(String imagePk) {
+        return imageFacade.detail(Long.valueOf(imagePk));
+    }
+
+    public void updateImage(Long imageId, MultipartFile image) throws IOException {
+        imageFacade.detail(imageId).updateImageInfo(getImageRes(image).getFileName(), getImageRes(image).getFileUrl());
+    }
+
+    public void createImage(Plan plan, S3FileResponseDto imageRes) {
+        imageFacade.save(imageRes).confirmPlan(plan);
+    }
 }

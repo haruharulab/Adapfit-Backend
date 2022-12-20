@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoRequestDto;
+import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
@@ -76,13 +77,6 @@ public class Plan extends BaseTimeEntity {
         category.addPlan(this);
     }
 
-    // Plan Info Update
-    public void updatePlanInfo(Category category, String title, String content) {
-        this.category = category;
-        this.title = title;
-        this.content = content;
-    }
-
     public void isRightWriter(User writer) {
         if (!Objects.equals(writer.getId(), writer.getId())) {
             throw DontAccessOtherPlanException.EXCEPTION;
@@ -92,5 +86,11 @@ public class Plan extends BaseTimeEntity {
     public void updateThumbnail(S3FileResponseDto res) {
         this.thumbnailName = res.getFileUrl();
         this.thumbnailUrl = res.getFileUrl();
+    }
+
+    public void updateInfo(PlanUpdateRequestDto req, Category category) {
+        this.title = req.getTitle();
+        this.content = req.getContent();
+        this.category = category;
     }
 }

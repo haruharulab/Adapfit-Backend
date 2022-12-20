@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.banner.presentation.dto.res;
+package com.harulab.adapfit.domain.auth.service.banner.presentation.dto.res;
 
 import lombok.Builder;
 import lombok.Getter;
