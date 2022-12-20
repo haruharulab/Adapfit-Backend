@@ -60,11 +60,13 @@ public class PlanService {
     @Transactional
     public void updatePlan(PlanUpdateRequestDto req) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
+        // 만약 썸네일이 Null 이 아니라면 원래 있던 썸네일 삭제하고 새로운 썸네일으로 변경하기
         if (!req.isThumbnailNull()) {
             planFacade.deleteOriginThumbnail(req.getThumbnail());
             plan.updateThumbnail(planFacade.saveImage(req.getThumbnail()));
         }
         plan.updatePlanInfo(categoryService.detail(req.getCategoryId()), req.getTitle(), req.getContent());
+        // 플랜 내용에 있는 이미지가 Null 이 아니라면 원래 있던 이미지 삭제하고 새로운 이미지들로 변경하기
         if (!req.isImagesNull()) {
             updateImages(plan, req.getImages());
         }
@@ -72,12 +74,32 @@ public class PlanService {
 
     private void updateImages(Plan plan, List<MultipartFile> images) {
         images.forEach(image -> {
-            String imagePk = Arrays.asList(Objects.requireNonNull(image.getOriginalFilename()).split("\\.")).get(0);
-            Long imageId = Long.valueOf(imagePk);
-            String imageFileName = imageService.getDetail(imageId).getImageName();
-            planFacade.deleteOriginImage(imageFileName);
+            // 클라이언트에서 요청받은 파일 명은 [pk.파일이름.확장자]이다.
+            // 요청받은 pk를 가진 이미지를 삭제하고 새로운 이미지를 생성한다.
+            // 만약 단순하게 이미지를 추가하는 것이라면 파일 구조는 [파일이름.확장자]로만 받는다.
+            List<String> imageInfo = Arrays.asList(Objects.requireNonNull(image.getOriginalFilename()).split("\\."));
+            if (imageInfo.size() == 2) {
+                try {
+                    addImage(plan, image);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (imageInfo.size() == 3) {
+                updateImage(imageInfo.get(0));
+            }
         });
         createImages(plan, images);
+    }
+
+    private void updateImage(String imagePk) {
+        Long imageId = Long.valueOf(imagePk);
+        String imageFileName = imageService.getDetail(imageId).getImageName();
+        planFacade.deleteOriginImage(imageFileName);
+    }
+
+    private void addImage(Plan plan, MultipartFile image) throws IOException {
+        imageService.saveImage(plan, image);
     }
 
     @Transactional
