@@ -56,4 +56,9 @@ public class SuperAdminController {
         superAdminService.updateAdminInfo(adminId, req);
     }
 
+    @DeleteMapping("/{adminId}")
+    public void deleteAdmin(@PathVariable Long adminId) {
+        adminService.remove(adminId);
+    }
+
 }

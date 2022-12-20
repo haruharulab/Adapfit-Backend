@@ -50,4 +50,9 @@ public class AdminService {
         Admin admin = adminFacade.findById(adminId);
         return new AdminResponseDto(admin, admin.getPlans());
     }
+
+    @Transactional
+    public void remove(Long adminId) {
+        adminFacade.delete(adminId);
+    }
 }

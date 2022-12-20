@@ -44,4 +44,8 @@ public class AdminFacade {
         return adminRepository.findByAuthId(client.get(SocketProperty.USER_KEY))
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
+
+    public void delete(Long adminId) {
+        adminRepository.deleteById(adminId);
+    }
 }
