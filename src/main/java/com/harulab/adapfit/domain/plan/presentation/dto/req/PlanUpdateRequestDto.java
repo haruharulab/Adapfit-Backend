@@ -47,4 +47,12 @@ public class PlanUpdateRequestDto {
         this.images = images;
         this.thumbnail = thumbnail;
     }
+
+    public boolean isThumbnailNull() {
+        return thumbnail == null;
+    }
+
+    public boolean isImagesNull() {
+        return images == null;
+    }
 }

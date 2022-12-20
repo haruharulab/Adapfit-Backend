@@ -60,12 +60,14 @@ public class PlanService {
     @Transactional
     public void updatePlan(PlanUpdateRequestDto req) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
-        if (!req.getThumbnail().isEmpty()) {
+        if (!req.isThumbnailNull()) {
             planFacade.deleteOriginThumbnail(req.getThumbnail());
             plan.updateThumbnail(planFacade.saveImage(req.getThumbnail()));
         }
         plan.updatePlanInfo(categoryService.detail(req.getCategoryId()), req.getTitle(), req.getContent());
-        updateImages(plan, req.getImages());
+        if (!req.isImagesNull()) {
+            updateImages(plan, req.getImages());
+        }
     }
 
     private void updateImages(Plan plan, List<MultipartFile> images) {
