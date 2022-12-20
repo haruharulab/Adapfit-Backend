@@ -1,6 +1,5 @@
 package com.harulab.adapfit.global.utils;
 
-import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.global.security.auth.user.AuthDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 

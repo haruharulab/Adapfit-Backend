@@ -1,11 +1,12 @@
 package com.harulab.adapfit.domain.root.presentation;
 
+import com.harulab.adapfit.domain.admin.service.AdminService;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
-import com.harulab.adapfit.domain.user.presentation.dto.res.AdminCreateResponseDto;
-import com.harulab.adapfit.domain.user.presentation.dto.res.UserResponseDto;
+import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminCreateResponseDto;
+import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +21,16 @@ import java.util.List;
 public class SuperAdminController {
 
     private final SuperAdminService superAdminService;
+    private final AdminService adminService;
 
     @GetMapping
-    public SuperAdminResponseDto getDetail() {
-        return superAdminService.getInfo();
+    public SuperAdminResponseDto getCurrent() {
+        return superAdminService.getMine();
+    }
+
+    @GetMapping("/{adminId}")
+    public AdminResponseDto getAdminDetail(@PathVariable Long adminId) {
+        return adminService.getDetail(adminId);
     }
 
     @PostMapping
@@ -37,7 +44,7 @@ public class SuperAdminController {
     }
 
     @GetMapping("/all")
-    public List<UserResponseDto> searchUserList() {
+    public List<AdminResponseDto> searchUserList() {
         return superAdminService.getUserList();
     }
 
@@ -48,13 +55,5 @@ public class SuperAdminController {
     ) {
         superAdminService.updateAdminInfo(adminId, req);
     }
-
-//    @PutMapping("/{adminId}/pw")
-//    public void changePw(
-//            @PathVariable Long adminId,
-//
-//    ) {
-//
-//    }
 
 }

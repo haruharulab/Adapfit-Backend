@@ -4,7 +4,7 @@ import com.harulab.adapfit.domain.root.domain.SuperAdmin;
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;

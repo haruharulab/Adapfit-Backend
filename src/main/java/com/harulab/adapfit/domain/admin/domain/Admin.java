@@ -1,8 +1,8 @@
-package com.harulab.adapfit.domain.user.domain;
+package com.harulab.adapfit.domain.admin.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
@@ -23,7 +23,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class User extends BaseTimeEntity {
+public class Admin extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +57,7 @@ public class User extends BaseTimeEntity {
     private List<Plan> plans;
 
     @Builder
-    public User(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
+    public Admin(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
         this.authId = authId;
         this.password = password;
         this.nickname = nickname;
@@ -70,8 +70,8 @@ public class User extends BaseTimeEntity {
         this.password = passwordEncoder.encode(password);
     }
 
-    public void matchedPassword(PasswordEncoder passwordEncoder, User user, String password) {
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+    public void matchedPassword(PasswordEncoder passwordEncoder, Admin admin, String password) {
+        if (!passwordEncoder.matches(password, admin.getPassword())) {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }

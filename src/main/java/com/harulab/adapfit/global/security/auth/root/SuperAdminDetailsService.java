@@ -1,7 +1,7 @@
 package com.harulab.adapfit.global.security.auth.root;
 
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
-import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
+import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class SuperAdminDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
         return superAdminRepository.findByAuthId(authId)
                 .map(SuperAdminDetails::new)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
 
 }

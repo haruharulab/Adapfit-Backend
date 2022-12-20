@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.user.exception;
+package com.harulab.adapfit.domain.admin.exception;
 
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;

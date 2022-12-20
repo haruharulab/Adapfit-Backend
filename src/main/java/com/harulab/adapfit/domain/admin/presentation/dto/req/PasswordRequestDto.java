@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.user.presentation.dto.req;
+package com.harulab.adapfit.domain.admin.presentation.dto.req;
 
 import lombok.Getter;
 

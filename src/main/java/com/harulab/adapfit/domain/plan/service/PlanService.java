@@ -1,16 +1,15 @@
 package com.harulab.adapfit.domain.plan.service;
 
+import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.service.CategoryService;
-import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.image.service.ImageService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
-import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,7 @@ import java.util.stream.Collectors;
 public class PlanService {
 
     private final PlanFacade planFacade;
-    private final UserFacade userFacade;
+    private final AdminFacade adminFacade;
     private final ImageService imageService;
     private final CategoryService categoryService;
 
@@ -37,7 +36,7 @@ public class PlanService {
         S3FileResponseDto thumbnailRes = imageService.getImageRes(req.getThumbnail());
 
         Plan plan = req.toEntity(thumbnailRes);
-        plan.confirmWriter(userFacade.getCurrentUser());
+        plan.confirmWriter(adminFacade.getCurrentUser());
 
         Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
@@ -100,9 +99,9 @@ public class PlanService {
     @Transactional
     public void deletePlan(Long planId) {
         Plan plan = planFacade.findByPlanId(planId);
-        User user = userFacade.getCurrentUser();
+        Admin admin = adminFacade.getCurrentUser();
 
-        plan.isRightWriter(user);
+        plan.isRightWriter(admin);
         planFacade.deletePlan(plan);
     }
 

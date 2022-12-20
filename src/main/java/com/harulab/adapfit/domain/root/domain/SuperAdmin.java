@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.root.domain;
 
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;

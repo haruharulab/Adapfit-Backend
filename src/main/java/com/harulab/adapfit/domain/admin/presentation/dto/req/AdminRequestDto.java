@@ -1,18 +1,18 @@
-package com.harulab.adapfit.domain.user.presentation.dto.req;
+package com.harulab.adapfit.domain.admin.presentation.dto.req;
 
-import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
+import com.harulab.adapfit.domain.admin.domain.Admin;
+import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import lombok.Getter;
 
 import java.util.UUID;
 
 @Getter
-public class UserRequestDto {
+public class AdminRequestDto {
 
     private final String authId = UUID.randomUUID().toString().substring(0, 8);
 
-    public User toEntity() {
-        return User.builder()
+    public Admin toEntity() {
+        return Admin.builder()
                 .authId(authId)
                 .email("ADMIN@ACCOUNT.COM")
                 .nickname("ADMIN")

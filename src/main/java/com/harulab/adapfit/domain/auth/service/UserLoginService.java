@@ -1,11 +1,11 @@
 package com.harulab.adapfit.domain.auth.service;
 
+import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
-import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
-import com.harulab.adapfit.domain.user.domain.type.Authority;
-import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
+import com.harulab.adapfit.domain.admin.domain.repository.AdminRepository;
+import com.harulab.adapfit.domain.admin.domain.type.Authority;
+import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserLoginService {
 
-    private final UserRepository userRepository;
+    private final AdminRepository adminRepository;
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
     private final AuthIdRepository authIdRepository;
@@ -34,10 +34,10 @@ public class UserLoginService {
     }
 
     private Authority validateLoginInfo(LoginRequestDto req) {
-        User user = userRepository.findByAuthId(req.getAuthId())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        Admin admin = adminRepository.findByAuthId(req.getAuthId())
+                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
 
-        user.matchedPassword(passwordEncoder, user, req.getPassword());
-        return user.getAuthority();
+        admin.matchedPassword(passwordEncoder, admin, req.getPassword());
+        return admin.getAuthority();
     }
 }

@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.auth.service;
 
+import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.root.domain.SuperAdmin;
 import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
 import com.harulab.adapfit.domain.auth.domain.AuthId;
@@ -7,8 +8,7 @@ import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
-import com.harulab.adapfit.domain.user.domain.User;
-import com.harulab.adapfit.domain.user.facade.UserFacade;
+import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
@@ -25,7 +25,7 @@ import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
 public class LogoutService {
 
     private final SuperAdminFacade superAdminFacade;
-    private final UserFacade userFacade;
+    private final AdminFacade adminFacade;
     private final RefreshTokenRepository refreshTokenRepository;
     private final AuthIdRepository authIdRepository;
     private final JwtAuth jwtAuth;
@@ -37,7 +37,7 @@ public class LogoutService {
         String tokenRole = jwtAuth.getJws(jwtProvider.parseToken(accessToken))
                 .getBody().get(ROLE.getMessage()).toString();
         if (Objects.equals(tokenRole, ADMIN_ROLE.getMessage())) {
-            deleteUserRefreshToken(userFacade.getCurrentUser());
+            deleteUserRefreshToken(adminFacade.getCurrentUser());
         }
         if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
             deleteSuperAdminRefreshToken(superAdminFacade.getCurrentAdmin());
@@ -52,8 +52,8 @@ public class LogoutService {
         authIdRepository.save(new AuthId().update(authId, jwtProperties.getRefreshExp() * 1000));
     }
 
-    private void deleteUserRefreshToken(User user) {
-        RefreshToken refreshToken = refreshTokenRepository.findById(user.getAuthId())
+    private void deleteUserRefreshToken(Admin admin) {
+        RefreshToken refreshToken = refreshTokenRepository.findById(admin.getAuthId())
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
         refreshTokenRepository.delete(refreshToken);
     }

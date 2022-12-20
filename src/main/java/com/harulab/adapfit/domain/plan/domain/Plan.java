@@ -1,11 +1,10 @@
 package com.harulab.adapfit.domain.plan.domain;
 
+import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
-import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
-import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AccessLevel;
@@ -14,7 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -51,13 +49,13 @@ public class Plan extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")
-    private User writer;
+    private Admin writer;
 
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private List<Image> images;
 
     @Builder
-    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category, User writer) {
+    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category, Admin writer) {
         this.title = title;
         this.content = content;
         this.thumbnailName = thumbnailName;
@@ -67,9 +65,9 @@ public class Plan extends BaseTimeEntity {
     }
 
     // 연관관계 편의 메서드
-    public void confirmWriter(User user) {
-        this.writer = user;
-        user.addPlan(this);
+    public void confirmWriter(Admin admin) {
+        this.writer = admin;
+        admin.addPlan(this);
     }
 
     public void confirmCategory(Category category) {
@@ -77,7 +75,7 @@ public class Plan extends BaseTimeEntity {
         category.addPlan(this);
     }
 
-    public void isRightWriter(User writer) {
+    public void isRightWriter(Admin writer) {
         if (!Objects.equals(writer.getId(), writer.getId())) {
             throw DontAccessOtherPlanException.EXCEPTION;
         }
