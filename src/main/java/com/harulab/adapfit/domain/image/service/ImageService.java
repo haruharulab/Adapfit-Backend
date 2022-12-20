@@ -35,8 +35,8 @@ public class ImageService {
         return s3Uploader.saveFile(multipartFile);
     }
 
-    public Image getDetail(String imagePk) {
-        return imageFacade.detail(Long.valueOf(imagePk));
+    public Image getDetail(Long imageId) {
+        return imageFacade.detail(imageId);
     }
 
     public void updateImage(Long imageId, MultipartFile image) throws IOException {
@@ -45,5 +45,10 @@ public class ImageService {
 
     public void createImage(Plan plan, S3FileResponseDto imageRes) {
         imageFacade.save(imageRes).confirmPlan(plan);
+    }
+
+    public void deleteOriginFile(Long imageId) {
+        Image image = getDetail(imageId);
+        s3Uploader.deleteFile(image.getImageName());
     }
 }

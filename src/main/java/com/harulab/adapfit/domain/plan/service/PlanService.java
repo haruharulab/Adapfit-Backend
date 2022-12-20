@@ -93,6 +93,7 @@ public class PlanService {
     }
 
     private void updateImage(Long imageId, MultipartFile image) throws IOException {
+        imageService.deleteOriginFile(imageId);
         imageService.updateImage(imageId, image);
     }
 
