@@ -46,6 +46,15 @@ public class AdminService {
         admin.updatePassword(passwordEncoder, req.getNewPassword());
     }
 
+    @Transactional
+    public void updatePassword(Long adminId, PasswordRequestDto req) {
+        if (!Objects.equals(req.getNewPassword(), req.getValidatePassword())) {
+            throw new PasswordNotMatchException();
+        }
+        Admin admin = adminFacade.findById(adminId);
+        admin.updatePassword(passwordEncoder, req.getNewPassword());
+    }
+
     public AdminResponseDto getDetail(Long adminId) {
         Admin admin = adminFacade.findById(adminId);
         return new AdminResponseDto(admin, admin.getPlans());

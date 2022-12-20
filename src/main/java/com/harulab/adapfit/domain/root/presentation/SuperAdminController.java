@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.root.presentation;
 
+import com.harulab.adapfit.domain.admin.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
@@ -54,6 +55,14 @@ public class SuperAdminController {
             @RequestBody @Valid UpdateAccountInfoRequestDto req
     ) {
         superAdminService.updateAdminInfo(adminId, req);
+    }
+
+    @PutMapping("/pw/{adminId}")
+    public void changePw(
+            @PathVariable Long adminId,
+            @RequestBody PasswordRequestDto req
+            ) {
+        adminService.updatePassword(adminId, req);
     }
 
     @DeleteMapping("/{adminId}")

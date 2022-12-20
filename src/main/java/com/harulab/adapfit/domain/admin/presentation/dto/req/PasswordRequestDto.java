@@ -1,12 +1,14 @@
 package com.harulab.adapfit.domain.admin.presentation.dto.req;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class PasswordRequestDto {
 
-    private final String newPassword;
-    private final String validatePassword;
+    private String newPassword;
+    private String validatePassword;
 
     public PasswordRequestDto(String newPassword, String validatePassword) {
         this.newPassword = newPassword;
