@@ -33,7 +33,7 @@ public class Plan extends BaseTimeEntity {
     @NotNull
     private String title;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Lob
     @NotNull
     private String content;
 

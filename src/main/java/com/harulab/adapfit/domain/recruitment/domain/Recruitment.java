@@ -31,7 +31,7 @@ public class Recruitment extends BaseTimeEntity {
     private String title;
 
     @NotNull
-    @Column(columnDefinition = "LONGTEXT")
+    @Lob
     private String content;
 
     @NotNull
