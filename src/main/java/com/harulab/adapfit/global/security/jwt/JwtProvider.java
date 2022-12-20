@@ -27,18 +27,21 @@ public class JwtProvider {
     private final AuthIdRepository authIdRepository;
     private final JwtAuth jwtAuth;
 
-    public TokenResponseDto generateToken(String authId, String role) {
-        String accessToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(authId, role, ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
+    public String generateAccessToken(String authId, String role) {
+        return jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(authId, role, ACCESS_KEY.getMessage(), jwtProperties.getAccessExp());
+    }
+
+    public String generateRefreshToken(String authId, String role) {
         String refreshToken = jwtProperties.getPrefix() + EMPTY.getMessage() + generateToken(authId, role, REFRESH_KEY.getMessage(), jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
-                .id(authId)
+                .authId(authId)
                 .token(refreshToken)
                 .role(role)
                 .ttl(jwtProperties.getRefreshExp() * 1000)
                 .build());
 
-        return new TokenResponseDto(accessToken, refreshToken, getExpiredTime());
+        return refreshToken;
     }
 
     private String generateToken(String authId, String role, String type, Long exp) {

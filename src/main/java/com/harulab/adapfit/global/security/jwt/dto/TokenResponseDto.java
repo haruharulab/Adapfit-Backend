@@ -17,7 +17,6 @@ public class TokenResponseDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private final ZonedDateTime expiredAt;
 
-    @Builder
     public TokenResponseDto(String accessToken, String refreshToken, ZonedDateTime expiredAt) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;

@@ -9,4 +9,5 @@ public interface RefreshTokenRepository extends CrudRepository<RefreshToken, Str
 
     Optional<RefreshToken> findByToken(String token);
 
+    Optional<RefreshToken> findByAuthId(String authId);
 }

@@ -28,7 +28,10 @@ public class SuperAdminLoginService {
         validateLoginInfo(req);
         authIdRepository.findByAuthId(req.getAuthId())
                         .ifPresent(authIdRepository::delete);
-        return jwtProvider.generateToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
+        String accessToken = jwtProvider.generateAccessToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
+        String refreshToken = jwtProvider.generateRefreshToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
+
+        return new TokenResponseDto(accessToken, refreshToken, jwtProvider.getExpiredTime());
     }
 
     private void validateLoginInfo(LoginRequestDto req) {

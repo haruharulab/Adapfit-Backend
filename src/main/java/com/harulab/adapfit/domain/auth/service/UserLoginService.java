@@ -5,8 +5,7 @@ import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.user.domain.User;
 import com.harulab.adapfit.domain.user.domain.repository.UserRepository;
 import com.harulab.adapfit.domain.user.domain.type.Authority;
-import com.harulab.adapfit.global.error.exception.AdapfitException;
-import com.harulab.adapfit.global.error.exception.ErrorCode;
+import com.harulab.adapfit.domain.user.exception.UserNotFoundException;
 import com.harulab.adapfit.global.security.jwt.JwtProvider;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +27,15 @@ public class UserLoginService {
         Authority authority = validateLoginInfo(req);
         authIdRepository.findByAuthId(req.getAuthId())
                 .ifPresent(authIdRepository::delete);
-        return jwtProvider.generateToken(req.getAuthId(), authority.name());
+
+        String accessToken = jwtProvider.generateAccessToken(req.getAuthId(), authority.name());
+        String refreshToken = jwtProvider.generateRefreshToken(req.getAuthId(), authority.name());
+        return new TokenResponseDto(accessToken, refreshToken, jwtProvider.getExpiredTime());
     }
 
     private Authority validateLoginInfo(LoginRequestDto req) {
         User user = userRepository.findByAuthId(req.getAuthId())
-                .orElseThrow(() -> new AdapfitException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         user.matchedPassword(passwordEncoder, user, req.getPassword());
         return user.getAuthority();

@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.auth.service.LogoutService;
 import com.harulab.adapfit.domain.auth.service.UserLoginService;
 import com.harulab.adapfit.domain.auth.service.TokenRefreshService;
+import com.harulab.adapfit.global.security.jwt.dto.TokenRefreshResponseDto;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class AuthController {
     }
 
     @PutMapping("/refresh") // ADMIN, SUPER_ADMIN
-    public TokenResponseDto tokenRefresh(@RequestHeader("X-Refresh-Token") String refreshToken) {
+    public TokenRefreshResponseDto tokenRefresh(@RequestHeader("Refresh-Token") String refreshToken) {
         return tokenRefreshService.execute(refreshToken);
     }
 }
