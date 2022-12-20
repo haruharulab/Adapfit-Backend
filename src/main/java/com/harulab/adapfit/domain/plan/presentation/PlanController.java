@@ -46,8 +46,8 @@ public class PlanController {
     public void updatePlan(
             @PathVariable Long planId,
             @RequestPart PlanUpdateInfoRequestDto req,
-            @RequestPart(value = "thumbnail") MultipartFile thumbnail,
-            @RequestPart(value = "images") List<MultipartFile> images
+            @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail,
+            @RequestPart(value = "images", required = false) List<MultipartFile> images
     ) throws IOException {
         planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail, images));
     }
