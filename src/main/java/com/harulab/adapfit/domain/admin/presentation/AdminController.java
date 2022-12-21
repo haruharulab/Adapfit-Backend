@@ -6,12 +6,10 @@ import com.harulab.adapfit.domain.admin.presentation.dto.req.AdminRequestDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Validated
 @RequiredArgsConstructor
 @RequestMapping("/user")
 @RestController
@@ -25,7 +23,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public void join(@RequestBody @Valid AdminRequestDto req) {
+    public void join(@RequestBody AdminRequestDto req) {
         adminService.join(req);
     }
 

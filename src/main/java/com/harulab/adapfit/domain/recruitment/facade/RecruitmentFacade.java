@@ -27,7 +27,7 @@ public class RecruitmentFacade {
         recruitmentRepository.deleteById(recruitId);
     }
 
-    public List<Recruitment> findRecruitByDynamicQuery(String jobGroup, String career, String employmentPattern) {
-        return recruitmentRepository.searchRecruitment(jobGroup, career, employmentPattern);
+    public List<Recruitment> findRecruitByDynamicQuery(String position, String career, String employmentPattern) {
+        return recruitmentRepository.searchRecruitment(position, career, employmentPattern);
     }
 }

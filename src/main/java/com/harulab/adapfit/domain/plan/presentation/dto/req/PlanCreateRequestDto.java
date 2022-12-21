@@ -1,12 +1,14 @@
 package com.harulab.adapfit.domain.plan.presentation.dto.req;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @NoArgsConstructor
 public class PlanCreateRequestDto {
 
+    @NotBlank(message = CATEGORY_ID_NOT_BLANK)
     private Long categoryId;
 
     @NotBlank(message = TITLE_NOT_BLANK)

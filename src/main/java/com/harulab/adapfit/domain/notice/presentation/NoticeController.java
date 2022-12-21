@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class NoticeController {
     }
 
     @PostMapping
-    public void registration(@RequestBody NoticeCreateRequestDto req) {
+    public void registration(@RequestBody @Valid NoticeCreateRequestDto req) {
         noticeService.create(req);
     }
 
@@ -49,7 +50,7 @@ public class NoticeController {
     @PutMapping("/{noticeId}")
     public void update(
             @PathVariable Long noticeId,
-            @RequestBody NoticeUpdateRequestDto req
+            @RequestBody @Valid NoticeUpdateRequestDto req
     ) {
         noticeService.update(noticeId, req);
     }

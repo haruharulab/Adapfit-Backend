@@ -10,16 +10,16 @@ public class RecruitmentUpdateRequestDto {
 
     private String title;
     private String content;
-    private String group;
+    private String position;
     private Integer career;
     private String employmentPattern;
     private String workingArea;
 
     @Builder
-    public RecruitmentUpdateRequestDto(String title, String content, String group, Integer career, String employmentPattern, String workingArea) {
+    public RecruitmentUpdateRequestDto(String title, String content, String position, Integer career, String employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
-        this.group = group;
+        this.position = position;
         this.career = career;
         this.employmentPattern = employmentPattern;
         this.workingArea = workingArea;

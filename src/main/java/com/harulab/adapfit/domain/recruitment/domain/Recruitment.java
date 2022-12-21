@@ -63,7 +63,7 @@ public class Recruitment extends BaseTimeEntity {
     public void updateInfo(RecruitmentUpdateRequestDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();
-        this.position = Position.valueOf(req.getGroup());
+        this.position = Position.valueOf(req.getPosition());
         this.career = req.getCareer();
         this.employmentPattern = EmploymentPattern.valueOf(req.getEmploymentPattern());
         this.workingArea = req.getWorkingArea();

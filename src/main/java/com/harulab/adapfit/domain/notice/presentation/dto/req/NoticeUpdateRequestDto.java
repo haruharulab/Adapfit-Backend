@@ -1,8 +1,11 @@
 package com.harulab.adapfit.domain.notice.presentation.dto.req;
 
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author 최원용
@@ -14,7 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NoticeUpdateRequestDto {
 
+    @NotBlank(message = ValidMessageConstants.TITLE_NOT_BLANK)
     private String title;
+
+    @NotBlank(message = ValidMessageConstants.CONTENT_NOT_BLANK)
     private String content;
 
     @Builder

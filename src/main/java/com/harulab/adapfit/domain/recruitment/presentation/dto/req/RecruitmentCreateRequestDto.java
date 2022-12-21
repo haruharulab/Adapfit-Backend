@@ -3,19 +3,34 @@ package com.harulab.adapfit.domain.recruitment.presentation.dto.req;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.domain.type.Position;
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @NoArgsConstructor
 @Getter
 public class RecruitmentCreateRequestDto {
 
+    @NotBlank(message = TITLE_NOT_BLANK)
     private String title;
+
+    @NotBlank(message = CONTENT_NOT_BLANK)
     private String content;
+
+    @NotBlank(message = POSITION_NOT_BLANK)
     private String position;
+
+    @NotBlank(message = CAREER_NOT_BLANK)
     private Integer career;
+
+    @NotBlank(message = EMPLOYMENT_PATTERN)
     private String employmentPattern;
+
     private String workingArea;
 
     @Builder

@@ -1,9 +1,12 @@
 package com.harulab.adapfit.domain.root.presentation.dto.req;
 
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
@@ -12,11 +15,17 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @NoArgsConstructor
 public class UpdateAccountInfoRequestDto {
 
+    @NotBlank(message = AUTH_ID_NOT_BLANK)
     private String authId;
+
+    @NotBlank(message = EMAIL_NOT_BLANK)
+    @Email(message = INPUT_EMAIL_FORM)
     private String email;
 
     @Size(message = NICKNAME_SIZE)
     private String nickname;
+
+    @NotBlank(message = PHONE_NUMBER_NOT_BLANK)
     private String phoneNumber;
 
     @Builder

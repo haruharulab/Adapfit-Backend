@@ -15,10 +15,10 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
     private final JPAQueryFactory query;
 
     @Override
-    public List<Recruitment> searchRecruitment(String jobGroup, String career, String employmentPattern) {
+    public List<Recruitment> searchRecruitment(String position, String career, String employmentPattern) {
         return query.selectFrom(recruitment)
                 .where(
-                        positionEq(jobGroup),
+                        positionEq(position),
                         careerEq(career),
                         employmentPatternEq(employmentPattern)
                 )
