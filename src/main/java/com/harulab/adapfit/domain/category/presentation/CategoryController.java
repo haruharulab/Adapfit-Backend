@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.category.presentation;
 
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.CategoryResponseDto;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,9 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<CategoryResponseDto> getAll() {
-        return categoryService.getAll();
+    public ResultResponse<List<CategoryResponseDto>> getAll() {
+        List<CategoryResponseDto> categories = categoryService.getAll();
+        return new ResultResponse<>(categories.size(), categories);
     }
 
     @PostMapping

@@ -6,7 +6,10 @@ import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoReques
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,8 +27,9 @@ public class PlanController {
     private final PlanService planService;
 
     @GetMapping
-    public List<PlanResponseDto> getAll() {
-        return planService.getAllPlan();
+    public ResultResponse<List<PlanResponseDto>> getAll() {
+        List<PlanResponseDto> plans = planService.getAllPlan();
+        return new ResultResponse<>(plans.size(), plans);
     }
 
     @GetMapping("{planId}")
@@ -34,7 +38,7 @@ public class PlanController {
     }
 
     @PostMapping
-    public void createPlan(
+    public void create(
             @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
             @RequestPart(value = "thumbnail") MultipartFile thumbnail,
             @RequestPart(value = "images") List<MultipartFile> images
@@ -43,7 +47,7 @@ public class PlanController {
     }
 
     @PutMapping("/{planId}")
-    public void updatePlan(
+    public void update(
             @PathVariable Long planId,
             @RequestPart PlanUpdateInfoRequestDto req,
             @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail,
@@ -53,7 +57,7 @@ public class PlanController {
     }
 
     @DeleteMapping("/{planId}")
-    public void deletePlan(@PathVariable Long planId) {
+    public void delete(@PathVariable Long planId) {
         planService.deletePlan(planId);
     }
 }

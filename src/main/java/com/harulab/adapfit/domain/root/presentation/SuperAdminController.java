@@ -8,6 +8,7 @@ import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDt
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +46,9 @@ public class SuperAdminController {
     }
 
     @GetMapping("/all")
-    public List<AdminResponseDto> searchUserList() {
-        return superAdminService.getUserList();
+    public ResultResponse<List<AdminResponseDto>> searchUserList() {
+        List<AdminResponseDto> users = superAdminService.getUserList();
+        return new ResultResponse<>(users.size(), users);
     }
 
     @PutMapping("/{adminId}")

@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentCr
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
 import com.harulab.adapfit.domain.recruitment.service.RecruitmentService;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,13 @@ public class RecruitmentController {
     private final RecruitmentService recruitmentService;
 
     @GetMapping
-    public List<RecruitmentResponseDto> searchRecruit(
+    public ResultResponse<List<RecruitmentResponseDto>> searchRecruit(
             @RequestParam("position") String position,
             @RequestParam("career") String career,
             @RequestParam("employmentPattern") String employmentPattern
     ) {
-        return recruitmentService.getRecruit(position, career, employmentPattern);
+        List<RecruitmentResponseDto> recruits = recruitmentService.getRecruit(position, career, employmentPattern);
+        return new ResultResponse<>(recruits.size(), recruits);
     }
 
     @GetMapping("/{recruitmentId}")

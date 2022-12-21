@@ -5,6 +5,7 @@ import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateReques
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
 import com.harulab.adapfit.domain.notice.service.NoticeService;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,8 +29,9 @@ public class NoticeController {
     private final ImageService imageService;
 
     @GetMapping
-    public List<NoticeResponseDto> getAll() {
-        return noticeService.searchAll();
+    public ResultResponse<List<NoticeResponseDto>> getAll() {
+        List<NoticeResponseDto> notices = noticeService.searchAll();
+        return new ResultResponse<>(notices.size(), notices);
     }
 
     @GetMapping("/{noticeId}")

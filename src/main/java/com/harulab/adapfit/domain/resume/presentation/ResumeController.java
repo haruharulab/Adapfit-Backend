@@ -7,6 +7,7 @@ import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeUpdateR
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.domain.resume.service.ResumeService;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,9 @@ public class ResumeController {
     private final ResumeService resumeService;
 
     @GetMapping
-    public List<ResumeResponseDto> getAll() {
-        return resumeService.getResumes();
+    public ResultResponse<List<ResumeResponseDto>> getAll() {
+        List<ResumeResponseDto> resumes = resumeService.getResumes();
+        return new ResultResponse<>(resumes.size(), resumes);
     }
 
     @GetMapping("/{resumeId}")
