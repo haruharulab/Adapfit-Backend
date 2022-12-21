@@ -108,6 +108,7 @@ public class PlanService {
     @Transactional
     public void deletePlan(Long planId) {
         Plan plan = planFacade.findByPlanId(planId);
+        isMyPlan(plan);
         Admin admin = adminFacade.getCurrentUser();
 
         plan.isRightWriter(admin);
