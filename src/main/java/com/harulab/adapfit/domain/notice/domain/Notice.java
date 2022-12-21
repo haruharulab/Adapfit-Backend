@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.notice.domain;
 
+import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -35,5 +36,10 @@ public class Notice extends BaseTimeEntity {
     public Notice(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void update(NoticeUpdateRequestDto req) {
+        this.title = req.getTitle();
+        this.content = req.getContent();
     }
 }

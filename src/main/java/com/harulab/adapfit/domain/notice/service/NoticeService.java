@@ -1,7 +1,10 @@
 package com.harulab.adapfit.domain.notice.service;
 
+import com.harulab.adapfit.domain.notice.domain.Notice;
 import com.harulab.adapfit.domain.notice.domain.repository.NoticeRepository;
+import com.harulab.adapfit.domain.notice.exception.NoticeNotFoundException;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateRequestDto;
+import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +25,12 @@ public class NoticeService {
     @Transactional
     public void create(@RequestBody NoticeCreateRequestDto req) {
         noticeRepository.save(req.toEntity());
+    }
+
+    @Transactional
+    public void update(Long noticeId, NoticeUpdateRequestDto req) {
+        Notice notice = noticeRepository.findById(noticeId)
+                .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
+        notice.update(req);
     }
 }
