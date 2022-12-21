@@ -16,7 +16,7 @@ public class AdminFacade {
 
     private final AdminRepository adminRepository;
 
-    public Admin save(Admin admin) {
+    public Admin create(Admin admin) {
         return adminRepository.save(admin);
     }
 
@@ -42,4 +42,5 @@ public class AdminFacade {
     public void delete(Long adminId) {
         adminRepository.deleteById(adminId);
     }
+
 }

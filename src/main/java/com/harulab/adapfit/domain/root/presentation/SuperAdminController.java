@@ -2,11 +2,11 @@ package com.harulab.adapfit.domain.root.presentation;
 
 import com.harulab.adapfit.domain.admin.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
+import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.root.service.SuperAdminService;
-import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
@@ -41,8 +41,8 @@ public class SuperAdminController {
     }
 
     @PostMapping("/admin")
-    public AdminCreateResponseDto createAdmin() {
-        return superAdminService.createAdmin();
+    public AdminResponseDto createAdmin(@RequestBody @Valid AdminCreateRequestDto req) {
+        return superAdminService.createAdmin(req);
     }
 
     @GetMapping("/all")

@@ -28,7 +28,7 @@ public class AdminService {
 
     @Transactional
     public void join(AdminRequestDto req) {
-        adminFacade.save(req.toEntity()).encodePassword(passwordEncoder);
+        adminFacade.create(req.toEntity()).encodePassword(passwordEncoder);
     }
 
     @Transactional

@@ -3,12 +3,11 @@ package com.harulab.adapfit.domain.root.service;
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
 import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
+import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
-import com.harulab.adapfit.domain.admin.presentation.dto.req.AdminRequestDto;
-import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminCreateResponseDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +26,13 @@ public class SuperAdminService {
     private final AdminFacade adminFacade;
     private final SuperAdminFacade superAdminFacade;
 
+    @Transactional
+    public AdminResponseDto createAdmin(AdminCreateRequestDto req) {
+        Admin admin = adminFacade.create(req.toEntity());
+        admin.encodePassword(passwordEncoder);
+        return new AdminResponseDto(admin);
+    }
+
     public SuperAdminResponseDto getMine() {
         return new SuperAdminResponseDto(superAdminFacade.getCurrentAdmin());
     }
@@ -34,14 +40,6 @@ public class SuperAdminService {
     @Transactional
     public void createRoot(SuperAdminCreateRequestDto req) {
         superAdminRepository.save(req.toEntity()).encodePassword(passwordEncoder);
-    }
-
-    @Transactional
-    public AdminCreateResponseDto createAdmin() {
-        AdminRequestDto adminRequestDto = new AdminRequestDto();
-        Admin admin = adminFacade.save(adminRequestDto.toEntity());
-        admin.encodePassword(passwordEncoder);
-        return new AdminCreateResponseDto(adminRequestDto.getAuthId());
     }
 
     public List<AdminResponseDto> getUserList() {
