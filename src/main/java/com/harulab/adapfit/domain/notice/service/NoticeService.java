@@ -5,10 +5,14 @@ import com.harulab.adapfit.domain.notice.domain.repository.NoticeRepository;
 import com.harulab.adapfit.domain.notice.exception.NoticeNotFoundException;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
+import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -37,5 +41,12 @@ public class NoticeService {
     @Transactional
     public void remove(Long noticeId) {
         noticeRepository.deleteById(noticeId);
+    }
+
+    public List<NoticeResponseDto> searchAll() {
+        return noticeRepository.findAll()
+                .stream()
+                .map(NoticeResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

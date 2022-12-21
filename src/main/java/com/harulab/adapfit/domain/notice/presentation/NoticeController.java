@@ -2,9 +2,12 @@ package com.harulab.adapfit.domain.notice.presentation;
 
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
+import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
 import com.harulab.adapfit.domain.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author 최원용
@@ -18,6 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class NoticeController {
 
     private final NoticeService noticeService;
+
+    @GetMapping
+    public List<NoticeResponseDto> getAll() {
+        return noticeService.searchAll();
+    }
 
     @PostMapping
     public void registration(@RequestBody NoticeCreateRequestDto req) {
