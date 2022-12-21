@@ -3,7 +3,6 @@ package com.harulab.adapfit.domain.image.facade;
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.image.domain.repository.ImageRepository;
 import com.harulab.adapfit.domain.image.exception.ImageNotFoundException;
-import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -36,5 +35,9 @@ public class ImageFacade {
                         .fileUrl(imageRes.getFileUrl())
                         .build()
         );
+    }
+
+    public void deleteImage(Long imageId) {
+        imageRepository.deleteById(imageId);
     }
 }

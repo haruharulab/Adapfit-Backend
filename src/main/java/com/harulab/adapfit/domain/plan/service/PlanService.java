@@ -56,14 +56,21 @@ public class PlanService {
     @Transactional
     public void updatePlan(PlanUpdateRequestDto req) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
-
         plan.updateInfo(req, categoryService.detail(req.getCategoryId()));
+
         updateThumbnail(plan, req);
         isImagesNotNull(plan, req);
+        isRemovalNotNull(req);
+    }
+
+    private void isRemovalNotNull(PlanUpdateRequestDto req) {
+        for (Long image : req.getRemoval()) {
+            imageService.deleteOriginFile(image);
+        }
     }
 
     private void updateThumbnail(Plan plan, PlanUpdateRequestDto req) throws IOException {
-        if (!req.isThumbnailNull()) 
+        if (!req.isThumbnailNull())
             plan.updateThumbnail
                     (imageService.getImageRes(req.getThumbnail()));
     }
@@ -114,4 +121,5 @@ public class PlanService {
                 .map(plan -> new PlanResponseDto(plan, plan.getCategory()))
                 .collect(Collectors.toList());
     }
+
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+
 import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @NoArgsConstructor
@@ -18,12 +20,14 @@ public class PlanUpdateInfoRequestDto {
 
     private String title;
     private String content;
+    private List<Long> removal;
 
     @Builder
-    public PlanUpdateInfoRequestDto(Long categoryId, String title, String content) {
+    public PlanUpdateInfoRequestDto(Long categoryId, String title, String content, List<Long> removal) {
         this.categoryId = categoryId;
         this.title = title;
         this.content = content;
+        this.removal = removal;
     }
 
 }

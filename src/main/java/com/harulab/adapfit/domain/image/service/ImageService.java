@@ -50,6 +50,7 @@ public class ImageService {
     public void deleteOriginFile(Long imageId) {
         Image image = getDetail(imageId);
         s3Uploader.deleteFile(image.getImageName());
+        imageFacade.deleteImage(imageId);
     }
 
     public String upload(MultipartFile image) throws IOException {
