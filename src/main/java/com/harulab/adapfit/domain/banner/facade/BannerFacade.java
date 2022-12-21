@@ -1,9 +1,9 @@
-package com.harulab.adapfit.domain.auth.service.banner.facade;
+package com.harulab.adapfit.domain.banner.facade;
 
-import com.harulab.adapfit.domain.auth.service.banner.domain.repository.BannerRepository;
-import com.harulab.adapfit.domain.auth.service.banner.exception.BannerNotFoundException;
-import com.harulab.adapfit.domain.auth.service.banner.domain.Banner;
-import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.req.UploadBannerRequest;
+import com.harulab.adapfit.domain.banner.domain.repository.BannerRepository;
+import com.harulab.adapfit.domain.banner.exception.BannerNotFoundException;
+import com.harulab.adapfit.domain.banner.domain.Banner;
+import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;

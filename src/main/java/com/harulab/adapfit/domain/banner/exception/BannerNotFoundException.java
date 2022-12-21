@@ -1,4 +1,4 @@
-package com.harulab.adapfit.domain.auth.service.banner.exception;
+package com.harulab.adapfit.domain.banner.exception;
 
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;

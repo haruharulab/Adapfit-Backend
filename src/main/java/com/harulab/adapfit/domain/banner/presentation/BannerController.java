@@ -1,8 +1,8 @@
-package com.harulab.adapfit.domain.auth.service.banner.presentation;
+package com.harulab.adapfit.domain.banner.presentation;
 
-import com.harulab.adapfit.domain.auth.service.banner.service.BannerService;
-import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.req.UploadBannerRequest;
-import com.harulab.adapfit.domain.auth.service.banner.presentation.dto.res.BannerResponse;
+import com.harulab.adapfit.domain.banner.service.BannerService;
+import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
+import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
 import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -28,7 +28,7 @@ public class BannerController {
 
     @PostMapping
     public void upload(
-            @RequestPart(value = "link") String link,
+            @RequestPart(value = "link", required = false) String link,
             @RequestPart(value = "image") MultipartFile image
     ) throws IOException {
         bannerService.upload(new UploadBannerRequest(link, image));

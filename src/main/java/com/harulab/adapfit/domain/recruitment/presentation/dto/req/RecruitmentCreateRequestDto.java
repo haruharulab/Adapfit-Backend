@@ -25,7 +25,6 @@ public class RecruitmentCreateRequestDto {
     @NotBlank(message = POSITION_NOT_BLANK)
     private String position;
 
-    @NotBlank(message = CAREER_NOT_BLANK)
     private Integer career;
 
     @NotBlank(message = EMPLOYMENT_PATTERN)
