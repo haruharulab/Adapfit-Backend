@@ -53,7 +53,7 @@ public class Admin extends BaseTimeEntity {
     @Column(length = 16)
     private Authority authority;
 
-    @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "writer")
     private List<Plan> plans;
 
     @Builder
