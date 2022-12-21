@@ -31,4 +31,9 @@ public class NoticeController {
     ) {
         noticeService.update(noticeId, req);
     }
+
+    @DeleteMapping("/{noticeId}")
+    public void delete(@PathVariable Long noticeId) {
+        noticeService.remove(noticeId);
+    }
 }
