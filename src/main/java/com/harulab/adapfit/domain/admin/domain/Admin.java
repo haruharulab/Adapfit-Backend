@@ -53,9 +53,6 @@ public class Admin extends BaseTimeEntity {
     @Column(length = 16)
     private Authority authority;
 
-    @OneToMany(mappedBy = "writer")
-    private List<Plan> plans;
-
     @Builder
     public Admin(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
         this.authId = authId;
@@ -93,10 +90,6 @@ public class Admin extends BaseTimeEntity {
         if (!req.phoneNumberIsNull()) {
             this.phoneNumber = req.getPhoneNumber();
         }
-    }
-
-    public void addPlan(Plan plan) {
-        this.plans.add(plan);
     }
 
     public void updatePassword(PasswordEncoder passwordEncoder, String password) {

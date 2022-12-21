@@ -18,7 +18,6 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @NoArgsConstructor
 public class PlanCreateRequestDto {
 
-    @NotBlank(message = CATEGORY_ID_NOT_BLANK)
     private Long categoryId;
 
     @NotBlank(message = TITLE_NOT_BLANK)

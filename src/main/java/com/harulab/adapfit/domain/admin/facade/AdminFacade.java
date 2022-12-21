@@ -4,7 +4,6 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.repository.AdminRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
-import com.harulab.adapfit.global.socket.property.SocketProperty;
 import com.harulab.adapfit.global.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -37,11 +36,6 @@ public class AdminFacade {
 
     public Admin findByAuthId(String authId) {
         return adminRepository.findByAuthId(authId)
-                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
-    }
-
-    public Admin findUserByClient(SocketIOClient client) {
-        return adminRepository.findByAuthId(client.get(SocketProperty.USER_KEY))
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
 

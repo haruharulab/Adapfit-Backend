@@ -5,7 +5,6 @@ import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.image.service.ImageService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
@@ -35,13 +34,10 @@ public class PlanService {
     @Transactional
     public void createPlan(PlanRequestDto req) throws IOException {
         S3FileResponseDto thumbnailRes = imageService.getImageRes(req.getThumbnail());
-
         Plan plan = req.toEntity(thumbnailRes);
-        plan.confirmWriter(adminFacade.getCurrentUser());
 
         Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
-
         createImages(plan, req.getImages());
 
         planFacade.save(plan);
@@ -60,17 +56,10 @@ public class PlanService {
     @Transactional
     public void updatePlan(PlanUpdateRequestDto req) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
-        isMyPlan(plan);
 
         plan.updateInfo(req, categoryService.detail(req.getCategoryId()));
         updateThumbnail(plan, req);
         isImagesNotNull(plan, req);
-    }
-
-    private void isMyPlan(Plan plan) {
-        if (!plan.getWriter().getId().equals(adminFacade.getCurrentUser().getId())) {
-            throw new DontAccessOtherPlanException();
-        }
     }
 
     private void updateThumbnail(Plan plan, PlanUpdateRequestDto req) throws IOException {
@@ -108,7 +97,6 @@ public class PlanService {
     @Transactional
     public void deletePlan(Long planId) {
         Plan plan = planFacade.findByPlanId(planId);
-        isMyPlan(plan);
         Admin admin = adminFacade.getCurrentUser();
 
         plan.isRightWriter(admin);

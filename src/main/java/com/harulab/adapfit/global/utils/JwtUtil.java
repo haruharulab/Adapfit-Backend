@@ -17,9 +17,14 @@ public class JwtUtil {
     private final JwtProvider jwtProvider;
     private final JwtAuth jwtAuth;
 
-    public String ExtractAuthIdFromToken(String bearer) {
+    public String extractAuthIdFromToken(String bearer) {
         String token = jwtProvider.parseToken(bearer);
         return jwtAuth.getJws(token).getBody().get(JwtConstants.AUTH_ID.getMessage()).toString();
+    }
+
+    public String extractAuthorityFromToken(String bearer) {
+        String token = jwtProvider.parseToken(bearer);
+        return jwtAuth.getJws(token).getBody().get(JwtConstants.ROLE.getMessage()).toString();
     }
 
 }

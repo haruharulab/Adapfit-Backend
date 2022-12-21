@@ -47,27 +47,16 @@ public class Plan extends BaseTimeEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "writer_id")
-    private Admin writer;
-
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private List<Image> images;
 
     @Builder
-    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category, Admin writer) {
+    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category) {
         this.title = title;
         this.content = content;
         this.thumbnailName = thumbnailName;
         this.thumbnailUrl = thumbnailUrl;
         this.category = category;
-        this.writer = writer;
-    }
-
-    // 연관관계 편의 메서드
-    public void confirmWriter(Admin admin) {
-        this.writer = admin;
-        admin.addPlan(this);
     }
 
     public void confirmCategory(Category category) {

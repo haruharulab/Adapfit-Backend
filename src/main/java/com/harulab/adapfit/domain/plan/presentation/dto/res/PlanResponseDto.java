@@ -15,7 +15,6 @@ public class PlanResponseDto {
     private final String title;
     private final String content;
     private final String thumbnail;
-    private final Long writerId;
     private final CategoryResponseDto category;
     private final List<ImageResponseDto> images;
 
@@ -24,7 +23,6 @@ public class PlanResponseDto {
         this.title = plan.getTitle();
         this.content = plan.getContent();
         this.thumbnail = plan.getThumbnailUrl();
-        this.writerId = plan.getWriter().getId();
         this.category = new CategoryResponseDto(category);
         this.images = plan.getImages().stream()
                 .map(ImageResponseDto::new)

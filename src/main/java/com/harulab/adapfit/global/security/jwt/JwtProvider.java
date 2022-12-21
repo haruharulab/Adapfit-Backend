@@ -6,7 +6,6 @@ import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.global.exception.ExpiredJwtException;
 import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
-import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

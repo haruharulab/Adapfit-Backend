@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.validation.BindException;
+import org.springframework.web.util.NestedServletException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -61,5 +62,13 @@ public class GlobalExceptionHandler {
         }
 
         return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({NestedServletException.class})
+    public ResponseEntity<?> nestedServerException(NestedServletException e) {
+        Map<String, String> errorMap = new HashMap<>();
+        log.error("Nested Exception Cause : " + e.getMessage());
+
+        return new ResponseEntity<>(errorMap, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -23,7 +23,7 @@ public class AdminService {
 
     public AdminResponseDto getMyInfo() {
         Admin admin = adminFacade.getCurrentUser();
-        return new AdminResponseDto(admin, admin.getPlans());
+        return new AdminResponseDto(admin);
     }
 
     @Transactional
@@ -57,7 +57,7 @@ public class AdminService {
 
     public AdminResponseDto getDetail(Long adminId) {
         Admin admin = adminFacade.findById(adminId);
-        return new AdminResponseDto(admin, admin.getPlans());
+        return new AdminResponseDto(admin);
     }
 
     @Transactional
