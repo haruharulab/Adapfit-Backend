@@ -1,12 +1,15 @@
 package com.harulab.adapfit.domain.notice.presentation;
 
+import com.harulab.adapfit.domain.image.service.ImageService;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
 import com.harulab.adapfit.domain.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,6 +24,7 @@ import java.util.List;
 public class NoticeController {
 
     private final NoticeService noticeService;
+    private final ImageService imageService;
 
     @GetMapping
     public List<NoticeResponseDto> getAll() {
@@ -35,6 +39,11 @@ public class NoticeController {
     @PostMapping
     public void registration(@RequestBody NoticeCreateRequestDto req) {
         noticeService.create(req);
+    }
+
+    @PostMapping("/image")
+    public String getImageUrl(@RequestPart MultipartFile image) throws IOException {
+        return imageService.upload(image);
     }
 
     @PutMapping("/{noticeId}")

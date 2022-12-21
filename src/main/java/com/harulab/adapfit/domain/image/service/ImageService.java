@@ -51,4 +51,9 @@ public class ImageService {
         Image image = getDetail(imageId);
         s3Uploader.deleteFile(image.getImageName());
     }
+
+    public String upload(MultipartFile image) throws IOException {
+        S3FileResponseDto fileRes = s3Uploader.saveFile(image);
+        return fileRes.getFileUrl();
+    }
 }
