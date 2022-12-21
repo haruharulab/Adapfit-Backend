@@ -64,19 +64,21 @@ public class PlanService {
     }
 
     private void isRemovalNotNull(PlanUpdateRequestDto req) {
-        for (Long image : req.getRemoval()) {
-            imageService.deleteOriginFile(image);
+        if (req.removalIsNotNull()) {
+            for (Long image : req.getRemoval()) {
+                imageService.deleteOriginFile(image);
+            }
         }
     }
 
     private void updateThumbnail(Plan plan, PlanUpdateRequestDto req) throws IOException {
-        if (!req.isThumbnailNull())
+        if (req.thumbnailIsNotNull())
             plan.updateThumbnail
                     (imageService.getImageRes(req.getThumbnail()));
     }
 
     private void isImagesNotNull(Plan plan, PlanUpdateRequestDto req) throws IOException {
-        if (!req.isImagesNull()) updateImages(plan, req.getImages());
+        if (req.imagesIsNotNull()) updateImages(plan, req.getImages());
     }
 
     private void updateImages(Plan plan, List<MultipartFile> images) throws IOException {

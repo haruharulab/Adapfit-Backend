@@ -54,11 +54,15 @@ public class PlanUpdateRequestDto {
         this.removal = req.getRemoval();
     }
 
-    public boolean isThumbnailNull() {
-        return thumbnail == null;
+    public boolean thumbnailIsNotNull() {
+        return thumbnail != null;
     }
 
-    public boolean isImagesNull() {
-        return images == null;
+    public boolean imagesIsNotNull() {
+        return images != null;
+    }
+
+    public boolean removalIsNotNull() {
+        return removal != null;
     }
 }
