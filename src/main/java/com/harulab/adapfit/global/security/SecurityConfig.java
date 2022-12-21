@@ -63,6 +63,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, SUPER)
                 .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.GET, "/notice/**").hasAnyRole(ADMIN, SUPER)
 
                 // super admin
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
