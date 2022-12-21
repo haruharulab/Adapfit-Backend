@@ -27,6 +27,11 @@ public class NoticeController {
         return noticeService.searchAll();
     }
 
+    @GetMapping("/{noticeId}")
+    public NoticeResponseDto getDetail(@PathVariable Long noticeId) {
+        return noticeService.searchDetail(noticeId);
+    }
+
     @PostMapping
     public void registration(@RequestBody NoticeCreateRequestDto req) {
         noticeService.create(req);

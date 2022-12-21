@@ -49,4 +49,9 @@ public class NoticeService {
                 .map(NoticeResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    public NoticeResponseDto searchDetail(Long noticeId) {
+        return new NoticeResponseDto(noticeRepository.findById(noticeId)
+                .orElseThrow(() -> NoticeNotFoundException.EXCEPTION));
+    }
 }
