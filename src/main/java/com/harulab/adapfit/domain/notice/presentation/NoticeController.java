@@ -9,7 +9,6 @@ import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,7 +29,6 @@ public class NoticeController {
 
     private final NoticeService noticeService;
     private final ImageService imageService;
-    private final SimpMessageSendingOperations messagingTemplate;
 
     @GetMapping
     public ResultResponse<List<NoticeResponseDto>> getAll() {
@@ -46,11 +44,6 @@ public class NoticeController {
     @PostMapping
     public void registration(@RequestBody @Valid NoticeCreateRequestDto req) {
         noticeService.create(req);
-    }
-
-    @MessageMapping("/{userId}")
-    public void message(@DestinationVariable Long userId) {
-        messagingTemplate.convertAndSend("/sub/" + userId, "alarm socket connection completed.");
     }
 
     @PostMapping("/image")
