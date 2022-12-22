@@ -55,6 +55,3 @@ cloud:
     credentials:
       accessKey: ${S3-ACCESS-KEY}
       secretKey: ${S3-SECRET-KEY}
-
-socket:
-  port: 9090
