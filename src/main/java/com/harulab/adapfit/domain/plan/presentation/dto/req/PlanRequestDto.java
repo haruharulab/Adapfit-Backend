@@ -26,17 +26,12 @@ public class PlanRequestDto {
 
     @Getter
     @NotNull(message = IMAGE_NOT_NULL)
-    private final List<MultipartFile> images;
-
-    @Getter
-    @NotNull(message = IMAGE_NOT_NULL)
     private final MultipartFile thumbnail;
 
-    public PlanRequestDto(PlanCreateRequestDto req, MultipartFile thumbnail, List<MultipartFile> images) {
+    public PlanRequestDto(PlanCreateRequestDto req, MultipartFile thumbnail) {
         this.categoryId = req.getCategoryId();
         this.title = req.getTitle();
         this.content = req.getContent();
-        this.images = images;
         this.thumbnail = thumbnail;
     }
 

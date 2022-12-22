@@ -1,23 +1,16 @@
 package com.harulab.adapfit.domain.plan.facade;
 
-import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.domain.repository.PlanRepository;
 import com.harulab.adapfit.domain.plan.exception.PlanNotFoundException;
-import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
-import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Component
 public class PlanFacade {
     private final PlanRepository planRepository;
-    private final S3Uploader s3Uploader;
 
     public Plan save(Plan plan) {
         return planRepository.save(plan);
@@ -36,11 +29,4 @@ public class PlanFacade {
         return planRepository.findAll();
     }
 
-    public void deleteOriginThumbnail(MultipartFile thumbnail) {
-        s3Uploader.deleteFile(thumbnail.getOriginalFilename());
-    }
-
-    public void updateOriginImage(Image image, S3FileResponseDto fileRes) {
-        image.updateImageInfo(fileRes.getFileName(), fileRes.getFileUrl());
-    }
 }

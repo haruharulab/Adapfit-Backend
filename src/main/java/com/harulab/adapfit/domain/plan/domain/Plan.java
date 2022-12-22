@@ -2,7 +2,6 @@ package com.harulab.adapfit.domain.plan.domain;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.category.domain.Category;
-import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
@@ -33,6 +32,10 @@ public class Plan extends BaseTimeEntity {
     @NotNull
     private String title;
 
+    @Column(length = 128)
+    @NotNull
+    private String subTitle;
+
     @Lob
     @NotNull
     private String content;
@@ -47,16 +50,13 @@ public class Plan extends BaseTimeEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
-    private List<Image> images;
-
     @Builder
-    public Plan(String title, String content, String thumbnailName, String thumbnailUrl, Category category) {
+    public Plan(String title, String subTitle, String content, String thumbnailName, String thumbnailUrl) {
         this.title = title;
+        this.subTitle = subTitle;
         this.content = content;
         this.thumbnailName = thumbnailName;
         this.thumbnailUrl = thumbnailUrl;
-        this.category = category;
     }
 
     public void confirmCategory(Category category) {

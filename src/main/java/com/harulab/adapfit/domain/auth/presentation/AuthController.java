@@ -2,7 +2,7 @@ package com.harulab.adapfit.domain.auth.presentation;
 
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.auth.service.LogoutService;
-import com.harulab.adapfit.domain.auth.service.UserLoginService;
+import com.harulab.adapfit.domain.auth.service.AdminLoginService;
 import com.harulab.adapfit.domain.auth.service.TokenRefreshService;
 import com.harulab.adapfit.global.security.jwt.dto.TokenRefreshResponseDto;
 import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequestMapping("/auth") // 모든 권한이 사용하는 엔드포인트
 public class AuthController {
 
-    private final UserLoginService loginService;
+    private final AdminLoginService loginService;
     private final TokenRefreshService tokenRefreshService;
     private final LogoutService logoutService;
 

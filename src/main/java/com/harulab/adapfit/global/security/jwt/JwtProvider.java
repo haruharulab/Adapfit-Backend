@@ -50,9 +50,7 @@ public class JwtProvider {
                 .claim(ROLE.getMessage(), role)
                 .claim(AUTH_ID.getMessage(), authId)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecret())
-                .setExpiration(
-                        new Date(System.currentTimeMillis() + exp * 1000)
-                )
+                .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .setIssuedAt(new Date())
                 .compact();
     }

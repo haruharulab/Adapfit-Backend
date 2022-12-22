@@ -14,12 +14,9 @@ import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -38,19 +35,7 @@ public class PlanService {
 
         Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
-        createImages(plan, req.getImages());
-
         planFacade.save(plan);
-    }
-
-    private void createImages(Plan plan, List<MultipartFile> images) {
-        images.forEach(image -> {
-            try {
-                imageService.saveImage(plan, image);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });;
     }
 
     @Transactional
@@ -59,7 +44,6 @@ public class PlanService {
         plan.updateInfo(req, categoryService.detail(req.getCategoryId()));
 
         updateThumbnail(plan, req);
-        isImagesNotNull(plan, req);
         isRemovalNotNull(req);
     }
 
@@ -75,32 +59,6 @@ public class PlanService {
         if (req.thumbnailIsNotNull())
             plan.updateThumbnail
                     (imageService.getImageRes(req.getThumbnail()));
-    }
-
-    private void isImagesNotNull(Plan plan, PlanUpdateRequestDto req) throws IOException {
-        if (req.imagesIsNotNull()) updateImages(plan, req.getImages());
-    }
-
-    private void updateImages(Plan plan, List<MultipartFile> images) throws IOException {
-        for (MultipartFile image : images) {
-            List<String> imageSculpture = Arrays.asList(Objects.requireNonNull(image.getOriginalFilename()).split("\\."));
-            if (imageSculpture.size() == 2) {
-                addImage(plan, image);
-            }
-            if (imageSculpture.size() == 3) {
-                updateImage(Long.valueOf(imageSculpture.get(0)), image);
-            }
-        }
-    }
-
-    private void addImage(Plan plan, MultipartFile image) throws IOException {
-        S3FileResponseDto imageRes = imageService.getImageRes(image);
-        imageService.createImage(plan, imageRes);
-    }
-
-    private void updateImage(Long imageId, MultipartFile image) throws IOException {
-        imageService.deleteOriginFile(imageId);
-        imageService.updateImage(imageId, image);
     }
 
     @Transactional

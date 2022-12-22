@@ -40,20 +40,18 @@ public class PlanController {
     @PostMapping
     public void create(
             @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
-            @RequestPart(value = "thumbnail") MultipartFile thumbnail,
-            @RequestPart(value = "images") List<MultipartFile> images
+            @RequestPart(value = "thumbnail") MultipartFile thumbnail
             ) throws IOException {
-        planService.createPlan(new PlanRequestDto(req, thumbnail, images));
+        planService.createPlan(new PlanRequestDto(req, thumbnail));
     }
 
     @PutMapping("/{planId}")
     public void update(
             @PathVariable Long planId,
             @RequestPart PlanUpdateInfoRequestDto req,
-            @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail,
-            @RequestPart(value = "images", required = false) List<MultipartFile> images
+            @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail
     ) throws IOException {
-        planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail, images));
+        planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail));
     }
 
     @DeleteMapping("/{planId}")

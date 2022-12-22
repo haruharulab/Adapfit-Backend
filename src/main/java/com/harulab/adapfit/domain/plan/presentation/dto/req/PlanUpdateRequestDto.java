@@ -33,33 +33,24 @@ public class PlanUpdateRequestDto {
     @NotNull(message = IMAGE_NOT_NULL)
     private final MultipartFile thumbnail;
 
-    @NotNull(message = IMAGE_NOT_NULL)
-    private final List<MultipartFile> images;
-
     private final List<Long> removal;
 
     @Builder
     public PlanUpdateRequestDto(
             Long planId,
             PlanUpdateInfoRequestDto req,
-            MultipartFile thumbnail,
-            List<MultipartFile> images
+            MultipartFile thumbnail
     ) {
         this.categoryId = req.getCategoryId();
         this.planId = planId;
         this.title = req.getTitle();
         this.content = req.getContent();
         this.thumbnail = thumbnail;
-        this.images = images;
         this.removal = req.getRemoval();
     }
 
     public boolean thumbnailIsNotNull() {
         return thumbnail != null;
-    }
-
-    public boolean imagesIsNotNull() {
-        return images != null;
     }
 
     public boolean removalIsNotNull() {
