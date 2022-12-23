@@ -21,6 +21,8 @@ public class PlanRequestDto {
     @NotBlank(message = TITLE_NOT_BLANK)
     private final String title;
 
+    private final String subTitle;
+
     @NotBlank(message = CONTENT_NOT_BLANK)
     private final String content;
 
@@ -31,6 +33,7 @@ public class PlanRequestDto {
     public PlanRequestDto(PlanCreateRequestDto req, MultipartFile thumbnail) {
         this.categoryId = req.getCategoryId();
         this.title = req.getTitle();
+        this.subTitle = req.getSubTitle();
         this.content = req.getContent();
         this.thumbnail = thumbnail;
     }
@@ -38,6 +41,7 @@ public class PlanRequestDto {
     public Plan toEntity(S3FileResponseDto fileDto) {
         return Plan.builder()
                 .title(title)
+                .subTitle(subTitle)
                 .content(content)
                 .thumbnailName(fileDto.getFileName())
                 .thumbnailUrl(fileDto.getFileUrl())

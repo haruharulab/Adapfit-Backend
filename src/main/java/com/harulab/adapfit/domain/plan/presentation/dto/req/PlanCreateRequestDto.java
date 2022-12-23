@@ -23,14 +23,17 @@ public class PlanCreateRequestDto {
     @NotBlank(message = TITLE_NOT_BLANK)
     private String title;
 
+    private String subTitle;
+
     @NotBlank(message = CONTENT_NOT_BLANK)
     private String content;
 
 
     @Builder
-    public PlanCreateRequestDto(Long categoryId, String title, String content) {
+    public PlanCreateRequestDto(Long categoryId, String title, String subTitle, String content) {
         this.categoryId = categoryId;
         this.title = title;
+        this.subTitle = subTitle;
         this.content = content;
     }
 
