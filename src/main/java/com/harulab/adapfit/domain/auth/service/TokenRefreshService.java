@@ -22,7 +22,8 @@ public class TokenRefreshService {
     }
 
     private TokenRefreshResponseDto getNewTokens(RefreshToken redisRefreshToken) {
-        String newAccessToken = jwtProvider.generateAccessToken(redisRefreshToken.getAuthId(), redisRefreshToken.getRole());
+        String newAccessToken = jwtProvider.generateAccessToken
+                (redisRefreshToken.getAuthId(), redisRefreshToken.getRole());
 
         return TokenRefreshResponseDto.builder()
                 .accessToken(newAccessToken)

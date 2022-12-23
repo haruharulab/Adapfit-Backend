@@ -37,7 +37,7 @@ public class JwtProvider {
                 .authId(authId)
                 .token(refreshToken)
                 .role(role)
-                .ttl(jwtProperties.getRefreshExp() * 1000)
+                .ttl(jwtProperties.getRefreshExp())
                 .build());
 
         return refreshToken;

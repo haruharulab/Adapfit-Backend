@@ -7,8 +7,6 @@ import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
 import com.harulab.adapfit.domain.notice.service.NoticeService;
 import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
