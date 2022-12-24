@@ -1,14 +1,18 @@
 package com.harulab.adapfit.domain.recruitment.service;
 
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
+import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
+import com.harulab.adapfit.domain.recruitment.domain.type.Position;
 import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentCreateRequestDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
+import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentInfoResponseDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,4 +49,10 @@ public class RecruitmentService {
         recruitmentFacade.deleteByRecruitId(recruitId);
     }
 
+    public RecruitmentInfoResponseDto getInformation() {
+        List<Position> positions = Arrays.asList(Position.values());
+        List<String> careers = List.of("신입", "경력");
+        List<EmploymentPattern> employmentPatterns = Arrays.asList(EmploymentPattern.values());
+        return new RecruitmentInfoResponseDto(positions, careers, employmentPatterns);
+    }
 }

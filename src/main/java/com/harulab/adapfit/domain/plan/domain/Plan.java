@@ -15,7 +15,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Objects;
 
 @DynamicUpdate

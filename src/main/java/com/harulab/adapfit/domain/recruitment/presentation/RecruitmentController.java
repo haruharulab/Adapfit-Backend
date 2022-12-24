@@ -2,6 +2,7 @@ package com.harulab.adapfit.domain.recruitment.presentation;
 
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentCreateRequestDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
+import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentInfoResponseDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
 import com.harulab.adapfit.domain.recruitment.service.RecruitmentService;
 import com.harulab.adapfit.global.generic.ResultResponse;
@@ -33,6 +34,11 @@ public class RecruitmentController {
     @GetMapping("/{recruitmentId}")
     public RecruitmentResponseDto getDetail(@PathVariable Long recruitmentId) {
         return recruitmentService.detail(recruitmentId);
+    }
+
+    @GetMapping("/info")
+    public RecruitmentInfoResponseDto getInfo() {
+        return recruitmentService.getInformation();
     }
 
     @PostMapping

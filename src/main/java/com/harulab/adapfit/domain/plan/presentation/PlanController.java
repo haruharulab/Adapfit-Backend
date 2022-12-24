@@ -8,8 +8,6 @@ import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
 import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
