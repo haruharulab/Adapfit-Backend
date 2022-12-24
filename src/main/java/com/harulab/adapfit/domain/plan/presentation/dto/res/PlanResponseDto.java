@@ -9,6 +9,7 @@ public class PlanResponseDto {
 
     private final Long planId;
     private final String title;
+    private final String subTitle;
     private final String content;
     private final String thumbnail;
     private final CategoryResponseDto category;
@@ -16,6 +17,7 @@ public class PlanResponseDto {
     public PlanResponseDto(Plan plan, Category category) {
         this.planId = plan.getId();
         this.title = plan.getTitle();
+        this.subTitle = plan.getSubTitle();
         this.content = plan.getContent();
         this.thumbnail = plan.getThumbnailUrl();
         this.category = new CategoryResponseDto(category);
