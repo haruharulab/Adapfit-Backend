@@ -52,7 +52,7 @@ public class RecruitmentService {
     public RecruitmentInfoResponseDto getInformation() {
         List<Position> positions = Arrays.asList(Position.values());
         List<String> careers = List.of("신입", "경력");
-        List<EmploymentPattern> employmentPatterns = Arrays.asList(EmploymentPattern.values());
+        List<String> employmentPatterns = List.of("정규직", "비정규직");
         return new RecruitmentInfoResponseDto(positions, careers, employmentPatterns);
     }
 }

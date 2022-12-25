@@ -17,9 +17,13 @@ public class RecruitmentInfoResponseDto {
 
     private final List<Position> positionList;
     private final List<String> careerList;
-    private final List<EmploymentPattern> patternList;
+    private final List<String> patternList;
 
-    public RecruitmentInfoResponseDto(List<Position> positionList, List<String> careerList, List<EmploymentPattern> patternList) {
+    public RecruitmentInfoResponseDto(
+            List<Position> positionList,
+            List<String> careerList,
+            List<String> patternList
+    ) {
         this.positionList = positionList;
         this.careerList = careerList;
         this.patternList = patternList;
