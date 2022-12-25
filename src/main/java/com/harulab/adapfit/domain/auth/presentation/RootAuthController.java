@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/super/auth")
-public class SuperAdminAuthController {
+public class RootAuthController {
 
     private final SuperAdminLoginService superAdminLoginService;
     private final LogoutService logoutService;

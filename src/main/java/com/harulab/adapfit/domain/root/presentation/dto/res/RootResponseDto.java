@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.root.presentation.dto.res;
 
-import com.harulab.adapfit.domain.root.domain.SuperAdmin;
+import com.harulab.adapfit.domain.root.domain.Root;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 
 @Getter
-public class SuperAdminResponseDto {
+public class RootResponseDto {
 
     private final Long superAdminId;
     private final LocalDateTime createdAt;
@@ -20,11 +20,11 @@ public class SuperAdminResponseDto {
     private final String email;
     private final String nickname;
 
-    public SuperAdminResponseDto(SuperAdmin superAdmin) {
-        this.superAdminId = superAdmin.getId();
-        this.createdAt = superAdmin.getCreatedAt();
-        this.authority = superAdmin.getAuthority().name();
-        this.email = superAdmin.getEmail();
-        this.nickname = superAdmin.getNickname();
+    public RootResponseDto(Root root) {
+        this.superAdminId = root.getId();
+        this.createdAt = root.getCreatedAt();
+        this.authority = root.getAuthority().name();
+        this.email = root.getEmail();
+        this.nickname = root.getNickname();
     }
 }

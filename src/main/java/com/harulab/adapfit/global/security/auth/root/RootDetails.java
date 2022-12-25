@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.security.auth.root;
 
-import com.harulab.adapfit.domain.root.domain.SuperAdmin;
+import com.harulab.adapfit.domain.root.domain.Root;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,14 +12,14 @@ import java.util.Collections;
 
 @Getter
 @AllArgsConstructor
-public class SuperAdminDetails implements UserDetails {
+public class RootDetails implements UserDetails {
 
-    private final SuperAdmin superAdmin;
+    private final Root root;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(
-                new SimpleGrantedAuthority("ROLE_" + superAdmin.getAuthority().name())
+                new SimpleGrantedAuthority("ROLE_" + root.getAuthority().name())
         );
     }
 
@@ -30,7 +30,7 @@ public class SuperAdminDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return superAdmin.getAuthId();
+        return root.getAuthId();
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.harulab.adapfit.global.security.jwt.auth;
 
 import com.harulab.adapfit.global.exception.ExpiredJwtException;
 import com.harulab.adapfit.global.exception.InvalidJwtException;
-import com.harulab.adapfit.global.security.auth.root.SuperAdminDetailsService;
+import com.harulab.adapfit.global.security.auth.root.RootDetailsService;
 import com.harulab.adapfit.global.security.auth.user.AuthDetailsService;
 import com.harulab.adapfit.global.security.jwt.JwtProperties;
 import io.jsonwebtoken.*;
@@ -19,7 +19,7 @@ import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
 public class JwtAuth {
 
     private final AuthDetailsService authDetailsService;
-    private final SuperAdminDetailsService superAdminDetailsService;
+    private final RootDetailsService rootDetailsService;
     private final JwtProperties jwtProperties;
 
     public Authentication authentication(String token) {
@@ -55,7 +55,7 @@ public class JwtAuth {
             return authDetailsService
                     .loadUserByUsername(body.getSubject());
         }
-        return superAdminDetailsService
+        return rootDetailsService
                 .loadUserByUsername(body.getSubject());
     }
 

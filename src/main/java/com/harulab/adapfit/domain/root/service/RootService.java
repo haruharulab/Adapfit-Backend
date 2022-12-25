@@ -1,12 +1,12 @@
 package com.harulab.adapfit.domain.root.service;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
-import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
-import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
+import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
+import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
-import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.RootCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
-import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
+import com.harulab.adapfit.domain.root.presentation.dto.res.RootResponseDto;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly
-public class SuperAdminService {
+public class RootService {
 
-    private final SuperAdminRepository superAdminRepository;
+    private final RootRepository rootRepository;
     private final PasswordEncoder passwordEncoder;
     private final AdminFacade adminFacade;
-    private final SuperAdminFacade superAdminFacade;
+    private final RootFacade rootFacade;
 
     @Transactional
     public AdminResponseDto createAdmin(AdminCreateRequestDto req) {
@@ -33,13 +33,13 @@ public class SuperAdminService {
         return new AdminResponseDto(admin);
     }
 
-    public SuperAdminResponseDto getMine() {
-        return new SuperAdminResponseDto(superAdminFacade.getCurrentAdmin());
+    public RootResponseDto getMine() {
+        return new RootResponseDto(rootFacade.getCurrentAdmin());
     }
 
     @Transactional
-    public void createRoot(SuperAdminCreateRequestDto req) {
-        superAdminRepository.save(req.toEntity()).encodePassword(passwordEncoder);
+    public void createRoot(RootCreateRequestDto req) {
+        rootRepository.save(req.toEntity()).encodePassword(passwordEncoder);
     }
 
     public List<AdminResponseDto> getUserList() {

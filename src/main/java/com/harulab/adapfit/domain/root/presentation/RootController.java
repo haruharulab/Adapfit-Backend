@@ -3,10 +3,10 @@ package com.harulab.adapfit.domain.root.presentation;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.admin.service.AdminService;
 import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
-import com.harulab.adapfit.domain.root.presentation.dto.req.SuperAdminCreateRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.RootCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
-import com.harulab.adapfit.domain.root.presentation.dto.res.SuperAdminResponseDto;
-import com.harulab.adapfit.domain.root.service.SuperAdminService;
+import com.harulab.adapfit.domain.root.presentation.dto.res.RootResponseDto;
+import com.harulab.adapfit.domain.root.service.RootService;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
 import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +20,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/super")
 @RestController
-public class SuperAdminController {
+public class RootController {
 
-    private final SuperAdminService superAdminService;
+    private final RootService rootService;
     private final AdminService adminService;
 
     @GetMapping
-    public SuperAdminResponseDto getCurrent() {
-        return superAdminService.getMine();
+    public RootResponseDto getCurrent() {
+        return rootService.getMine();
     }
 
     @GetMapping("/{adminId}")
@@ -36,18 +36,18 @@ public class SuperAdminController {
     }
 
     @PostMapping
-    public void createRoot(@RequestBody @Valid SuperAdminCreateRequestDto req) {
-        superAdminService.createRoot(req);
+    public void createRoot(@RequestBody @Valid RootCreateRequestDto req) {
+        rootService.createRoot(req);
     }
 
     @PostMapping("/admin")
     public AdminResponseDto createAdmin(@RequestBody @Valid AdminCreateRequestDto req) {
-        return superAdminService.createAdmin(req);
+        return rootService.createAdmin(req);
     }
 
     @GetMapping("/all")
     public ResultResponse<List<AdminResponseDto>> searchUserList() {
-        List<AdminResponseDto> users = superAdminService.getUserList();
+        List<AdminResponseDto> users = rootService.getUserList();
         return new ResultResponse<>(users.size(), users);
     }
 
@@ -56,7 +56,7 @@ public class SuperAdminController {
             @PathVariable Long adminId,
             @RequestBody @Valid UpdateAccountInfoRequestDto req
     ) {
-        superAdminService.updateAdminInfo(adminId, req);
+        rootService.updateAdminInfo(adminId, req);
     }
 
     @PutMapping("/pw/{adminId}")

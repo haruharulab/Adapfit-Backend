@@ -1,8 +1,8 @@
 package com.harulab.adapfit.domain.auth.service;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
-import com.harulab.adapfit.domain.root.domain.SuperAdmin;
-import com.harulab.adapfit.domain.root.facade.SuperAdminFacade;
+import com.harulab.adapfit.domain.root.domain.Root;
+import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.domain.auth.domain.AuthId;
 import com.harulab.adapfit.domain.auth.domain.RefreshToken;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
@@ -24,7 +24,7 @@ import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
 @ServiceWithTransactionalReadOnly
 public class LogoutService {
 
-    private final SuperAdminFacade superAdminFacade;
+    private final RootFacade rootFacade;
     private final AdminFacade adminFacade;
     private final RefreshTokenRepository refreshTokenRepository;
     private final AuthIdRepository authIdRepository;
@@ -40,7 +40,7 @@ public class LogoutService {
             deleteUserRefreshToken(adminFacade.getCurrentUser());
         }
         if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
-            deleteSuperAdminRefreshToken(superAdminFacade.getCurrentAdmin());
+            deleteSuperAdminRefreshToken(rootFacade.getCurrentAdmin());
         }
 
         saveAuthId(accessToken);
@@ -58,8 +58,8 @@ public class LogoutService {
         refreshTokenRepository.delete(refreshToken);
     }
 
-    private void deleteSuperAdminRefreshToken(SuperAdmin superAdmin) {
-        RefreshToken refreshToken = refreshTokenRepository.findById(superAdmin.getAuthId())
+    private void deleteSuperAdminRefreshToken(Root root) {
+        RefreshToken refreshToken = refreshTokenRepository.findById(root.getAuthId())
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
         refreshTokenRepository.delete(refreshToken);
     }

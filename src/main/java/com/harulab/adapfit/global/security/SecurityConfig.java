@@ -25,7 +25,7 @@ public class SecurityConfig {
     private final JwtAuth jwtAuth;
     private final ObjectMapper objectMapper;
     private static final String ADMIN = "ADMIN";
-    private static final String SUPER = "SUPER_ADMIN";
+    private static final String ROOT = "ROOT";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -47,29 +47,29 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-                // admin
+                // ADMIN
                 .antMatchers(HttpMethod.PUT, "/admin").hasRole(ADMIN)
                 .antMatchers(HttpMethod.DELETE, "/admin").hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/plan").permitAll()
                 .antMatchers(HttpMethod.GET, "/plan/{planId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.POST, "/category").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.PUT, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.POST, "/plan/**").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.POST, "/category").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.PUT, "/category/{categoryId}").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.DELETE, "/category/{categoryId}").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.PUT, "/user/pw").hasAnyRole(ADMIN, ROOT)
 
-                .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, SUPER)
-                .antMatchers(HttpMethod.GET, "/notice/**").hasAnyRole(ADMIN, SUPER)
+                .antMatchers(HttpMethod.POST, "/recruitment").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.PUT, "/recruitment/{recruitId}").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.GET, "/notice/**").hasAnyRole(ADMIN, ROOT)
 
-                // super admin
+                // ROOT
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
                 .antMatchers("/super/auth/token").permitAll()
-                .antMatchers( "/super/**").hasRole(SUPER)
-                .antMatchers("/notice").hasRole(SUPER)
+                .antMatchers( "/super/**").hasRole(ROOT)
+                .antMatchers("/notice").hasRole(ROOT)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()

@@ -19,9 +19,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "SUPER_ADMIN")
 @Entity
-public class SuperAdmin extends BaseTimeEntity {
+public class Root extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,7 +46,7 @@ public class SuperAdmin extends BaseTimeEntity {
     private Authority authority;
 
     @Builder
-    public SuperAdmin(String authId, String password, String email, String nickname, Authority authority) {
+    public Root(String authId, String password, String email, String nickname, Authority authority) {
         this.authId = authId;
         this.password = password;
         this.email = email;
@@ -55,8 +54,8 @@ public class SuperAdmin extends BaseTimeEntity {
         this.authority = authority;
     }
 
-    public void matchedPassword(PasswordEncoder passwordEncoder, SuperAdmin superAdmin, String password) {
-        if (!passwordEncoder.matches(password, superAdmin.getPassword())) {
+    public void matchedPassword(PasswordEncoder passwordEncoder, Root root, String password) {
+        if (!passwordEncoder.matches(password, root.getPassword())) {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
     }

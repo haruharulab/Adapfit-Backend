@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.auth.service;
 
-import com.harulab.adapfit.domain.root.domain.SuperAdmin;
-import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
+import com.harulab.adapfit.domain.root.domain.Root;
+import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.admin.domain.type.Authority;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SuperAdminLoginService {
 
-    private final SuperAdminRepository superAdminRepository;
+    private final RootRepository rootRepository;
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
     private final AuthIdRepository authIdRepository;
@@ -28,16 +28,16 @@ public class SuperAdminLoginService {
         validateLoginInfo(req);
         authIdRepository.findByAuthId(req.getAuthId())
                         .ifPresent(authIdRepository::delete);
-        String accessToken = jwtProvider.generateAccessToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
-        String refreshToken = jwtProvider.generateRefreshToken(req.getAuthId(), Authority.SUPER_ADMIN.name());
+        String accessToken = jwtProvider.generateAccessToken(req.getAuthId(), Authority.ROOT.name());
+        String refreshToken = jwtProvider.generateRefreshToken(req.getAuthId(), Authority.ROOT.name());
 
         return new TokenResponseDto(accessToken, refreshToken, jwtProvider.getExpiredTime());
     }
 
     private void validateLoginInfo(LoginRequestDto req) {
-        SuperAdmin superAdmin = superAdminRepository.findByAuthId(req.getAuthId())
+        Root root = rootRepository.findByAuthId(req.getAuthId())
                 .orElseThrow(() -> new AdapfitException(ErrorCode.ADMIN_NOT_FOUND));
 
-        superAdmin.matchedPassword(passwordEncoder, superAdmin, req.getPassword());
+        root.matchedPassword(passwordEncoder, root, req.getPassword());
     }
 }

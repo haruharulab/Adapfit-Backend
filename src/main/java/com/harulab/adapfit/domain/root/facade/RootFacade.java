@@ -1,0 +1,20 @@
+package com.harulab.adapfit.domain.root.facade;
+
+import com.harulab.adapfit.domain.root.domain.Root;
+import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
+import com.harulab.adapfit.global.exception.AdminNotFoundException;
+import com.harulab.adapfit.global.utils.RootUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@RequiredArgsConstructor
+@Component
+public class RootFacade {
+
+    private final RootRepository rootRepository;
+
+    public Root getCurrentAdmin() {
+        return rootRepository.findByAuthId(RootUtil.getCurrentUser().getUsername())
+                .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
+    }
+}

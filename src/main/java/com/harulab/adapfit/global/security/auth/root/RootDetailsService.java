@@ -1,6 +1,6 @@
 package com.harulab.adapfit.global.security.auth.root;
 
-import com.harulab.adapfit.domain.root.domain.repository.SuperAdminRepository;
+import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
@@ -10,14 +10,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @ServiceWithTransactionalReadOnly
 @RequiredArgsConstructor
-public class SuperAdminDetailsService implements UserDetailsService {
+public class RootDetailsService implements UserDetailsService {
 
-    private final SuperAdminRepository superAdminRepository;
+    private final RootRepository rootRepository;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return superAdminRepository.findByAuthId(authId)
-                .map(SuperAdminDetails::new)
+        return rootRepository.findByAuthId(authId)
+                .map(RootDetails::new)
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
 
