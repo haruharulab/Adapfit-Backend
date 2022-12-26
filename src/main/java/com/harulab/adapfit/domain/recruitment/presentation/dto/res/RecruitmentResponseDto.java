@@ -10,7 +10,7 @@ public class RecruitmentResponseDto {
     private final String title;
     private final String content;
     private final String position;
-    private final Integer career;
+    private final String career;
     private final String employmentPattern;
     private final String workingArea;
 
