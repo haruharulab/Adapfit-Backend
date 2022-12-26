@@ -35,8 +35,7 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
 
     private BooleanExpression careerEq(String career) {
         if (career.length() != 0) {
-            return Integer.parseInt(career) == 0 ?
-                    recruitment.career.eq(0) : recruitment.career.gt(0);
+            return recruitment.career.stringValue().eq(career);
         }
         return null;
     }

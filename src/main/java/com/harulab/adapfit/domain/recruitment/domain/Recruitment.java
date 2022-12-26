@@ -38,7 +38,7 @@ public class Recruitment extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Position position;
 
-    private Integer career;
+    private String career;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -51,7 +51,7 @@ public class Recruitment extends BaseTimeEntity {
     private List<Resume> resumes;
 
     @Builder
-    public Recruitment(String title, String content, Position position, Integer career, EmploymentPattern employmentPattern, String workingArea) {
+    public Recruitment(String title, String content, Position position, String career, EmploymentPattern employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
         this.position = position;

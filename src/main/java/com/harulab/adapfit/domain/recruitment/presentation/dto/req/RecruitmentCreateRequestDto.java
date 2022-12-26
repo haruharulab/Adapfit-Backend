@@ -25,7 +25,7 @@ public class RecruitmentCreateRequestDto {
     @NotBlank(message = POSITION_NOT_BLANK)
     private String position;
 
-    private Integer career;
+    private String career;
 
     @NotBlank(message = EMPLOYMENT_PATTERN)
     private String employmentPattern;
@@ -33,7 +33,7 @@ public class RecruitmentCreateRequestDto {
     private String workingArea;
 
     @Builder
-    public RecruitmentCreateRequestDto(String title, String content, String position, Integer career, String employmentPattern, String workingArea) {
+    public RecruitmentCreateRequestDto(String title, String content, String position, String career, String employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
         this.position = position;
