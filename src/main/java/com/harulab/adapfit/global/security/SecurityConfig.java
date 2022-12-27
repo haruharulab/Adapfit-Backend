@@ -63,13 +63,13 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, ROOT)
                 .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, ROOT)
                 .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, ROOT)
-                .antMatchers(HttpMethod.GET, "/notice/**").hasAnyRole(ADMIN, ROOT)
 
                 // ROOT
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
                 .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(ROOT)
-                .antMatchers("/notice").hasRole(ROOT)
+                .antMatchers(HttpMethod.POST, "/notice").hasRole(ROOT)
+                .antMatchers(HttpMethod.PUT, "/notice/{noticeId}").hasRole(ROOT)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()
