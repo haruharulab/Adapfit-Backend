@@ -18,6 +18,7 @@ public class ResumeResponseDto {
     private final String position;
     private final String name;
     private final LocalDateTime createdAt;
+    private final boolean saw;
 
     public ResumeResponseDto(Resume resume) {
         this.resumeId = resume.getId();
@@ -25,5 +26,6 @@ public class ResumeResponseDto {
         this.position = resume.getRecruitment().getPosition().name();
         this.name = resume.getName();
         this.createdAt = resume.getCreatedAt();
+        this.saw = resume.isSaw();
     }
 }

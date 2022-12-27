@@ -42,8 +42,14 @@ public class Resume extends BaseTimeEntity {
     @JoinColumn(name = "recruitment_id")
     private Recruitment recruitment;
 
+    @Column
+    private boolean saw;
+
     @Builder
-    public Resume(String name, String email, String phoneNumber, String resume, String portfolio, String etcFile, Recruitment recruitment) {
+    public Resume(
+            String name, String email, String phoneNumber, String resume,
+            String portfolio, String etcFile, Recruitment recruitment, boolean saw
+    ) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -51,11 +57,16 @@ public class Resume extends BaseTimeEntity {
         this.portfolio = portfolio;
         this.etcFile = etcFile;
         this.recruitment = recruitment;
+        this.saw = saw;
     }
 
     public void confirmRecruitment(Recruitment recruitment) {
         this.recruitment = recruitment;
         recruitment.addApply(this);
+    }
+
+    public void updateSaw() {
+        this.saw = true;
     }
 
 }

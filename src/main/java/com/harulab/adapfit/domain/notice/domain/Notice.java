@@ -42,4 +42,5 @@ public class Notice extends BaseTimeEntity {
         this.title = req.getTitle();
         this.content = req.getContent();
     }
+
 }

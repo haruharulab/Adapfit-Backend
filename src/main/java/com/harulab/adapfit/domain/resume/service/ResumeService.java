@@ -8,6 +8,7 @@ import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.utils.JwtUtil;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class ResumeService {
 
     private final ResumeFacade resumeFacade;
     private final RecruitmentFacade recruitmentFacade;
+    private final JwtUtil jwtUtil;
 
     public List<ResumeResponseDto> getResumes() {
         return resumeFacade.findAll()
@@ -32,8 +34,14 @@ public class ResumeService {
                 .collect(Collectors.toList());
     }
 
-    public ResumeDetailResponseDto getResume(Long resumeId) {
-        return new ResumeDetailResponseDto(resumeFacade.getDetail(resumeId));
+    @Transactional
+    public ResumeDetailResponseDto getResume(Long resumeId, String token) {
+        Resume resume = resumeFacade.getDetail(resumeId);
+        String authority = jwtUtil.extractAuthorityFromToken(token);
+        if (authority.equals("ROOT")) {
+            resume.updateSaw();
+        }
+        return new ResumeDetailResponseDto(resume);
     }
 
     @Transactional

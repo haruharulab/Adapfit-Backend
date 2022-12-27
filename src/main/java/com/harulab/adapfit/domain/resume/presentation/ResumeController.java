@@ -32,8 +32,11 @@ public class ResumeController {
     }
 
     @GetMapping("/{resumeId}")
-    public ResumeDetailResponseDto getDetail(@PathVariable Long resumeId) {
-        return resumeService.getResume(resumeId);
+    public ResumeDetailResponseDto getDetail(
+            @PathVariable Long resumeId,
+            @RequestHeader("Authorization") String token
+    ) {
+        return resumeService.getResume(resumeId, token);
     }
 
     @PostMapping

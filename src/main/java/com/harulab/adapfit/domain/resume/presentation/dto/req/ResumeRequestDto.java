@@ -44,6 +44,7 @@ public class ResumeRequestDto {
                 .resume(files.get("resume"))
                 .portfolio(files.get("portfolio"))
                 .etcFile(files.get("etcFile"))
+                .saw(false)
                 .build();
     }
 }
