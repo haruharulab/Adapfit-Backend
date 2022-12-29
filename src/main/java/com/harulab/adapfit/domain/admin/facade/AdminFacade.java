@@ -1,10 +1,9 @@
 package com.harulab.adapfit.domain.admin.facade;
 
-import com.corundumstudio.socketio.SocketIOClient;
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.repository.AdminRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
-import com.harulab.adapfit.global.utils.SecurityUtil;
+import com.harulab.adapfit.global.utils.AdminUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +19,8 @@ public class AdminFacade {
         return adminRepository.save(admin);
     }
 
-    public Admin getCurrentUser() {
-        return adminRepository.findById(SecurityUtil.getCurrentUser().getAdmin().getId())
+    public Admin getCurrentAdmin() {
+        return adminRepository.findById(AdminUtil.getCurrentUser().getAdmin().getId())
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
 

@@ -1,6 +1,5 @@
 package com.harulab.adapfit.domain.admin.domain;
 
-import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
 import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
@@ -16,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @DynamicUpdate
 @DynamicInsert
@@ -71,10 +69,6 @@ public class Admin extends BaseTimeEntity {
         if (!passwordEncoder.matches(password, admin.getPassword())) {
             throw new AdapfitException(ErrorCode.PASSWORD_NOT_MATCH);
         }
-    }
-
-    public void updateAuthority() {
-        this.authority = Authority.ADMIN;
     }
 
     public void updateInfo(UpdateAccountInfoRequestDto req) {

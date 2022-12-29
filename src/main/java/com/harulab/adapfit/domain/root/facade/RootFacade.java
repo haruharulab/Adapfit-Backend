@@ -13,7 +13,7 @@ public class RootFacade {
 
     private final RootRepository rootRepository;
 
-    public Root getCurrentAdmin() {
+    public Root getCurrentRoot() {
         return rootRepository.findByAuthId(RootUtil.getCurrentUser().getUsername())
                 .orElseThrow(() -> AdminNotFoundException.EXCEPTION);
     }
