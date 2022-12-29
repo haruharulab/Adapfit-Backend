@@ -19,13 +19,15 @@ public class PlanUpdateInfoRequestDto {
     private Long categoryId;
 
     private String title;
+    private String subTitle;
     private String content;
     private List<Long> removal;
 
     @Builder
-    public PlanUpdateInfoRequestDto(Long categoryId, String title, String content, List<Long> removal) {
+    public PlanUpdateInfoRequestDto(Long categoryId, String title, String subTitle, String content, List<Long> removal) {
         this.categoryId = categoryId;
         this.title = title;
+        this.subTitle = subTitle;
         this.content = content;
         this.removal = removal;
     }

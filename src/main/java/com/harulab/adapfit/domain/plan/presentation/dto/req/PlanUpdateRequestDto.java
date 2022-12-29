@@ -27,6 +27,8 @@ public class PlanUpdateRequestDto {
     @NotBlank(message = TITLE_NOT_BLANK)
     private final String title;
 
+    private final String subTItle;
+
     @NotBlank(message = CONTENT_NOT_BLANK)
     private final String content;
 
@@ -44,6 +46,7 @@ public class PlanUpdateRequestDto {
         this.categoryId = req.getCategoryId();
         this.planId = planId;
         this.title = req.getTitle();
+        this.subTItle = req.getSubTitle();
         this.content = req.getContent();
         this.thumbnail = thumbnail;
         this.removal = req.getRemoval();
