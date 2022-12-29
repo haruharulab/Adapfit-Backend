@@ -34,7 +34,7 @@ public class RootService {
     }
 
     public RootResponseDto getMine() {
-        return new RootResponseDto(rootFacade.getCurrentAdmin());
+        return new RootResponseDto(rootFacade.getCurrentRoot());
     }
 
     @Transactional

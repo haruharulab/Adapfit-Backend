@@ -22,7 +22,7 @@ public class AdminService {
     private final PasswordEncoder passwordEncoder;
 
     public AdminResponseDto getMyInfo() {
-        Admin admin = adminFacade.getCurrentUser();
+        Admin admin = adminFacade.getCurrentAdmin();
         return new AdminResponseDto(admin);
     }
 
@@ -33,7 +33,7 @@ public class AdminService {
 
     @Transactional
     public void updateAccountInfo(UpdateAccountInfoRequestDto req) {
-        Admin admin = adminFacade.getCurrentUser();
+        Admin admin = adminFacade.getCurrentAdmin();
         admin.updateInfo(req);
     }
 
@@ -42,7 +42,7 @@ public class AdminService {
         if (!Objects.equals(req.getNewPassword(), req.getValidatePassword())) {
             throw new PasswordNotMatchException();
         }
-        Admin admin = adminFacade.getCurrentUser();
+        Admin admin = adminFacade.getCurrentAdmin();
         admin.updatePassword(passwordEncoder, req.getNewPassword());
     }
 
