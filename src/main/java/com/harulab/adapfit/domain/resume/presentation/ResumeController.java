@@ -43,8 +43,8 @@ public class ResumeController {
     public void submit(
             @RequestPart(value = "req") @Valid ProxyResumeRequestDto req,
             @RequestPart(value = "resume") MultipartFile resume,
-            @RequestPart(value = "portfolio") MultipartFile portfolio,
-            @RequestPart(value = "etcFile") MultipartFile etcFile
+            @RequestPart(value = "portfolio", required = false) MultipartFile portfolio,
+            @RequestPart(value = "etcFile", required = false) MultipartFile etcFile
             ) throws IOException {
         resumeService.submit(new ResumeRequestDto(req, resume, portfolio, etcFile));
     }
