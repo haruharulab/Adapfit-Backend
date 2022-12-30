@@ -70,6 +70,7 @@ public class SecurityConfig {
                 .antMatchers( "/super/**").hasRole(ROOT)
                 .antMatchers(HttpMethod.POST, "/notice").hasRole(ROOT)
                 .antMatchers(HttpMethod.PUT, "/notice/{noticeId}").hasRole(ROOT)
+                .antMatchers(HttpMethod.GET, "/log/**").hasRole(ROOT)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()

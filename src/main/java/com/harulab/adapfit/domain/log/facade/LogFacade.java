@@ -2,8 +2,11 @@ package com.harulab.adapfit.domain.log.facade;
 
 import com.harulab.adapfit.domain.log.domain.Log;
 import com.harulab.adapfit.domain.log.domain.repository.LogRepository;
+import com.harulab.adapfit.domain.log.presentation.dto.res.LogResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author 최원용
@@ -19,5 +22,9 @@ public class LogFacade {
 
     public void save(Log log) {
         logRepository.save(log);
+    }
+
+    public List<Log> findAll() {
+        return logRepository.findAll();
     }
 }

@@ -3,6 +3,7 @@ package com.harulab.adapfit.domain.log.service;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.domain.log.domain.Log;
 import com.harulab.adapfit.domain.log.facade.LogFacade;
+import com.harulab.adapfit.domain.log.presentation.dto.res.LogResponse;
 import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.global.utils.JwtUtil;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -47,5 +50,12 @@ public class LogService {
                 .didAt(LocalDateTime.now())
                 .message(message)
                 .build());
+    }
+
+    public List<LogResponse> searchAll() {
+        return logFacade.findAll()
+                .stream()
+                .map(LogResponse::new)
+                .collect(Collectors.toList());
     }
 }
