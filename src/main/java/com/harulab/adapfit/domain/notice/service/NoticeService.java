@@ -43,7 +43,7 @@ public class NoticeService {
     }
 
     public List<NoticeResponseDto> searchAll() {
-        return noticeRepository.findAll()
+        return noticeRepository.findAllByDateDesc()
                 .stream()
                 .map(NoticeResponseDto::new)
                 .collect(Collectors.toList());

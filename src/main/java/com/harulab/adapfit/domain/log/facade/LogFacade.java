@@ -2,7 +2,6 @@ package com.harulab.adapfit.domain.log.facade;
 
 import com.harulab.adapfit.domain.log.domain.Log;
 import com.harulab.adapfit.domain.log.domain.repository.LogRepository;
-import com.harulab.adapfit.domain.log.presentation.dto.res.LogResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
