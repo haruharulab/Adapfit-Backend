@@ -28,7 +28,7 @@ public class ResumeService {
     private final JwtUtil jwtUtil;
 
     public List<ResumeResponseDto> getResumes() {
-        return resumeFacade.findAll()
+        return resumeFacade.findAllByDateDesc()
                 .stream()
                 .map(ResumeResponseDto::new)
                 .collect(Collectors.toList());

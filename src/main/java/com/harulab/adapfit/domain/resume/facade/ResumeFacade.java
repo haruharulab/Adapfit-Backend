@@ -21,8 +21,8 @@ public class ResumeFacade {
     private final ResumeRepository resumeRepository;
     private final S3Uploader s3Uploader;
 
-    public List<Resume> findAll() {
-        return resumeRepository.findAll();
+    public List<Resume> findAllByDateDesc() {
+        return resumeRepository.findAllByDateDesc();
     }
 
     public Resume getDetail(Long resumeId) {
