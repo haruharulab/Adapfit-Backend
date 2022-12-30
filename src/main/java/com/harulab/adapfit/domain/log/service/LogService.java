@@ -1,13 +1,15 @@
 package com.harulab.adapfit.domain.log.service;
 
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
+import com.harulab.adapfit.domain.log.domain.Log;
 import com.harulab.adapfit.domain.log.facade.LogFacade;
-import com.harulab.adapfit.domain.log.presentation.dto.req.LogCreateRequestDto;
 import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.global.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 /**
  * @author 최원용
@@ -25,17 +27,25 @@ public class LogService {
     private final JwtUtil jwtUtil;
 
     @Transactional
-    public void save(LogCreateRequestDto req, String token) {
+    public void save(String message, String token) {
         String authority = jwtUtil.extractAuthorityFromToken(token);
-        if (authority.equals("ADMIN")) authorityIsAdmin(req);
-        if (authority.equals("ROOT")) authorityIsRoot(req);
+        if (authority.equals("ADMIN")) authorityIsAdmin(message);
+        if (authority.equals("ROOT")) authorityIsRoot(message);
     }
 
-    private void authorityIsAdmin(LogCreateRequestDto req) {
-        logFacade.save(req.toEntity(adminFacade.getCurrentAdmin().getNickname()));
+    private void authorityIsAdmin(String message) {
+        logFacade.save(Log.builder()
+                .nickname(adminFacade.getCurrentAdmin().getNickname())
+                .didAt(LocalDateTime.now())
+                .message(message)
+                .build());
     }
 
-    private void authorityIsRoot(LogCreateRequestDto req) {
-        logFacade.save(req.toEntity(rootFacade.getCurrentRoot().getNickname()));
+    private void authorityIsRoot(String message) {
+        logFacade.save(Log.builder()
+                .nickname(rootFacade.getCurrentRoot().getNickname())
+                .didAt(LocalDateTime.now())
+                .message(message)
+                .build());
     }
 }

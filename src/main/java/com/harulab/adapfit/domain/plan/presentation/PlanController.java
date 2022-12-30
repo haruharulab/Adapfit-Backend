@@ -38,22 +38,27 @@ public class PlanController {
     @PostMapping
     public void create(
             @RequestPart(value = "req") @Valid PlanCreateRequestDto req,
-            @RequestPart(value = "thumbnail") MultipartFile thumbnail
+            @RequestPart(value = "thumbnail") MultipartFile thumbnail,
+            @RequestHeader(name = "Authorization") String token
             ) throws IOException {
-        planService.createPlan(new PlanRequestDto(req, thumbnail));
+        planService.createPlan(new PlanRequestDto(req, thumbnail), token);
     }
 
     @PutMapping("/{planId}")
     public void update(
             @PathVariable Long planId,
             @RequestPart PlanUpdateInfoRequestDto req,
-            @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail
+            @RequestPart(value = "thumbnail", required = false) MultipartFile thumbnail,
+            @RequestHeader(name = "Authorization") String token
     ) throws IOException {
-        planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail));
+        planService.updatePlan(new PlanUpdateRequestDto(planId, req, thumbnail), token);
     }
 
     @DeleteMapping("/{planId}")
-    public void delete(@PathVariable Long planId) {
-        planService.deletePlan(planId);
+    public void delete(
+            @PathVariable Long planId,
+            @RequestHeader(name = "Authorization") String token
+    ) {
+        planService.deletePlan(planId, token);
     }
 }

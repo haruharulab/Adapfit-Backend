@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.image.service.ImageService;
+import com.harulab.adapfit.domain.log.service.LogService;
 import com.harulab.adapfit.domain.plan.domain.Plan;
 import com.harulab.adapfit.domain.plan.facade.PlanFacade;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
@@ -27,24 +28,27 @@ public class PlanService {
     private final AdminFacade adminFacade;
     private final ImageService imageService;
     private final CategoryService categoryService;
+    private final LogService logService;
 
     @Transactional
-    public void createPlan(PlanRequestDto req) throws IOException {
+    public void createPlan(PlanRequestDto req, String token) throws IOException {
         S3FileResponseDto thumbnailRes = imageService.getImageRes(req.getThumbnail());
         Plan plan = req.toEntity(thumbnailRes);
 
         Category category = categoryService.savingInCategory(req.getCategoryId());
         plan.confirmCategory(category);
         planFacade.save(plan);
+        logService.save(req.getTitle() + " 플랜을 생성하였습니다.", token);
     }
 
     @Transactional
-    public void updatePlan(PlanUpdateRequestDto req) throws IOException {
+    public void updatePlan(PlanUpdateRequestDto req, String token) throws IOException {
         Plan plan = planFacade.findByPlanId(req.getPlanId());
         plan.updateInfo(req, categoryService.detail(req.getCategoryId()));
 
         updateThumbnail(plan, req);
         isRemovalNotNull(req);
+        logService.save(req.getTitle() + " 플랜을 수정하였습니다.", token);
     }
 
     private void isRemovalNotNull(PlanUpdateRequestDto req) {
@@ -62,9 +66,10 @@ public class PlanService {
     }
 
     @Transactional
-    public void deletePlan(Long planId) {
+    public void deletePlan(Long planId, String token) {
         Plan plan = planFacade.findByPlanId(planId);
         Admin admin = adminFacade.getCurrentAdmin();
+        logService.save(plan.getTitle() + " 플랜을 삭제하였습니다.", token);
 
         plan.isRightWriter(admin);
         planFacade.deletePlan(plan);

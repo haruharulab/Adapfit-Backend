@@ -76,7 +76,7 @@ public class Plan extends BaseTimeEntity {
 
     public void updateInfo(PlanUpdateRequestDto req, Category category) {
         this.title = req.getTitle();
-        this.subTitle = req.getSubTItle();
+        this.subTitle = req.getSubTitle();
         this.content = req.getContent();
         this.category = category;
     }
