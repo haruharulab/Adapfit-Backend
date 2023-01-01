@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @EnableJpaAuditing
 @ConfigurationPropertiesScan
 @SpringBootApplication
@@ -14,4 +17,8 @@ public class AdapfitApplication {
 		SpringApplication.run(AdapfitApplication.class, args);
 	}
 
+	@PostConstruct
+	public void startedAt(){
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+	}
 }

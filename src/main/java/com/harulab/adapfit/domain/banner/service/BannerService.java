@@ -42,7 +42,6 @@ public class BannerService {
         Banner banner = bannerFacade.findById(id);
         bannerFacade.delete(banner);
         logService.save("배너를 삭제했습니다.", token);
-
     }
 
 }
