@@ -42,20 +42,25 @@ public class RecruitmentController {
     }
 
     @PostMapping
-    public void createRecruit(@RequestBody @Valid RecruitmentCreateRequestDto req) {
-        recruitmentService.createRecruitment(req);
+    public void createRecruit(
+            @RequestBody @Valid RecruitmentCreateRequestDto req,
+            @RequestHeader(name = "Authorization") String token) {
+        recruitmentService.createRecruitment(req, token);
     }
 
     @PutMapping("/{recruitId}")
     public void updateRecruit(
             @PathVariable Long recruitId,
-            @RequestBody @Valid RecruitmentUpdateRequestDto req
+            @RequestBody @Valid RecruitmentUpdateRequestDto req,
+            @RequestHeader(name = "Authorization") String token
     ) {
-        recruitmentService.updateRecruitment(recruitId, req);
+        recruitmentService.updateRecruitment(recruitId, req, token);
     }
 
     @DeleteMapping("/{recruitId}")
-    public void deleteRecruit(@PathVariable Long recruitId) {
-        recruitmentService.deleteRecruitment(recruitId);
+    public void deleteRecruit(
+            @PathVariable Long recruitId,
+            @RequestHeader(name = "Authorization") String token) {
+        recruitmentService.deleteRecruitment(recruitId, token);
     }
 }

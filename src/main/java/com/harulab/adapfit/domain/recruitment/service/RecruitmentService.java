@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.recruitment.service;
 
+import com.harulab.adapfit.domain.log.service.LogService;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.domain.type.Position;
@@ -21,10 +22,12 @@ import java.util.stream.Collectors;
 public class RecruitmentService {
 
     private final RecruitmentFacade recruitmentFacade;
+    private final LogService logService;
 
     @Transactional
-    public void createRecruitment(RecruitmentCreateRequestDto req) {
+    public void createRecruitment(RecruitmentCreateRequestDto req, String token) {
         recruitmentFacade.create(req.toEntity());
+        logService.save(req.getTitle() + " 채용공고를 생성하였습니다.", token);
     }
 
     public List<RecruitmentResponseDto> getRecruit(String position, String career, String employmentPattern) {
@@ -39,13 +42,16 @@ public class RecruitmentService {
     }
 
     @Transactional
-    public void updateRecruitment(Long recruitId, RecruitmentUpdateRequestDto req) {
+    public void updateRecruitment(Long recruitId, RecruitmentUpdateRequestDto req, String token) {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(recruitId);
         recruitment.updateInfo(req);
+        logService.save(req.getTitle() + " 채용공고를 수정하였습니다.", token);
     }
 
     @Transactional
-    public void deleteRecruitment(Long recruitId) {
+    public void deleteRecruitment(Long recruitId, String token) {
+        Recruitment recruit = recruitmentFacade.findByRecruitId(recruitId);
+        logService.save(recruit.getTitle() + " 채용공고를 삭제하였습니다.", token);
         recruitmentFacade.deleteByRecruitId(recruitId);
     }
 
