@@ -29,14 +29,18 @@ public class BannerController {
     @PostMapping
     public void upload(
             @RequestPart(value = "link", required = false) String link,
-            @RequestPart(value = "image") MultipartFile image
+            @RequestPart(value = "image") MultipartFile image,
+            @RequestHeader(name = "Authorization") String token
     ) throws IOException {
-        bannerService.upload(new UploadBannerRequest(link, image));
+        bannerService.upload(new UploadBannerRequest(link, image), token);
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
-        bannerService.delete(id);
+    public void delete(
+            @PathVariable Long id,
+            @RequestHeader(name = "Authorization") String token
+    ) {
+        bannerService.delete(id, token);
     }
 
 }
