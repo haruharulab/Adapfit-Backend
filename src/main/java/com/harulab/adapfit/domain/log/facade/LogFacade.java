@@ -23,7 +23,7 @@ public class LogFacade {
         logRepository.save(log);
     }
 
-    public List<Log> findAll() {
-        return logRepository.findAll();
+    public List<Log> findAllOrderByDateAtDesc() {
+        return logRepository.findAllOrderByDateAtDesc();
     }
 }

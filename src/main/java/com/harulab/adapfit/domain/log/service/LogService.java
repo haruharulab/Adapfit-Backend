@@ -53,7 +53,7 @@ public class LogService {
     }
 
     public List<LogResponse> searchAll() {
-        return logFacade.findAll()
+        return logFacade.findAllOrderByDateAtDesc()
                 .stream()
                 .map(LogResponse::new)
                 .collect(Collectors.toList());
