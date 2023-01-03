@@ -2,9 +2,13 @@ package com.harulab.adapfit.domain.position.service;
 
 import com.harulab.adapfit.domain.position.facade.PositionFacade;
 import com.harulab.adapfit.domain.position.presentation.dto.req.PositionCreateRequest;
+import com.harulab.adapfit.domain.position.presentation.dto.res.PositionResponse;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -23,4 +27,9 @@ public class PositionService {
         positionFacade.save(req.toEntity());
     }
 
+    public List<PositionResponse> searchAll() {
+        return positionFacade.findAll().stream()
+                .map(PositionResponse::new)
+                .collect(Collectors.toList());
+    }
 }

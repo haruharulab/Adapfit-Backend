@@ -1,9 +1,13 @@
 package com.harulab.adapfit.domain.position.presentation;
 
 import com.harulab.adapfit.domain.position.presentation.dto.req.PositionCreateRequest;
+import com.harulab.adapfit.domain.position.presentation.dto.res.PositionResponse;
 import com.harulab.adapfit.domain.position.service.PositionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author 최원용
@@ -21,5 +25,11 @@ public class PositionController {
     @PostMapping
     public void create(@RequestBody PositionCreateRequest req) {
         positionService.create(req);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PositionResponse>> getAll() {
+        List<PositionResponse> positionResponses = positionService.searchAll();
+        return ResponseEntity.ok(positionResponses);
     }
 }
