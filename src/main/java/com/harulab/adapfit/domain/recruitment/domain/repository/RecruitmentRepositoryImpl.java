@@ -28,7 +28,7 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
     }
 
     private BooleanExpression positionEq(Position position) {
-        if (position != null) return recruitment.position.contains(position);
+        if (position != null) return recruitment.position.eq(position);
         return null;
     }
 
