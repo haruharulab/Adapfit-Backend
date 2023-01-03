@@ -32,7 +32,8 @@ public class RecruitmentService {
     }
 
     public List<RecruitmentResponseDto> getRecruit(String positionName, String career, String employmentPattern) {
-        Position position = positionFacade.findByPosition(positionName);
+        Position position = null;
+        if (positionName.length() != 0) position = positionFacade.findByPosition(positionName);
         return recruitmentFacade.findRecruitByDynamicQuery(position, career, employmentPattern)
                 .stream()
                 .map(RecruitmentResponseDto::new)
