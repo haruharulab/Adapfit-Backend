@@ -1,9 +1,7 @@
 package com.harulab.adapfit.domain.resume.presentation;
 
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeRequestDto;
-import com.harulab.adapfit.domain.resume.presentation.dto.req.ResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeRequestDto;
-import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeUpdateRequestDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.domain.resume.service.ResumeService;
@@ -39,7 +37,7 @@ public class ResumeController {
         return resumeService.getResume(resumeId, token);
     }
 
-    @PostMapping("/{recruitmentId}")
+    @PostMapping
     public void submit(
             @RequestPart(value = "req") @Valid ProxyResumeRequestDto req,
             @RequestPart(value = "resume") MultipartFile resume,
