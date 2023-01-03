@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.recruitment.domain.repository;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,7 +16,7 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
     private final JPAQueryFactory query;
 
     @Override
-    public List<Recruitment> searchRecruitment(String position, String career, String employmentPattern) {
+    public List<Recruitment> searchRecruitment(Position position, String career, String employmentPattern) {
         return query.selectFrom(recruitment)
                 .where(
                         positionEq(position),
@@ -26,10 +27,8 @@ public class RecruitmentRepositoryImpl implements RecruitmentCustomRepository {
                 .fetch();
     }
 
-    private BooleanExpression positionEq(String position) {
-        if (position.length() != 0) {
-            return recruitment.position.stringValue().eq(position);
-        }
+    private BooleanExpression positionEq(Position position) {
+        if (position != null) return recruitment.position.contains(position);
         return null;
     }
 

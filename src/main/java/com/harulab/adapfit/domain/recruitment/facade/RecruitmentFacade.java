@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.recruitment.facade;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.repository.RecruitmentRepository;
 import com.harulab.adapfit.domain.recruitment.exception.RecruitmentNotFoundException;
@@ -14,8 +15,8 @@ public class RecruitmentFacade {
 
     private final RecruitmentRepository recruitmentRepository;
 
-    public void create(Recruitment recruitment) {
-        recruitmentRepository.save(recruitment);
+    public Recruitment create(Recruitment recruitment) {
+        return recruitmentRepository.save(recruitment);
     }
 
     public Recruitment findByRecruitId(Long recruitId) {
@@ -27,7 +28,7 @@ public class RecruitmentFacade {
         recruitmentRepository.deleteById(recruitId);
     }
 
-    public List<Recruitment> findRecruitByDynamicQuery(String position, String career, String employmentPattern) {
+    public List<Recruitment> findRecruitByDynamicQuery(Position position, String career, String employmentPattern) {
         return recruitmentRepository.searchRecruitment(position, career, employmentPattern);
     }
 }

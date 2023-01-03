@@ -1,9 +1,8 @@
 package com.harulab.adapfit.domain.recruitment.presentation.dto.req;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
-import com.harulab.adapfit.domain.recruitment.domain.type.Position;
-import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,11 +41,11 @@ public class RecruitmentCreateRequestDto {
         this.workingArea = workingArea;
     }
 
-    public Recruitment toEntity() {
+    public Recruitment toEntity(Position position) {
         return Recruitment.builder()
+                .position(position)
                 .title(title)
                 .content(content)
-                .position(Position.valueOf(position))
                 .career(career)
                 .employmentPattern(EmploymentPattern.valueOf(employmentPattern))
                 .workingArea(workingArea)

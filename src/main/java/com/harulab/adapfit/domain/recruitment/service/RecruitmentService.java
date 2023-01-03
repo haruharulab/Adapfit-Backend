@@ -1,9 +1,9 @@
 package com.harulab.adapfit.domain.recruitment.service;
 
 import com.harulab.adapfit.domain.log.service.LogService;
+import com.harulab.adapfit.domain.position.domain.Position;
+import com.harulab.adapfit.domain.position.facade.PositionFacade;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
-import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
-import com.harulab.adapfit.domain.recruitment.domain.type.Position;
 import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentCreateRequestDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
@@ -13,7 +13,6 @@ import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,14 +22,17 @@ public class RecruitmentService {
 
     private final RecruitmentFacade recruitmentFacade;
     private final LogService logService;
+    private final PositionFacade positionFacade;
 
     @Transactional
     public void createRecruitment(RecruitmentCreateRequestDto req, String token) {
-        recruitmentFacade.create(req.toEntity());
+        Position position = positionFacade.findByPosition(req.getPosition());
+        recruitmentFacade.create(req.toEntity(position));
         logService.save(req.getTitle() + " 채용공고를 생성하였습니다.", token);
     }
 
-    public List<RecruitmentResponseDto> getRecruit(String position, String career, String employmentPattern) {
+    public List<RecruitmentResponseDto> getRecruit(String positionName, String career, String employmentPattern) {
+        Position position = positionFacade.findByPosition(positionName);
         return recruitmentFacade.findRecruitByDynamicQuery(position, career, employmentPattern)
                 .stream()
                 .map(RecruitmentResponseDto::new)
@@ -56,7 +58,7 @@ public class RecruitmentService {
     }
 
     public RecruitmentInfoResponseDto getInformation() {
-        List<Position> positions = Arrays.asList(Position.values());
+        List<Position> positions = positionFacade.findAll();
         List<String> careers = List.of("신입", "경력", "상관없음");
         List<String> employmentPatterns = List.of("정규직", "비정규직");
         return new RecruitmentInfoResponseDto(positions, careers, employmentPatterns);

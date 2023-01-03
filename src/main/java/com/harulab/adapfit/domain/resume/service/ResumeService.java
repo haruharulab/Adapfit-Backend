@@ -48,10 +48,10 @@ public class ResumeService {
     public void submit(ResumeRequestDto req) throws IOException {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(req.getRecruitmentId());
 
-        Resume resumeReq = req.toEntity(submitOptionFiles(req));
-        resumeReq.confirmRecruitment(recruitment);
+        Resume resume = req.toEntity(submitOptionFiles(req));
+        resume.confirmRecruitment(recruitment);
 
-        resumeFacade.submitResume(resumeReq);
+        resumeFacade.submitResume(resume);
     }
 
     public Map<String, String> submitOptionFiles(ResumeRequestDto req) throws IOException {

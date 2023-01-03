@@ -1,10 +1,12 @@
 package com.harulab.adapfit.domain.resume.presentation.dto.res;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author 최원용
@@ -17,6 +19,7 @@ public class ResumeDetailResponseDto {
 
     private final Long resumeId;
     private final RecruitmentResponseDto recruitment;
+    private final String position;
     private final String email;
     private final String resume;
     private final String portFolio;
@@ -29,6 +32,7 @@ public class ResumeDetailResponseDto {
         this.resumeId = resume.getId();
         this.recruitment = new RecruitmentResponseDto(resume.getRecruitment());
         this.email = resume.getEmail();
+        this.position = resume.getRecruitment().getPosition().getPosition();
         this.resume = resume.getResume();
         this.portFolio = resume.getPortfolio();
         this.etcFile = resume.getEtcFile();

@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.recruitment.domain;
 
-import com.harulab.adapfit.domain.recruitment.domain.type.Position;
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
@@ -34,8 +34,8 @@ public class Recruitment extends BaseTimeEntity {
     @Lob
     private String content;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
+    @OneToOne
+    @JoinColumn(name = "position_id")
     private Position position;
 
     private String career;
@@ -51,10 +51,10 @@ public class Recruitment extends BaseTimeEntity {
     private List<Resume> resumes;
 
     @Builder
-    public Recruitment(String title, String content, Position position, String career, EmploymentPattern employmentPattern, String workingArea) {
+    public Recruitment(Position position, String title, String content, String career, EmploymentPattern employmentPattern, String workingArea) {
+        this.position = position;
         this.title = title;
         this.content = content;
-        this.position = position;
         this.career = career;
         this.employmentPattern = employmentPattern;
         this.workingArea = workingArea;
@@ -63,7 +63,6 @@ public class Recruitment extends BaseTimeEntity {
     public void updateInfo(RecruitmentUpdateRequestDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();
-        this.position = Position.valueOf(req.getPosition());
         this.career = req.getCareer();
         this.employmentPattern = EmploymentPattern.valueOf(req.getEmploymentPattern());
         this.workingArea = req.getWorkingArea();

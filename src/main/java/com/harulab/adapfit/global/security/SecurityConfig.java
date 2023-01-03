@@ -71,6 +71,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/notice").hasRole(ROOT)
                 .antMatchers(HttpMethod.PUT, "/notice/{noticeId}").hasRole(ROOT)
                 .antMatchers(HttpMethod.GET, "/log/**").hasRole(ROOT)
+                .antMatchers("/position/**").hasRole(ROOT)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()

@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 public class ResumeResponseDto {
     private final Long resumeId;
     private final Long recruitmentId;
-    private final String position;
     private final String name;
     private final LocalDateTime createdAt;
     private final boolean saw;
@@ -23,7 +22,6 @@ public class ResumeResponseDto {
     public ResumeResponseDto(Resume resume) {
         this.resumeId = resume.getId();
         this.recruitmentId = resume.getRecruitment().getId();
-        this.position = resume.getRecruitment().getPosition().name();
         this.name = resume.getName();
         this.createdAt = resume.getCreatedAt();
         this.saw = resume.isSaw();

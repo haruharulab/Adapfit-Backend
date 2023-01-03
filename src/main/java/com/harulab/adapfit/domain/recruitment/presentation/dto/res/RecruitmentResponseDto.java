@@ -1,7 +1,10 @@
 package com.harulab.adapfit.domain.recruitment.presentation.dto.res;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 public class RecruitmentResponseDto {
@@ -17,8 +20,8 @@ public class RecruitmentResponseDto {
     public RecruitmentResponseDto(Recruitment recruitment) {
         this.id = recruitment.getId();
         this.title = recruitment.getTitle();
+        this.position = recruitment.getPosition().getPosition();
         this.content = recruitment.getContent();
-        this.position = recruitment.getPosition().name();
         this.career = recruitment.getCareer();
         this.employmentPattern = recruitment.getEmploymentPattern().name();
         this.workingArea = recruitment.getWorkingArea();

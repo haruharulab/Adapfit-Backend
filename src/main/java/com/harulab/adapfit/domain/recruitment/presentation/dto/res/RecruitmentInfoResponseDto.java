@@ -1,10 +1,11 @@
 package com.harulab.adapfit.domain.recruitment.presentation.dto.res;
 
-import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
-import com.harulab.adapfit.domain.recruitment.domain.type.Position;
+import com.harulab.adapfit.domain.position.domain.Position;
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 최원용
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 public class RecruitmentInfoResponseDto {
 
-    private final List<Position> positionList;
+    private final List<String> positionList;
     private final List<String> careerList;
     private final List<String> patternList;
 
@@ -24,7 +25,8 @@ public class RecruitmentInfoResponseDto {
             List<String> careerList,
             List<String> patternList
     ) {
-        this.positionList = positionList;
+        this.positionList = positionList.stream().map(Position::getPosition)
+                .collect(Collectors.toList());
         this.careerList = careerList;
         this.patternList = patternList;
     }

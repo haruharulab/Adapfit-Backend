@@ -36,6 +36,7 @@ public enum ErrorCode {
     RESUME_NOT_FOUND(404, "RESUME-404-1", "Resume Not Found"),
     IMAGE_NOT_FOUND(404, "IMAGE-404-1", "Image Not Found"),
     NOTICE_NOT_FOUND(404, "NOTICE-404-1", "Notice Not Found"),
+    POSITION_NOT_FOUND(404, "POSITION-404-1", "Position Not Found"),
 
     ALREADY_EXISTS_USER(409, "USER-409-1", "User Already Exists"),
     ALREADY_EXISTS_JOINED(409, "USER-409-2", "Already Joined"),

@@ -39,7 +39,7 @@ public class ResumeController {
         return resumeService.getResume(resumeId, token);
     }
 
-    @PostMapping
+    @PostMapping("/{recruitmentId}")
     public void submit(
             @RequestPart(value = "req") @Valid ProxyResumeRequestDto req,
             @RequestPart(value = "resume") MultipartFile resume,
