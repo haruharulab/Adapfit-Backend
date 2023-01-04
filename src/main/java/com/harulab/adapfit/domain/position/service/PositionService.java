@@ -39,4 +39,9 @@ public class PositionService {
         Position originPosition = positionFacade.findById(positionId);
         originPosition.update(position);
     }
+
+    @Transactional
+    public void delete(Long positionId) {
+        positionFacade.deleteByPositionId(positionId);
+    }
 }

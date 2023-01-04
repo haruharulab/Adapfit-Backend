@@ -40,4 +40,9 @@ public class PositionController {
     ) {
         positionService.update(positionId, position);
     }
+
+    @DeleteMapping("/{positionId}")
+    public void delete(@PathVariable Long positionId) {
+        positionService.delete(positionId);
+    }
 }

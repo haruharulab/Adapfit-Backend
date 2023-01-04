@@ -37,4 +37,8 @@ public class PositionFacade {
         return positionRepository.findByPosition(position)
                 .orElseThrow(() -> PositionNotFoundException.EXCEPTION);
     }
+
+    public void deleteByPositionId(Long positionId) {
+        positionRepository.deleteById(positionId);
+    }
 }
