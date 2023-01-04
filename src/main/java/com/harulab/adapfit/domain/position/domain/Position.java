@@ -29,4 +29,7 @@ public class Position extends BaseTimeEntity {
         this.position = position;
     }
 
+    public void update(String position) {
+        this.position = position;
+    }
 }

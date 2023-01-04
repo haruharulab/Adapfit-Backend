@@ -32,4 +32,12 @@ public class PositionController {
         List<PositionResponse> positionResponses = positionService.searchAll();
         return ResponseEntity.ok(positionResponses);
     }
+
+    @PutMapping("/{positionId}")
+    public void update(
+            @PathVariable Long positionId,
+            @RequestParam String position
+    ) {
+        positionService.update(positionId, position);
+    }
 }

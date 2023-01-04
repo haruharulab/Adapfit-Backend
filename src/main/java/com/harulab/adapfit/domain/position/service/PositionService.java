@@ -1,5 +1,6 @@
 package com.harulab.adapfit.domain.position.service;
 
+import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.position.facade.PositionFacade;
 import com.harulab.adapfit.domain.position.presentation.dto.req.PositionCreateRequest;
 import com.harulab.adapfit.domain.position.presentation.dto.res.PositionResponse;
@@ -31,5 +32,11 @@ public class PositionService {
         return positionFacade.findAll().stream()
                 .map(PositionResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void update(Long positionId, String position) {
+        Position originPosition = positionFacade.findById(positionId);
+        originPosition.update(position);
     }
 }
