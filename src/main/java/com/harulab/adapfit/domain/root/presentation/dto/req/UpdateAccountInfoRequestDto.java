@@ -1,6 +1,5 @@
 package com.harulab.adapfit.domain.root.presentation.dto.req;
 
-import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,25 +14,20 @@ import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 @NoArgsConstructor
 public class UpdateAccountInfoRequestDto {
 
-    @NotBlank(message = AUTH_ID_NOT_BLANK)
     private String authId;
-
-    @NotBlank(message = EMAIL_NOT_BLANK)
-    @Email(message = INPUT_EMAIL_FORM)
     private String email;
-
     @Size(message = NICKNAME_SIZE)
     private String nickname;
-
-    @NotBlank(message = PHONE_NUMBER_NOT_BLANK)
     private String phoneNumber;
+    private String center;
 
     @Builder
-    public UpdateAccountInfoRequestDto(String authId, String email, String nickname, String phoneNumber) {
+    public UpdateAccountInfoRequestDto(String authId, String email, String nickname, String phoneNumber, String center) {
         this.authId = authId;
         this.email = email;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
+        this.center = center;
     }
 
     public boolean authIdIsNull() {
@@ -51,4 +45,6 @@ public class UpdateAccountInfoRequestDto {
     public boolean phoneNumberIsNull() {
         return phoneNumber == null;
     }
+
+    public boolean centerIsNull() { return center == null; }
 }

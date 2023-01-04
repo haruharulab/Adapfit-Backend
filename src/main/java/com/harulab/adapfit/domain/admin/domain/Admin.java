@@ -51,6 +51,9 @@ public class Admin extends BaseTimeEntity {
     @Column(length = 16)
     private Authority authority;
 
+    @Column
+    private String center;
+
     @Builder
     public Admin(String authId, String password, String nickname, String email, String phoneNumber, Authority authority) {
         this.authId = authId;
@@ -83,6 +86,9 @@ public class Admin extends BaseTimeEntity {
         }
         if (!req.phoneNumberIsNull()) {
             this.phoneNumber = req.getPhoneNumber();
+        }
+        if (!req.centerIsNull()) {
+            this.center = req.getCenter();
         }
     }
 

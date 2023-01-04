@@ -79,7 +79,6 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
-
                 .and().apply(new FilterConfig(jwtProvider, jwtAuth));
         return http.build();
     }
