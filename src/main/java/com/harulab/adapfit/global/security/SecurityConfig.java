@@ -63,6 +63,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/recruitment/{recruitId}").hasAnyRole(ADMIN, ROOT)
                 .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, ROOT)
                 .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, ROOT)
+                .antMatchers("/position/**").hasAnyRole(ADMIN, ROOT)
 
                 // ROOT
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
@@ -71,7 +72,6 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/notice").hasRole(ROOT)
                 .antMatchers(HttpMethod.PUT, "/notice/{noticeId}").hasRole(ROOT)
                 .antMatchers(HttpMethod.GET, "/log/**").hasRole(ROOT)
-                .antMatchers("/position/**").hasRole(ROOT)
 
                 // socket.io
                 .antMatchers(HttpMethod.GET, "/socket.io").authenticated()
