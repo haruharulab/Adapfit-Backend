@@ -47,7 +47,7 @@ public class Recruitment extends BaseTimeEntity {
     @NotNull
     private String workingArea;
 
-    @OneToMany(mappedBy = "recruitment")
+    @OneToMany(mappedBy = "recruitment", cascade = CascadeType.REMOVE)
     private List<Resume> resumes;
 
     @Builder
