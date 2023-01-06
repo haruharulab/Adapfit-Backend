@@ -57,6 +57,11 @@ public class RootController {
         rootService.updateMyInfo(req);
     }
 
+    @PutMapping("/pw")
+    public void changeRootPw(@RequestBody PasswordRequestDto req) {
+        rootService.updateRootPassword(req);
+    }
+
     @PutMapping("/{adminId}")
     public void changeRole(
             @PathVariable Long adminId,

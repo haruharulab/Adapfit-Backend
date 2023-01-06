@@ -1,6 +1,8 @@
 package com.harulab.adapfit.domain.root.service;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
+import com.harulab.adapfit.domain.admin.exception.PasswordNotMatchException;
+import com.harulab.adapfit.domain.admin.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.root.domain.Root;
 import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
 import com.harulab.adapfit.domain.root.facade.RootFacade;
@@ -17,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -62,4 +65,12 @@ public class RootService {
         root.update(req);
     }
 
+    @Transactional
+    public void updateRootPassword(PasswordRequestDto req) {
+        if (!Objects.equals(req.getNewPassword(), req.getValidatePassword())) {
+            throw new PasswordNotMatchException();
+        }
+        Root root = rootFacade.getCurrentRoot();
+        root.updatePassword(passwordEncoder, req.getNewPassword());
+    }
 }

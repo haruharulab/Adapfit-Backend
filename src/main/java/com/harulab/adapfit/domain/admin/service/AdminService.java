@@ -64,4 +64,5 @@ public class AdminService {
     public void remove(Long adminId) {
         adminFacade.delete(adminId);
     }
+
 }

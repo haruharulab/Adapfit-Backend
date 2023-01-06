@@ -70,4 +70,8 @@ public class Root extends BaseTimeEntity {
         this.email = req.getEmail();
         this.nickname = req.getNickname();
     }
+
+    public void updatePassword(PasswordEncoder passwordEncoder, String password) {
+        this.password = passwordEncoder.encode(password);
+    }
 }
