@@ -51,7 +51,9 @@ public class RecruitmentService {
     @Transactional
     public void updateRecruitment(Long recruitId, RecruitmentUpdateRequestDto req, String token) {
         Recruitment recruitment = recruitmentFacade.findByRecruitId(recruitId);
+        Position position = positionFacade.findByPosition(req.getPosition());
         recruitment.updateInfo(req);
+        recruitment.confirmPosition(position);
         logService.save(req.getTitle() + " 채용공고를 수정하였습니다.", token);
     }
 
