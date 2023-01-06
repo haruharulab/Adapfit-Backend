@@ -41,9 +41,8 @@ public class RecruitmentCreateRequestDto {
         this.workingArea = workingArea;
     }
 
-    public Recruitment toEntity(Position position) {
+    public Recruitment toEntity() {
         return Recruitment.builder()
-                .position(position)
                 .title(title)
                 .content(content)
                 .career(career)

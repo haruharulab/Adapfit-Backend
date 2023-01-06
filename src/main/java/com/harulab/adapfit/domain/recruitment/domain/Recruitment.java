@@ -34,7 +34,7 @@ public class Recruitment extends BaseTimeEntity {
     @Lob
     private String content;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
     private Position position;
 
@@ -51,8 +51,7 @@ public class Recruitment extends BaseTimeEntity {
     private List<Resume> resumes;
 
     @Builder
-    public Recruitment(Position position, String title, String content, String career, EmploymentPattern employmentPattern, String workingArea) {
-        this.position = position;
+    public Recruitment(String title, String content, String career, EmploymentPattern employmentPattern, String workingArea) {
         this.title = title;
         this.content = content;
         this.career = career;
@@ -70,5 +69,9 @@ public class Recruitment extends BaseTimeEntity {
 
     public void addApply(Resume resume) {
         this.resumes.add(resume);
+    }
+
+    public void confirmPosition(Position position) {
+        this.position = position;
     }
 }

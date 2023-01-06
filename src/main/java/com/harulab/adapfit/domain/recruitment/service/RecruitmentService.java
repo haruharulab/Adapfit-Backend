@@ -27,7 +27,11 @@ public class RecruitmentService {
     @Transactional
     public void createRecruitment(RecruitmentCreateRequestDto req, String token) {
         Position position = positionFacade.findByPosition(req.getPosition());
-        recruitmentFacade.create(req.toEntity(position));
+
+        Recruitment recruitment = req.toEntity();
+        recruitment.confirmPosition(position);
+        recruitmentFacade.create(recruitment);
+
         logService.save(req.getTitle() + " 채용공고를 생성하였습니다.", token);
     }
 
