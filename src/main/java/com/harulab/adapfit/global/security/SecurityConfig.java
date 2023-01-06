@@ -64,12 +64,12 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/banner").hasAnyRole(ADMIN, ROOT)
                 .antMatchers(HttpMethod.GET, "/resume/**").hasAnyRole(ADMIN, ROOT)
                 .antMatchers("/position/**").hasAnyRole(ADMIN, ROOT)
+                .antMatchers(HttpMethod.POST, "/notice").hasAnyRole(ADMIN, ROOT)
 
                 // ROOT
                 .antMatchers(HttpMethod.POST, "/super").permitAll()
                 .antMatchers("/super/auth/token").permitAll()
                 .antMatchers( "/super/**").hasRole(ROOT)
-                .antMatchers(HttpMethod.POST, "/notice").hasRole(ROOT)
                 .antMatchers(HttpMethod.PUT, "/notice/{noticeId}").hasRole(ROOT)
                 .antMatchers(HttpMethod.GET, "/log/**").hasRole(ROOT)
 
