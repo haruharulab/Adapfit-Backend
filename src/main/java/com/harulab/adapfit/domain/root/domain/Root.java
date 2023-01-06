@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.root.domain;
 
 import com.harulab.adapfit.domain.admin.domain.type.Authority;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateRootInfoRequest;
 import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.global.error.exception.AdapfitException;
 import com.harulab.adapfit.global.error.exception.ErrorCode;
@@ -62,5 +63,11 @@ public class Root extends BaseTimeEntity {
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(password);
+    }
+
+    public void update(UpdateRootInfoRequest req) {
+        this.authId = req.getAuthId();
+        this.email = req.getEmail();
+        this.nickname = req.getNickname();
     }
 }

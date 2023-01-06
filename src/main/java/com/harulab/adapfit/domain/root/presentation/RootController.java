@@ -5,6 +5,7 @@ import com.harulab.adapfit.domain.admin.service.AdminService;
 import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.RootCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateRootInfoRequest;
 import com.harulab.adapfit.domain.root.presentation.dto.res.RootResponseDto;
 import com.harulab.adapfit.domain.root.service.RootService;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
@@ -49,6 +50,11 @@ public class RootController {
     public ResultResponse<List<AdminResponseDto>> searchUserList() {
         List<AdminResponseDto> users = rootService.getUserList();
         return new ResultResponse<>(users.size(), users);
+    }
+
+    @PutMapping
+    public void updateInfo(@RequestBody UpdateRootInfoRequest req) {
+        rootService.updateMyInfo(req);
     }
 
     @PutMapping("/{adminId}")

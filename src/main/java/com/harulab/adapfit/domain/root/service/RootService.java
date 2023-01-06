@@ -1,11 +1,13 @@
 package com.harulab.adapfit.domain.root.service;
 
 import com.harulab.adapfit.domain.admin.domain.Admin;
+import com.harulab.adapfit.domain.root.domain.Root;
 import com.harulab.adapfit.domain.root.domain.repository.RootRepository;
 import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.domain.root.presentation.dto.req.AdminCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.RootCreateRequestDto;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateAccountInfoRequestDto;
+import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateRootInfoRequest;
 import com.harulab.adapfit.domain.root.presentation.dto.res.RootResponseDto;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
@@ -52,6 +54,12 @@ public class RootService {
     @Transactional
     public void updateAdminInfo(Long adminId, UpdateAccountInfoRequestDto req) {
         adminFacade.findById(adminId).updateInfo(req);
+    }
+
+    @Transactional
+    public void updateMyInfo(UpdateRootInfoRequest req) {
+        Root root = rootFacade.getCurrentRoot();
+        root.update(req);
     }
 
 }
