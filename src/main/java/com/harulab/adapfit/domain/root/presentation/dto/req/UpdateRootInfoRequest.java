@@ -1,6 +1,7 @@
 package com.harulab.adapfit.domain.root.presentation.dto.req;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author 최원용
@@ -9,11 +10,12 @@ import lombok.Getter;
  */
 
 @Getter
+@NoArgsConstructor
 public class UpdateRootInfoRequest {
 
-    private final String authId;
-    private final String email;
-    private final String nickname;
+    private String authId;
+    private String email;
+    private String nickname;
 
     public UpdateRootInfoRequest(String authId, String email, String nickname) {
         this.authId = authId;
