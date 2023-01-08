@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class RootResponseDto {
 
     private final Long superAdminId;
+    private final String authId;
     private final LocalDateTime createdAt;
     private final String authority;
     private final String email;
@@ -22,6 +23,7 @@ public class RootResponseDto {
 
     public RootResponseDto(Root root) {
         this.superAdminId = root.getId();
+        this.authId = root.getAuthId();
         this.createdAt = root.getCreatedAt();
         this.authority = root.getAuthority().name();
         this.email = root.getEmail();
