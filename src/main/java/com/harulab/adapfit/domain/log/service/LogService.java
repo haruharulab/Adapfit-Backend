@@ -58,4 +58,9 @@ public class LogService {
                 .map(LogResponse::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void removeAll() {
+        logFacade.removeAll();
+    }
 }

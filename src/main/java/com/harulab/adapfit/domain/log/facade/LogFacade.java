@@ -26,4 +26,8 @@ public class LogFacade {
     public List<Log> findAllOrderByDateAtDesc() {
         return logRepository.findAllOrderByDateAtDesc();
     }
+
+    public void removeAll() {
+        logRepository.deleteAll();
+    }
 }

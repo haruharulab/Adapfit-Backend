@@ -4,6 +4,7 @@ import com.harulab.adapfit.domain.log.presentation.dto.res.LogResponse;
 import com.harulab.adapfit.domain.log.service.LogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +28,10 @@ public class LogController {
     public ResponseEntity<List<LogResponse>> getAll() {
         List<LogResponse> logs = logService.searchAll();
         return ResponseEntity.ok(logs);
+    }
+
+    @DeleteMapping
+    public void deleteAll() {
+        logService.removeAll();
     }
 }

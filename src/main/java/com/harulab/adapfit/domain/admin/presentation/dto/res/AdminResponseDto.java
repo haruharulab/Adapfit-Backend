@@ -1,12 +1,7 @@
 package com.harulab.adapfit.domain.admin.presentation.dto.res;
 
-import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import lombok.Getter;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class AdminResponseDto {
