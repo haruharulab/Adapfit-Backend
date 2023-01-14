@@ -8,6 +8,8 @@ import com.harulab.adapfit.domain.root.facade.RootFacade;
 import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.global.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -29,7 +31,7 @@ public class LogService {
     private final RootFacade rootFacade;
     private final JwtUtil jwtUtil;
 
-    @Transactional
+    @Transactional(propagation = Propagation.NESTED)
     public void save(String message, String token) {
         String authority = jwtUtil.extractAuthorityFromToken(token);
         if (authority.equals("ADMIN")) authorityIsAdmin(message);
