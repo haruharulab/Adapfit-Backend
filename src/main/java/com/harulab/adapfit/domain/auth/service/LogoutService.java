@@ -9,16 +9,16 @@ import com.harulab.adapfit.domain.auth.domain.repository.AuthIdRepository;
 import com.harulab.adapfit.domain.auth.domain.repository.RefreshTokenRepository;
 import com.harulab.adapfit.domain.auth.exception.RefreshTokenNotFoundException;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
-import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.global.security.jwt.JwtProperties;
-import com.harulab.adapfit.global.security.jwt.JwtProvider;
-import com.harulab.adapfit.global.security.jwt.auth.JwtAuth;
+import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.domain.log.global.security.jwt.JwtProperties;
+import com.harulab.adapfit.domain.log.global.security.jwt.JwtProvider;
+import com.harulab.adapfit.domain.log.global.security.jwt.auth.JwtAuth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
-import static com.harulab.adapfit.global.security.jwt.JwtConstants.*;
+import static com.harulab.adapfit.domain.log.global.security.jwt.JwtConstants.*;
 
 @RequiredArgsConstructor
 @ServiceWithTransactionalReadOnly

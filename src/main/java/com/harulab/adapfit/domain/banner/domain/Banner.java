@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.banner.domain;
 
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
-import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

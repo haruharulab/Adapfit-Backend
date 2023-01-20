@@ -4,11 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.NICKNAME_SIZE;
 
 @Getter
 @NoArgsConstructor

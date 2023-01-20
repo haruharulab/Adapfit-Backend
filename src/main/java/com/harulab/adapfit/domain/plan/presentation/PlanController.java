@@ -6,7 +6,7 @@ import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateInfoReques
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.plan.service.PlanService;
-import com.harulab.adapfit.global.generic.ResultResponse;
+import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

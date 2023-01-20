@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.category.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;

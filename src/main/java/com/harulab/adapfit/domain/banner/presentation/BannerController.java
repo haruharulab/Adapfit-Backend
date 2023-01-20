@@ -3,7 +3,7 @@ package com.harulab.adapfit.domain.banner.presentation;
 import com.harulab.adapfit.domain.banner.service.BannerService;
 import com.harulab.adapfit.domain.banner.presentation.dto.req.UploadBannerRequest;
 import com.harulab.adapfit.domain.banner.presentation.dto.res.BannerResponse;
-import com.harulab.adapfit.global.generic.ResultResponse;
+import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

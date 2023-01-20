@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.image.domain;
 
 import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

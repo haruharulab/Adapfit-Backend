@@ -1,6 +1,5 @@
 package com.harulab.adapfit.domain.plan.presentation.dto.req;
 
-import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.CATEGORY_ID_NOT_BLANK;
 
 @NoArgsConstructor
 @Getter

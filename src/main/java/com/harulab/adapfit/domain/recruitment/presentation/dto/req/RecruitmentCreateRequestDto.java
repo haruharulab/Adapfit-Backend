@@ -1,6 +1,5 @@
 package com.harulab.adapfit.domain.recruitment.presentation.dto.req;
 
-import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import lombok.Builder;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.*;
 
 @NoArgsConstructor
 @Getter

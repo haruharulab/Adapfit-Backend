@@ -3,7 +3,7 @@ package com.harulab.adapfit.domain.admin.facade;
 import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.admin.domain.repository.AdminRepository;
 import com.harulab.adapfit.domain.admin.exception.AdminNotFoundException;
-import com.harulab.adapfit.global.utils.AdminUtil;
+import com.harulab.adapfit.domain.log.global.utils.AdminUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -3,7 +3,7 @@ package com.harulab.adapfit.domain.image.service;
 import com.harulab.adapfit.domain.image.domain.Image;
 import com.harulab.adapfit.domain.image.facade.ImageFacade;
 import com.harulab.adapfit.domain.plan.domain.Plan;
-import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import com.harulab.adapfit.infrastructure.s3.S3Uploader;
 import lombok.RequiredArgsConstructor;

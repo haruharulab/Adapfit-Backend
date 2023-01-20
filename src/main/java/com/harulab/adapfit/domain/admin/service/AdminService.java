@@ -7,7 +7,7 @@ import com.harulab.adapfit.domain.admin.facade.AdminFacade;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.PasswordRequestDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.req.AdminRequestDto;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
-import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;

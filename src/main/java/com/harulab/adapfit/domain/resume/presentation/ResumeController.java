@@ -5,7 +5,7 @@ import com.harulab.adapfit.domain.resume.presentation.dto.req.ProxyResumeRequest
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
 import com.harulab.adapfit.domain.resume.service.ResumeService;
-import com.harulab.adapfit.global.generic.ResultResponse;
+import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

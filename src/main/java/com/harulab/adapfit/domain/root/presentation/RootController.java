@@ -9,7 +9,7 @@ import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateRootInfoReques
 import com.harulab.adapfit.domain.root.presentation.dto.res.RootResponseDto;
 import com.harulab.adapfit.domain.root.service.RootService;
 import com.harulab.adapfit.domain.admin.presentation.dto.res.AdminResponseDto;
-import com.harulab.adapfit.global.generic.ResultResponse;
+import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

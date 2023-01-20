@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
-import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.*;
 
 @Getter
 @NoArgsConstructor

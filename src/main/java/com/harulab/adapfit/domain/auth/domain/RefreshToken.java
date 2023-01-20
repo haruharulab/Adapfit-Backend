@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.index.Indexed;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-@RedisHash
+@RedisHash(value = "refresh_token")
 public class RefreshToken {
 
     @Id

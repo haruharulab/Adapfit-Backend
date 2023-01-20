@@ -4,7 +4,7 @@ import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.resume.domain.Resume;
 import com.harulab.adapfit.domain.recruitment.domain.type.EmploymentPattern;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
-import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,8 +1,7 @@
 package com.harulab.adapfit.domain.notice.exception;
 
-import com.harulab.adapfit.global.error.exception.AdapfitException;
-import com.harulab.adapfit.global.error.exception.ErrorCode;
-import org.aspectj.weaver.ast.Not;
+import com.harulab.adapfit.domain.log.global.error.exception.AdapfitException;
+import com.harulab.adapfit.domain.log.global.error.exception.ErrorCode;
 
 /**
  * @author 최원용

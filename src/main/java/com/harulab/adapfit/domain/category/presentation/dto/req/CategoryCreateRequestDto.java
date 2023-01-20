@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 
-import static com.harulab.adapfit.global.utils.ValidMessageConstants.CATEGORY_NAME_NOT_NULL;
+import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.CATEGORY_NAME_NOT_NULL;
 
 @Getter
 public class CategoryCreateRequestDto {
