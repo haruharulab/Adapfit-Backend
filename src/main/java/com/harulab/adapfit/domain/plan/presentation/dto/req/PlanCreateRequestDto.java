@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.CONTENT_NOT_BLANK;
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.TITLE_NOT_BLANK;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.CONTENT_NOT_BLANK;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.TITLE_NOT_BLANK;
 
 @Getter
 @NoArgsConstructor

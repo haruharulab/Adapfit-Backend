@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 @Getter
 public class PlanRequestDto {

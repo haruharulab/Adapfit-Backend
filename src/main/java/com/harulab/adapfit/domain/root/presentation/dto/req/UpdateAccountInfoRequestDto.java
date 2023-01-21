@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.NICKNAME_SIZE;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.NICKNAME_SIZE;
 
 @Getter
 @NoArgsConstructor

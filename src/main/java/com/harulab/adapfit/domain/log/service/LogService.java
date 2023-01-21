@@ -5,9 +5,9 @@ import com.harulab.adapfit.domain.log.domain.Log;
 import com.harulab.adapfit.domain.log.facade.LogFacade;
 import com.harulab.adapfit.domain.log.presentation.dto.res.LogResponse;
 import com.harulab.adapfit.domain.root.facade.RootFacade;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.domain.log.global.exception.NotFoundAuthIdException;
-import com.harulab.adapfit.domain.log.global.utils.JwtUtil;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.exception.NotFoundAuthIdException;
+import com.harulab.adapfit.global.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -33,7 +33,6 @@ public class LogService {
     private final RootFacade rootFacade;
     private final JwtUtil jwtUtil;
 
-    @Transactional(propagation = Propagation.NESTED, rollbackFor = NotFoundAuthIdException.class)
     public void save(String message, String token) {
         String authority = jwtUtil.extractAuthorityFromToken(token);
         if (authority.equals("ADMIN")) authorityIsAdmin(message);
@@ -56,7 +55,6 @@ public class LogService {
                 .build());
     }
 
-//    @Cacheable(cacheNames = "searchAll", key = "#root.target + #root.methodName", sync = true, cacheManager = "rcm")
     public List<LogResponse> searchAll() {
         return logFacade.findAllOrderByDateAtDesc()
                 .stream()
@@ -64,7 +62,6 @@ public class LogService {
                 .collect(Collectors.toList());
     }
 
-//    @CacheEvict(cacheNames = "searchAll", allEntries = true, beforeInvocation = true, cacheManager = "rcm")
     @Transactional
     public void removeAll() {
         logFacade.removeAll();

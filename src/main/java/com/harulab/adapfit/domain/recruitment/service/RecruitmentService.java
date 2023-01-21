@@ -9,7 +9,7 @@ import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentCr
 import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUpdateRequestDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentInfoResponseDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

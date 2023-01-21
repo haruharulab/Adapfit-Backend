@@ -9,8 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.IMAGE_NOT_NULL;
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.LINK_SIZE;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.IMAGE_NOT_NULL;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.LINK_SIZE;
 
 @AllArgsConstructor
 public class UploadBannerRequest {

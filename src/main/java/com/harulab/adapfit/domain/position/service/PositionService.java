@@ -4,7 +4,7 @@ import com.harulab.adapfit.domain.position.domain.Position;
 import com.harulab.adapfit.domain.position.facade.PositionFacade;
 import com.harulab.adapfit.domain.position.presentation.dto.req.PositionCreateRequest;
 import com.harulab.adapfit.domain.position.presentation.dto.res.PositionResponse;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

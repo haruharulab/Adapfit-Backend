@@ -3,7 +3,7 @@ package com.harulab.adapfit.domain.auth.presentation;
 import com.harulab.adapfit.domain.auth.presentation.dto.req.LoginRequestDto;
 import com.harulab.adapfit.domain.auth.service.SuperAdminLoginService;
 import com.harulab.adapfit.domain.auth.service.LogoutService;
-import com.harulab.adapfit.domain.log.global.security.jwt.dto.TokenResponseDto;
+import com.harulab.adapfit.global.security.jwt.dto.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;

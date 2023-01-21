@@ -7,8 +7,8 @@ import com.harulab.adapfit.domain.recruitment.domain.Recruitment;
 import com.harulab.adapfit.domain.recruitment.facade.RecruitmentFacade;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeDetailResponseDto;
 import com.harulab.adapfit.domain.resume.presentation.dto.res.ResumeResponseDto;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
-import com.harulab.adapfit.domain.log.global.utils.JwtUtil;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

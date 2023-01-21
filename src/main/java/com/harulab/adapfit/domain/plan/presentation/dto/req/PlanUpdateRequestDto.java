@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.*;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.*;
 
 /**
  * @author 최원용

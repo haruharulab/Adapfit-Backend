@@ -6,7 +6,7 @@ import com.harulab.adapfit.domain.notice.exception.NoticeNotFoundException;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeCreateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.req.NoticeUpdateRequestDto;
 import com.harulab.adapfit.domain.notice.presentation.dto.res.NoticeResponseDto;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

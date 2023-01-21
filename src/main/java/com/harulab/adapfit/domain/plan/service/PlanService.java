@@ -11,9 +11,11 @@ import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.PlanResponseDto;
 import com.harulab.adapfit.domain.admin.facade.AdminFacade;
-import com.harulab.adapfit.domain.log.global.annotation.ServiceWithTransactionalReadOnly;
+import com.harulab.adapfit.global.annotation.ServiceWithTransactionalReadOnly;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
@@ -80,6 +82,7 @@ public class PlanService {
         return new PlanResponseDto(plan, plan.getCategory());
     }
 
+    @Cacheable(cacheNames = "searchAll", key = "#root.target + #root.methodName", sync = true, cacheManager = "rcm")
     public List<PlanResponseDto> getAllPlan() {
         return planFacade.findAll()
                 .stream()

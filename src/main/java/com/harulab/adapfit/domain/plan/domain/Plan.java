@@ -4,7 +4,7 @@ import com.harulab.adapfit.domain.admin.domain.Admin;
 import com.harulab.adapfit.domain.category.domain.Category;
 import com.harulab.adapfit.domain.plan.exception.DontAccessOtherPlanException;
 import com.harulab.adapfit.domain.plan.presentation.dto.req.PlanUpdateRequestDto;
-import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
 import com.harulab.adapfit.infrastructure.s3.S3FileResponseDto;
 import lombok.AccessLevel;
 import lombok.Builder;

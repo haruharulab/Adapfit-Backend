@@ -5,7 +5,7 @@ import com.harulab.adapfit.domain.recruitment.presentation.dto.req.RecruitmentUp
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentInfoResponseDto;
 import com.harulab.adapfit.domain.recruitment.presentation.dto.res.RecruitmentResponseDto;
 import com.harulab.adapfit.domain.recruitment.service.RecruitmentService;
-import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

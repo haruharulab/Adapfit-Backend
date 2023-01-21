@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
-import static com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants.CATEGORY_ID_NOT_BLANK;
+import static com.harulab.adapfit.global.utils.ValidMessageConstants.CATEGORY_ID_NOT_BLANK;
 
 @NoArgsConstructor
 @Getter

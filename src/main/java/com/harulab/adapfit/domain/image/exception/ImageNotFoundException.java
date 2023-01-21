@@ -1,7 +1,7 @@
 package com.harulab.adapfit.domain.image.exception;
 
-import com.harulab.adapfit.domain.log.global.error.exception.AdapfitException;
-import com.harulab.adapfit.domain.log.global.error.exception.ErrorCode;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
+import com.harulab.adapfit.global.error.exception.ErrorCode;
 
 /**
  * @author 최원용

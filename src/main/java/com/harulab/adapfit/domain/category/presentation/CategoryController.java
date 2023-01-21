@@ -2,7 +2,7 @@ package com.harulab.adapfit.domain.category.presentation;
 
 import com.harulab.adapfit.domain.category.service.CategoryService;
 import com.harulab.adapfit.domain.plan.presentation.dto.res.CategoryResponseDto;
-import com.harulab.adapfit.domain.log.global.generic.ResultResponse;
+import com.harulab.adapfit.global.generic.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

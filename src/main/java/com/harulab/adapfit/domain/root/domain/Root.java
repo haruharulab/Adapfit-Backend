@@ -2,9 +2,9 @@ package com.harulab.adapfit.domain.root.domain;
 
 import com.harulab.adapfit.domain.admin.domain.type.Authority;
 import com.harulab.adapfit.domain.root.presentation.dto.req.UpdateRootInfoRequest;
-import com.harulab.adapfit.domain.log.global.entity.BaseTimeEntity;
-import com.harulab.adapfit.domain.log.global.error.exception.AdapfitException;
-import com.harulab.adapfit.domain.log.global.error.exception.ErrorCode;
+import com.harulab.adapfit.global.entity.BaseTimeEntity;
+import com.harulab.adapfit.global.error.exception.AdapfitException;
+import com.harulab.adapfit.global.error.exception.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

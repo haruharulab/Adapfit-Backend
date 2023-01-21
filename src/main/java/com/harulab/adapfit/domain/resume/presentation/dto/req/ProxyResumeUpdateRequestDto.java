@@ -1,6 +1,6 @@
 package com.harulab.adapfit.domain.resume.presentation.dto.req;
 
-import com.harulab.adapfit.domain.log.global.utils.ValidMessageConstants;
+import com.harulab.adapfit.global.utils.ValidMessageConstants;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
