@@ -36,11 +36,10 @@ public class LogoutService {
     public void execute(String accessToken) {
         String tokenRole = jwtAuth.getJws(jwtProvider.parseToken(accessToken))
                 .getBody().get(ROLE.getMessage()).toString();
-        if (Objects.equals(tokenRole, ADMIN_ROLE.getMessage())) {
-            deleteUserRefreshToken(adminFacade.getCurrentAdmin());
-        }
-        if (Objects.equals(tokenRole, SUPER_ADMIN_ROLE.getMessage())){
+        if (Objects.equals(tokenRole, ROOT.getMessage())){
             deleteSuperAdminRefreshToken(rootFacade.getCurrentRoot());
+        } else {
+            deleteUserRefreshToken(adminFacade.getCurrentAdmin());
         }
 
         saveAuthId(accessToken);

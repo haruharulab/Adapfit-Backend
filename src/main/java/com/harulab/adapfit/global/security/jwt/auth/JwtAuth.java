@@ -50,7 +50,7 @@ public class JwtAuth {
     }
 
     private UserDetails getDetails(Claims body) {
-        if (SUPER_ADMIN_ROLE.getMessage().equals(body.get(ROLE.getMessage()).toString())) {
+        if (ROOT.getMessage().equals(body.get(ROLE.getMessage()).toString())) {
             return rootDetailsService
                     .loadUserByUsername(body.getSubject());
         }

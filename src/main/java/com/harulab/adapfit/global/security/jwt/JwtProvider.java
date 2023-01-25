@@ -28,8 +28,7 @@ public class JwtProvider {
         return jwtProperties.getPrefix()
                 + JwtConstants.EMPTY.getMessage()
                 + generateToken(
-                authId,
-                role,
+                authId, role,
                 JwtConstants.ACCESS_KEY.getMessage(),
                 jwtProperties.getAccessExp()
         );
