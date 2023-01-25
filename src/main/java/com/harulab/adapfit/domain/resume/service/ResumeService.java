@@ -39,10 +39,7 @@ public class ResumeService {
     @Transactional
     public ResumeDetailResponseDto getResume(Long resumeId, String token) {
         Resume resume = resumeFacade.getDetail(resumeId);
-        String authority = jwtUtil.extractAuthorityFromToken(token);
-        if (authority.equals("ROOT")) {
-            resume.updateSaw();
-        }
+        resume.updateSaw();
         return new ResumeDetailResponseDto(resume);
     }
 
