@@ -22,11 +22,6 @@ public class AdminController {
         return adminService.getMyInfo();
     }
 
-//    @PostMapping
-//    public void join(@RequestBody AdminRequestDto req) {
-//        adminService.join(req);
-//    }
-
     @PutMapping
     public void update(@RequestBody @Valid UpdateAccountInfoRequestDto req) {
         adminService.updateAccountInfo(req);

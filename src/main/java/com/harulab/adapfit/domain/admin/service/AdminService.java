@@ -27,11 +27,6 @@ public class AdminService {
     }
 
     @Transactional
-    public void join(AdminRequestDto req) {
-        adminFacade.create(req.toEntity()).encodePassword(passwordEncoder);
-    }
-
-    @Transactional
     public void updateAccountInfo(UpdateAccountInfoRequestDto req) {
         Admin admin = adminFacade.getCurrentAdmin();
         admin.updateInfo(req);
